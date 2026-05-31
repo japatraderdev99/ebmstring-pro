@@ -10,8 +10,8 @@ export const SITE = {
   city: "Brasil",
 };
 
-// TODO: substituir pelo número real da EBM String Pro.
-export const WHATSAPP_NUMBER = "5599999999999";
+export const WHATSAPP_NUMBER = "5548992034224";
+export const WHATSAPP_DISPLAY = "+55 48 99203-4224";
 export const WHATSAPP_LINK = `https://wa.me/${WHATSAPP_NUMBER}`;
 
 export const INSTAGRAM = "https://instagram.com/ebmstringpro";

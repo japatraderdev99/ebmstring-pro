@@ -1,0 +1,234 @@
+---
+/**
+ * Catálogo em PDF — layout A4 de impressão, mesmo design system do site.
+ * Renderizado para PDF via Chrome headless (--print-to-pdf).
+ * Rota: /catalogo-pdf  (não linkada na navegação; uso interno de geração).
+ */
+import "@/styles/global.css";
+import RadarChart from "@/components/RadarChart.tsx";
+import { STRINGS, stringImage, ATTR_LABELS, ATTRS } from "@/data/strings";
+import { SITE, WHATSAPP_DISPLAY, INSTAGRAM } from "@/lib/site";
+
+const year = new Date().getFullYear();
+// 2 cordas por página
+const pages: (typeof STRINGS)[] = [];
+for (let i = 0; i < STRINGS.length; i += 2) pages.push(STRINGS.slice(i, i + 2));
+const fmt = (n: number) => `R$ ${n.toFixed(2).replace(".", ",")}`;
+---
+
+<!doctype html>
+<html lang="pt-BR" class="dark">
+  <head>
+    <meta charset="UTF-8" />
+    <title>EBM String Pro — Catálogo</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Archivo:ital,wght@0,300..800;1,400..700&family=EB+Garamond:ital,wght@0,400..600;1,400..600&family=Geist+Mono:wght@400;500;600&family=Saira+Condensed:wght@400;500;600;700;800;900&display=swap"
+      rel="stylesheet"
+    />
+    <style is:global>
+      @page {
+        size: A4;
+        margin: 0;
+      }
+      :root {
+        --grid: rgba(68, 71, 72, 0.5);
+      }
+      * {
+        -webkit-print-color-adjust: exact !important;
+        print-color-adjust: exact !important;
+      }
+      html,
+      body {
+        margin: 0;
+        padding: 0;
+        background: #0a0a0a;
+      }
+      .sheet {
+        width: 210mm;
+        height: 297mm;
+        position: relative;
+        overflow: hidden;
+        background: #0a0a0a;
+        page-break-after: always;
+        break-after: page;
+      }
+      .sheet:last-child {
+        page-break-after: auto;
+      }
+    </style>
+  </head>
+  <body class="font-body text-papel">
+    <!-- ============ CAPA ============ -->
+    <section class="sheet flex flex-col items-center justify-center px-[24mm] text-center">
+      <div class="stringbed absolute inset-0 opacity-[0.16]"></div>
+      <div
+        class="absolute inset-0"
+        style="background: radial-gradient(115% 75% at 50% 16%, rgba(20,58,36,0.6), transparent 60%), radial-gradient(60% 38% at 50% 30%, rgba(156,214,83,0.16), transparent 70%);"
+      >
+      </div>
+
+      <div class="relative flex flex-col items-center">
+        <span
+          class="tech-label mb-[10mm] border border-lima/40 bg-quadra/30 px-[6mm] py-[3mm] text-lima"
+          >Catálogo de Performance · {year}</span
+        >
+        <img src="/ebm-logo.png" alt="EBM String Pro" class="w-[120mm]" />
+        <h1 class="mt-[8mm] font-display text-[20mm] leading-[0.85] text-papel">
+          Performance <span class="text-lima italic">começa nas cordas.</span>
+        </h1>
+        <p class="editorial mt-[6mm] max-w-[150mm] text-[6mm] leading-snug text-muted">
+          Encordoamento profissional de raquetes de tênis. Precisão técnica de
+          tensão e consistência — a corda certa para o seu jogo.
+        </p>
+      </div>
+
+      <div
+        class="absolute inset-x-0 bottom-0 grid grid-cols-3 border-t border-line bg-tinta/70"
+      >
+        {
+          [
+            ["±0,5", "lbs de precisão"],
+            ["6", "eixos analisados"],
+            ["10", "cordas premium"],
+          ].map(([b, s]) => (
+            <div class="border-r border-line px-[6mm] py-[7mm] text-center last:border-r-0">
+              <div class="font-display text-[12mm] leading-none text-lima">{b}</div>
+              <div class="tech-label mt-[2mm] text-faint">{s}</div>
+            </div>
+          ))
+        }
+      </div>
+    </section>
+
+    <!-- ============ PÁGINAS DE CORDAS ============ -->
+    {
+      pages.map((pair, pi) => (
+        <section class="sheet flex flex-col px-[16mm] py-[14mm]">
+          <header class="mb-[8mm] flex items-end justify-between border-b border-line pb-[5mm]">
+            <div>
+              <span class="tech-label text-lima">Análise científica</span>
+              <h2 class="font-display text-[11mm] leading-none text-papel">
+                Catálogo de Performance
+              </h2>
+            </div>
+            <img src="/ebm-logo.png" alt="EBM" class="h-[14mm]" />
+          </header>
+
+          <div class="flex flex-1 flex-col gap-[8mm]">
+            {pair.map((s) => {
+              const img = stringImage(s.id) ? `/strings/pdf/${s.id}.jpg` : null;
+              return (
+                <article class="flex flex-1 gap-[7mm] border border-line bg-surface-1 p-[6mm]">
+                  {/* esquerda: foto ou bloco */}
+                  <div class="relative w-[62mm] shrink-0 overflow-hidden border border-line/60 bg-tinta">
+                    {img ? (
+                      <img
+                        src={img}
+                        alt={`${s.brand} ${s.name}`}
+                        class="h-full w-full object-cover"
+                      />
+                    ) : (
+                      <div class="stringbed-fine flex h-full w-full items-center justify-center opacity-90">
+                        <span class="font-display text-[9mm] text-surface-4">{s.brand}</span>
+                      </div>
+                    )}
+                    <div class="absolute inset-x-0 bottom-0 bg-gradient-to-t from-tinta to-transparent p-[4mm] pt-[12mm]">
+                      <span class="tech-label text-papel/70">{s.brand}</span>
+                      <div class="font-display text-[7mm] leading-none text-papel">
+                        {s.name}
+                      </div>
+                    </div>
+                    <span class="tech-label absolute right-[3mm] top-[3mm] border border-lima/30 bg-tinta/70 px-[2mm] py-[1mm] text-[2.4mm] text-lima">
+                      {s.shape}
+                    </span>
+                  </div>
+
+                  {/* meio: radar */}
+                  <div class="flex w-[44mm] shrink-0 flex-col items-center justify-center">
+                    <RadarChart data={s.attrs} size={150} />
+                    <p class="tech-label mt-[2mm] text-center text-lima">{s.tagline}</p>
+                  </div>
+
+                  {/* direita: specs */}
+                  <div class="flex flex-1 flex-col">
+                    <ul class="flex flex-col gap-[2mm] font-mono text-[3mm] text-muted">
+                      <li class="flex justify-between border-b border-line/40 pb-[1.5mm]">
+                        <span class="text-faint">Gauge</span>
+                        <span class="text-papel">{s.gauges.join(" · ")}</span>
+                      </li>
+                      <li class="flex justify-between border-b border-line/40 pb-[1.5mm]">
+                        <span class="text-faint">Material</span>
+                        <span class="text-right text-papel">{s.material}</span>
+                      </li>
+                      <li class="flex justify-between border-b border-line/40 pb-[1.5mm]">
+                        <span class="text-faint">Tensão rec.</span>
+                        <span class="text-papel">
+                          {s.tensionRec[0]}–{s.tensionRec[1]} lbs
+                        </span>
+                      </li>
+                      <li class="flex justify-between border-b border-line/40 pb-[1.5mm]">
+                        <span class="text-faint">Braço</span>
+                        <span class={s.armFriendly ? "text-lima" : "text-papel"}>
+                          {s.armFriendly ? "Amiga do braço" : "Resposta firme"}
+                        </span>
+                      </li>
+                    </ul>
+                    <p class="editorial mt-[4mm] flex-1 text-[3.4mm] leading-snug text-muted">
+                      {s.blurb}
+                    </p>
+                    <div class="mt-[3mm] flex items-end justify-between border-t border-line pt-[3mm]">
+                      <span class="tech-label text-faint">Set / corte</span>
+                      <span class="font-display text-[9mm] leading-none text-lima">
+                        {fmt(s.priceBRL)}
+                      </span>
+                    </div>
+                  </div>
+                </article>
+              );
+            })}
+          </div>
+
+          <footer class="mt-[6mm] flex justify-between font-mono text-[2.8mm] text-faint">
+            <span>EBM String Pro · {SITE.domain}</span>
+            <span>{String(pi + 2).padStart(2, "0")} / {String(pages.length + 2).padStart(2, "0")}</span>
+          </footer>
+        </section>
+      ))
+    }
+
+    <!-- ============ CONTRACAPA / CTA ============ -->
+    <section class="sheet flex flex-col items-center justify-center px-[24mm] text-center">
+      <div class="stringbed absolute inset-0 opacity-[0.12]"></div>
+      <div
+        class="absolute inset-0"
+        style="background: radial-gradient(110% 70% at 50% 80%, rgba(20,58,36,0.5), transparent 62%);"
+      >
+      </div>
+      <div class="relative flex flex-col items-center">
+        <img src="/ebm-logo.png" alt="EBM String Pro" class="w-[95mm]" />
+        <h2 class="mt-[10mm] font-display text-[16mm] leading-[0.9] text-papel">
+          Pronto para sentir <span class="text-lima italic">a diferença?</span>
+        </h2>
+        <p class="editorial mt-[6mm] max-w-[140mm] text-[5.5mm] leading-snug text-muted">
+          Agende seu encordoamento e jogue com a tensão certa. Atendimento
+          profissional, cordas premium e constância rastreável.
+        </p>
+
+        <div class="mt-[12mm] flex flex-col items-center gap-[4mm]">
+          <div
+            class="flex items-center gap-[4mm] bg-lima px-[10mm] py-[5mm] font-display text-[8mm] uppercase leading-none text-tinta"
+          >
+            WhatsApp · {WHATSAPP_DISPLAY}
+          </div>
+          <span class="tech-label text-faint">{INSTAGRAM.replace("https://", "")}</span>
+          <span class="tech-label text-faint">{SITE.url.replace("https://", "")}</span>
+        </div>
+      </div>
+      <div class="absolute bottom-[14mm] tech-label text-faint">
+        Performance começa nas cordas · {year}
+      </div>
+    </section>
+  </body>
+</html>

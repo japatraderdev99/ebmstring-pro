@@ -245,13 +245,14 @@ export function getString(id: string): StringModel | undefined {
 }
 
 /**
- * Cordas com foto macro real disponível em /public/strings/<id>.jpg.
- * (Wilson Poly Pro ainda sem foto correspondente — exibe só o radar.)
+ * Cordas com foto macro disponível em /public/strings/<id>.jpg.
+ * (Todas as 10 cordas do catálogo possuem foto.)
  */
 const STRINGS_WITH_PHOTOS = new Set<string>([
   "sigma-poly-black",
   "sigma-poly-spin",
   "gamma-poly-z",
+  "wilson-poly-pro",
   "head-sonic-pro",
   "head-lynx-tour",
   "signum-pro-poly-plasma",

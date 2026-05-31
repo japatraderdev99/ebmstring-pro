@@ -7,9 +7,12 @@
 import "@/styles/global.css";
 import RadarChart from "@/components/RadarChart.tsx";
 import { STRINGS, stringImage, ATTR_LABELS, ATTRS } from "@/data/strings";
-import { SITE, WHATSAPP_DISPLAY, INSTAGRAM } from "@/lib/site";
+import { SITE, WHATSAPP_DISPLAY, WHATSAPP_LINK, INSTAGRAM } from "@/lib/site";
 
 const year = new Date().getFullYear();
+const agendarUrl = `${WHATSAPP_LINK}?text=${encodeURIComponent(
+  "Olá EBM String Pro! Vi o catálogo e quero agendar um encordoamento.",
+)}`;
 // 2 cordas por página
 const pages: (typeof STRINGS)[] = [];
 for (let i = 0; i < STRINGS.length; i += 2) pages.push(STRINGS.slice(i, i + 2));
@@ -217,13 +220,21 @@ const fmt = (n: number) => `R$ ${n.toFixed(2).replace(".", ",")}`;
         </p>
 
         <div class="mt-[12mm] flex flex-col items-center gap-[4mm]">
-          <div
-            class="flex items-center gap-[4mm] bg-lima px-[10mm] py-[5mm] font-display text-[8mm] uppercase leading-none text-tinta"
+          <a
+            href={agendarUrl}
+            class="flex flex-col items-center gap-[2mm] bg-lima px-[12mm] py-[5mm] text-tinta no-underline"
           >
-            WhatsApp · {WHATSAPP_DISPLAY}
-          </div>
-          <span class="tech-label text-faint">{INSTAGRAM.replace("https://", "")}</span>
-          <span class="tech-label text-faint">{SITE.url.replace("https://", "")}</span>
+            <span class="font-display text-[7mm] uppercase leading-none">
+              Agendar no WhatsApp
+            </span>
+            <span class="font-display text-[8mm] leading-none">{WHATSAPP_DISPLAY}</span>
+          </a>
+          <a href={INSTAGRAM} class="tech-label text-faint no-underline"
+            >{INSTAGRAM.replace("https://", "")}</a
+          >
+          <a href={SITE.url} class="tech-label text-faint no-underline"
+            >{SITE.url.replace("https://", "")}</a
+          >
         </div>
       </div>
       <div class="absolute bottom-[14mm] tech-label text-faint">

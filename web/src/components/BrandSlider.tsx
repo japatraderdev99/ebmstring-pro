@@ -1,14 +1,15 @@
 import { useEffect, useRef, useState } from "react";
 
 type Brand =
-  | { name: string; logo: string } // logo file (alpha PNG) → masked silhouette
+  | { name: string; logo: string; h?: string } // logo file (alpha PNG) → masked silhouette
   | { name: string; wordmark: true }; // styled wordmark
 
 const BRANDS: Brand[] = [
   { name: "Wilson", logo: "/brands/wilson.png" },
   { name: "Head", logo: "/brands/head.png" },
   { name: "Yonex", logo: "/brands/yonex.png" },
-  { name: "Solinco", logo: "/brands/solinco.png" },
+  // Solinco tem marca mais "quadrada" → altura maior p/ peso visual equivalente.
+  { name: "Solinco", logo: "/brands/solinco.png?v=2", h: "h-14" },
   { name: "Gamma", wordmark: true },
   { name: "Signum Pro", wordmark: true },
   { name: "Sigma", wordmark: true },
@@ -19,7 +20,7 @@ function BrandMark({ brand }: { brand: Brand }) {
     <div className="group flex h-20 w-44 shrink-0 items-center justify-center px-6 sm:w-52">
       {"logo" in brand ? (
         <div
-          className="brand-mask h-9 w-full opacity-55 transition-all duration-500 group-hover:opacity-100 group-hover:[background-color:var(--color-lima)]"
+          className={`brand-mask ${brand.h ?? "h-9"} w-full opacity-55 transition-all duration-500 group-hover:opacity-100 group-hover:[background-color:var(--color-lima)]`}
           style={{
             WebkitMaskImage: `url(${brand.logo})`,
             maskImage: `url(${brand.logo})`,

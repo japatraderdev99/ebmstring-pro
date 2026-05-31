@@ -1,5 +1,5 @@
 ---
-import { SITE, NAV, WHATSAPP_LINK, INSTAGRAM } from "@/lib/site";
+import { SITE, NAV, WHATSAPP_LINK, INSTAGRAM, CATALOG_PDF } from "@/lib/site";
 const year = new Date().getFullYear();
 ---
 
@@ -50,6 +50,16 @@ const year = new Date().getFullYear();
               rel="noopener"
               class="font-display text-xl uppercase text-papel transition-colors hover:text-lima"
               >Instagram</a
+            >
+          </li>
+          <li>
+            <a
+              href={CATALOG_PDF}
+              target="_blank"
+              rel="noopener"
+              download
+              class="font-display text-xl uppercase text-papel transition-colors hover:text-lima"
+              >Catálogo PDF ↓</a
             >
           </li>
         </ul>

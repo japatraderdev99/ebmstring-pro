@@ -6,7 +6,7 @@ import BrandSlider from "@/components/BrandSlider.tsx";
 import StringFinder from "@/components/StringFinder.tsx";
 import CatalogGrid from "@/components/CatalogGrid.tsx";
 import Comparator from "@/components/Comparator.tsx";
-import { WHATSAPP_LINK } from "@/lib/site";
+import { WHATSAPP_LINK, CATALOG_PDF } from "@/lib/site";
 
 const processo = [
   {
@@ -125,6 +125,21 @@ const depoimentos = [
             Ver catálogo
           </a>
         </div>
+
+        <a
+          href={CATALOG_PDF}
+          target="_blank"
+          rel="noopener"
+          download
+          class="reveal group mt-6 inline-flex items-center gap-2 tech-label text-faint transition-colors duration-300 hover:text-lima"
+          style="animation-delay: 0.8s"
+        >
+          <span
+            class="inline-block transition-transform duration-300 group-hover:translate-y-0.5"
+            aria-hidden>↓</span
+          >
+          Baixar catálogo em PDF
+        </a>
       </div>
 
       <!-- metrics strip -->
@@ -197,6 +212,19 @@ const depoimentos = [
             As cordas mais exigidas no circuito profissional, dissecadas em seis
             eixos de performance. Filtre pelo que o seu jogo precisa.
           </p>
+          <a
+            href={CATALOG_PDF}
+            target="_blank"
+            rel="noopener"
+            download
+            class="group mt-8 inline-flex items-center gap-3 border border-lima bg-lima/10 px-6 py-3 tech-label text-lima transition-colors duration-300 hover:bg-lima hover:text-tinta"
+          >
+            <span
+              class="inline-block transition-transform duration-300 group-hover:translate-y-0.5"
+              aria-hidden>↓</span
+            >
+            Baixar catálogo completo (PDF)
+          </a>
         </div>
         <CatalogGrid client:visible />
       </div>

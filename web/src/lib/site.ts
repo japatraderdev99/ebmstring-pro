@@ -16,6 +16,9 @@ export const WHATSAPP_LINK = `https://wa.me/${WHATSAPP_NUMBER}`;
 
 export const INSTAGRAM = "https://instagram.com/ebmstringpro";
 
+/** Catálogo em PDF (compartilhável por WhatsApp). */
+export const CATALOG_PDF = "/catalogo-ebm-string-pro.pdf";
+
 export const NAV = [
   { label: "Finder", href: "/#finder" },
   { label: "Catálogo", href: "/#catalogo" },

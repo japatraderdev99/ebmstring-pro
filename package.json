@@ -1,0 +1,21 @@
+{
+  "name": "ebmstring-pro",
+  "version": "0.1.0",
+  "private": true,
+  "description": "EBM String Pro — encordoamento profissional de alta performance",
+  "scripts": {
+    "dev": "pnpm --filter web dev",
+    "build": "pnpm --filter web build",
+    "preview": "pnpm --filter web preview",
+    "deploy:web": "pnpm --filter web deploy",
+    "dev:api": "pnpm --filter api dev",
+    "deploy:api": "pnpm --filter api deploy"
+  },
+  "packageManager": "pnpm@10.18.0",
+  "engines": {
+    "node": ">=20"
+  },
+  "pnpm": {
+    "onlyBuiltDependencies": ["esbuild", "workerd", "sharp", "@cloudflare/workerd-darwin-arm64"]
+  }
+}

@@ -1,0 +1,517 @@
+<html class="dark" lang="pt-BR"><head></head><body class="bg-primary-container text-on-surface font-body-md antialiased selection:bg-secondary selection:text-primary-container">```html
+
+
+
+
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>EBM String Pro - Alta Performance</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com" rel="preconnect"/>
+<link crossorigin="" href="https://fonts.gstatic.com" rel="preconnect"/>
+<link href="https://fonts.googleapis.com/css2?family=Archivo:ital,wght@0,100..900;1,100..900&amp;family=EB+Garamond:ital,wght@0,400..800;1,400..800&amp;family=Saira+Condensed:wght@100;200;300;400;500;600;700;800;900&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script id="tailwind-config">
+  tailwind.config = {
+    darkMode: "class",
+    theme: {
+      extend: {
+        "colors": {
+                "tertiary": "#a7d0b1",
+                "secondary-container": "#6a9f21",
+                "outline-variant": "#444748",
+                "on-error": "#690005",
+                "on-primary-container": "#7b7979",
+                "surface-container-high": "#2b2a22",
+                "surface-container": "#212019",
+                "error": "#ffb4ab",
+                "background": "#14140d",
+                "surface-bright": "#3a3931",
+                "secondary-fixed": "#b8f46d",
+                "on-tertiary-fixed-variant": "#294e37",
+                "surface-dim": "#14140d",
+                "secondary": "#9dd754",
+                "tertiary-fixed": "#c2edcc",
+                "outline": "#8e9192",
+                "on-error-container": "#ffdad6",
+                "surface-container-low": "#1c1c15",
+                "inverse-on-surface": "#323129",
+                "on-tertiary-container": "#5b8267",
+                "on-primary-fixed-variant": "#474646",
+                "tertiary-fixed-dim": "#a7d0b1",
+                "surface-container-highest": "#36352d",
+                "on-surface": "#e6e2d6",
+                "inverse-surface": "#e6e2d6",
+                "surface-container-lowest": "#0f0e08",
+                "on-tertiary-fixed": "#00210f",
+                "secondary-fixed-dim": "#9dd754",
+                "on-secondary-fixed": "#102000",
+                "surface-tint": "#c9c6c5",
+                "on-primary": "#313030",
+                "inverse-primary": "#5f5e5e",
+                "primary-container": "#0a0a0a",
+                "tertiary-container": "#000d04",
+                "primary": "#c9c6c5",
+                "on-background": "#e6e2d6",
+                "error-container": "#93000a",
+                "primary-fixed": "#e5e2e1",
+                "primary-fixed-dim": "#c9c6c5",
+                "surface-variant": "#36352d",
+                "on-secondary-fixed-variant": "#2f4f00",
+                "surface": "#14140d",
+                "on-surface-variant": "#c4c7c7",
+                "on-tertiary": "#113722",
+                "on-secondary-container": "#1a2f00",
+                "on-secondary": "#1f3700",
+                "on-primary-fixed": "#1c1b1b"
+        },
+        "borderRadius": {
+                "DEFAULT": "0.25rem",
+                "lg": "0.5rem",
+                "xl": "0.75rem",
+                "full": "9999px"
+        },
+        "spacing": {
+                "margin-mobile": "16px",
+                "unit": "4px",
+                "gutter": "24px",
+                "stack-sm": "8px",
+                "stack-lg": "32px",
+                "margin-desktop": "64px",
+                "stack-md": "16px"
+        },
+        "fontFamily": {
+                "display-lg": [
+                        "Saira Condensed", "sans-serif"
+                ],
+                "headline-lg-mobile": [
+                        "Saira Condensed", "sans-serif"
+                ],
+                "headline-lg": [
+                        "Saira Condensed", "sans-serif"
+                ],
+                "slogan-editorial": [
+                        "EB Garamond", "serif"
+                ],
+                "label-sm": [
+                        "Archivo", "sans-serif"
+                ],
+                "body-md": [
+                        "Archivo", "sans-serif"
+                ]
+        },
+        "fontSize": {
+                "display-lg": [
+                        "64px",
+                        {
+                                "lineHeight": "1.1",
+                                "letterSpacing": "-0.02em",
+                                "fontWeight": "900"
+                        }
+                ],
+                "headline-lg-mobile": [
+                        "28px",
+                        {
+                                "lineHeight": "1.2",
+                                "fontWeight": "700"
+                        }
+                ],
+                "headline-lg": [
+                        "32px",
+                        {
+                                "lineHeight": "1.2",
+                                "letterSpacing": "-0.01em",
+                                "fontWeight": "700"
+                        }
+                ],
+                "slogan-editorial": [
+                        "24px",
+                        {
+                                "lineHeight": "1.4",
+                                "fontWeight": "500"
+                        }
+                ],
+                "label-sm": [
+                        "12px",
+                        {
+                                "lineHeight": "1",
+                                "letterSpacing": "0.05em",
+                                "fontWeight": "700"
+                        }
+                ],
+                "body-md": [
+                        "16px",
+                        {
+                                "lineHeight": "1.6",
+                                "fontWeight": "400"
+                        }
+                ]
+        }
+},
+    },
+  }
+</script>
+<style>
+        body {
+            background-color: #0A0A0A; /* Tinta - enforcing specific black despite tailwind background class for extra safety */
+        }
+        .hex-bg {
+            stroke: #36352d;
+            fill: none;
+            stroke-width: 1;
+        }
+        .hex-data {
+            fill: rgba(157, 215, 84, 0.2);
+            stroke: #9dd754;
+            stroke-width: 2;
+            transition: all 0.5s ease;
+        }
+        .group:hover .hex-data {
+            fill: rgba(157, 215, 84, 0.4);
+            filter: drop-shadow(0 0 4px #9dd754);
+        }
+    </style>
+<!-- TopNavBar -->
+<nav class="docked full-width top-0 sticky z-50 border-b border-outline-variant bg-primary-container">
+<div class="flex justify-between items-center w-full px-margin-mobile md:px-margin-desktop py-stack-md max-w-7xl mx-auto">
+<div class="flex items-center">
+<img alt="EBM String Pro Logo" class="h-8 md:h-10 w-auto object-contain" src="https://lh3.googleusercontent.com/aida-public/AB6AXuC9c1ui8vY6PHCZfUwl611uoyzRzRtvDU_uZYrdYTEqXjEexOlAvJEcNGYrEK0Efo_TYRLlWm6pbdmSUyWqUR-4qvfAQCJAdZoZShnrJ0XYbZSMOVu5RiaUt3qlcFzIexEa3YkzhYHN7HGztKWIvvFnJUlKF6yA7HVLgp2k8oyB8osfLh3bvMnjlrIJzKIoFpsTrsEcl8NOAkp_3d6GdQztPUx-ezj5Cqts9sgfKjlRaTqmHJPAA6hQmkfrFIxqvM5D5h5r1LMeMeQ"/>
+</div>
+<div class="hidden md:flex gap-gutter items-center">
+<a class="font-label-sm text-label-sm text-on-surface-variant font-medium hover:text-secondary-fixed-dim transition-colors duration-300" href="#catalogo">Catálogo</a>
+<a class="font-label-sm text-label-sm text-on-surface-variant font-medium hover:text-secondary-fixed-dim transition-colors duration-300" href="#diferencial">Diferencial</a>
+<a class="font-label-sm text-label-sm text-on-surface-variant font-medium hover:text-secondary-fixed-dim transition-colors duration-300" href="#depoimentos">Depoimentos</a>
+</div>
+<button class="bg-secondary text-primary-container font-label-sm text-label-sm px-6 py-3 uppercase tracking-widest hover:bg-secondary-fixed-dim transition-colors duration-300">
+                Agendar Agora
+            </button>
+</div>
+</nav>
+<main>
+<!-- Hero Section -->
+<section class="relative w-full min-h-[90vh] flex flex-col justify-center items-center px-margin-mobile md:px-margin-desktop overflow-hidden border-b border-outline-variant">
+<!-- Grid Background Overlay to simulate racket strings -->
+<div class="absolute inset-0 z-0 opacity-20" style="background-size: 40px 40px; background-image: linear-gradient(to right, #444748 1px, transparent 1px), linear-gradient(to bottom, #444748 1px, transparent 1px);"></div>
+<div class="relative z-10 w-full max-w-5xl mx-auto flex flex-col items-center text-center gap-stack-lg">
+<div class="w-full max-w-lg mb-stack-md">
+<img alt="EBM String Pro Logo" class="w-full h-auto object-contain drop-shadow-2xl" src="https://lh3.googleusercontent.com/aida-public/AB6AXuC9c1ui8vY6PHCZfUwl611uoyzRzRtvDU_uZYrdYTEqXjEexOlAvJEcNGYrEK0Efo_TYRLlWm6pbdmSUyWqUR-4qvfAQCJAdZoZShnrJ0XYbZSMOVu5RiaUt3qlcFzIexEa3YkzhYHN7HGztKWIvvFnJUlKF6yA7HVLgp2k8oyB8osfLh3bvMnjlrIJzKIoFpsTrsEcl8NOAkp_3d6GdQztPUx-ezj5Cqts9sgfKjlRaTqmHJPAA6hQmkfrFIxqvM5D5h5r1LMeMeQ"/>
+</div>
+<h1 class="font-display-lg text-display-lg md:text-[80px] text-on-surface uppercase leading-none tracking-normal">
+                    Performance <br/>
+<span class="text-secondary">começa nas cordas.</span>
+</h1>
+<p class="font-slogan-editorial text-slogan-editorial text-on-surface-variant max-w-2xl mt-stack-md">
+                    Cada libra importa. Precisão técnica para o seu jogo. Encordoamento profissional com foco absoluto em tensão e consistência.
+                </p>
+<div class="mt-stack-lg flex flex-col md:flex-row gap-gutter">
+<button class="bg-secondary text-primary-container font-label-sm text-label-sm px-8 py-4 uppercase tracking-widest hover:bg-secondary-fixed-dim transition-colors duration-300 flex items-center justify-center gap-2">
+                        Agende Agora
+                        <span class="material-symbols-outlined" style="font-variation-settings: 'FILL' 1;">arrow_forward</span>
+</button>
+<button class="border border-outline-variant text-on-surface font-label-sm text-label-sm px-8 py-4 uppercase tracking-widest hover:border-secondary hover:text-secondary transition-colors duration-300">
+                        Ver Tabela de Tensões
+                    </button>
+</div>
+</div>
+</section>
+<!-- String Catalog Section -->
+<section class="w-full px-margin-mobile md:px-margin-desktop py-[120px] bg-[#0a0a0a] border-b border-outline-variant" id="catalogo">
+<div class="max-w-7xl mx-auto">
+<div class="mb-stack-lg md:mb-[80px] flex flex-col items-center text-center">
+<span class="inline-block px-3 py-1 border border-secondary text-secondary font-label-sm text-label-sm mb-stack-md tracking-widest uppercase bg-[#143A24]/30">Análise Científica</span>
+<h2 class="font-headline-lg-mobile md:font-headline-lg text-headline-lg-mobile md:text-headline-lg text-on-surface uppercase mb-unit">
+                Catálogo de Performance
+            </h2>
+<p class="font-body-md text-body-md text-outline max-w-2xl">As cordas mais exigidas no circuito profissional, analisadas com precisão técnica para maximizar o seu jogo.</p>
+</div>
+<div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-gutter">
+<!-- Card 1: Luxilon ALU Power -->
+<div class="bg-surface-container border border-outline-variant p-stack-lg flex flex-col group hover:border-secondary transition-colors duration-300 relative">
+<div class="mb-stack-md">
+<h3 class="font-headline-lg-mobile text-[24px] text-on-surface uppercase leading-tight mb-1">Luxilon ALU Power</h3>
+<p class="font-label-sm text-secondary uppercase tracking-widest">Ultimate Control &amp; Pro Standard</p>
+</div>
+<div class="w-full flex justify-center py-stack-sm">
+<img alt="Luxilon ALU Power" class="w-full aspect-square object-cover rounded-md border border-outline-variant/30" src="https://lh3.googleusercontent.com/aida/ADBb0uhy45LkzqFd1W2bgK8WE54ib4LIaZ4AMgw2ufZgn7wm-8rbx-qF9bW3PWTqNBJcqGphUhEQc7zaPFgwhogimBdWyjimWrT2BOhn6sLkIdcCG1kOnOvvzHJTOsc3khVviOgNCLUVbG5-pW7QOz31ZqCX4gst0hF_mO5c5FD6xvU4IXVlWZnXWqsaFnpsFV-cKeZ__a2ihhsszFGabitr1AMYKcndejKwGVhYmIsEBzghYqlHPVcwIVOzGVc"/>
+</div>
+<div class="w-full py-4 flex justify-center relative">
+<svg class="w-32 h-32" viewbox="0 0 100 100">
+<!-- Background Grid -->
+<polygon class="hex-bg" points="50,10 84.6,30 84.6,70 50,90 15.4,70 15.4,30"></polygon>
+<polygon class="hex-bg opacity-50" points="50,30 67.3,40 67.3,60 50,70 32.7,60 32.7,40"></polygon>
+<!-- Data Polygon -->
+<polygon class="hex-data" points="50,15 75,35 80,65 50,80 30,65 25,35"></polygon>
+<!-- Labels -->
+<text fill="#8e9192" font-family="Archivo" font-size="6" font-weight="700" text-anchor="middle" x="50" y="8">PWR</text>
+<text fill="#8e9192" font-family="Archivo" font-size="6" font-weight="700" x="88" y="32">SPN</text>
+<text fill="#8e9192" font-family="Archivo" font-size="6" font-weight="700" x="88" y="72">CTL</text>
+<text fill="#8e9192" font-family="Archivo" font-size="6" font-weight="700" text-anchor="middle" x="50" y="96">DUR</text>
+<text fill="#8e9192" font-family="Archivo" font-size="6" font-weight="700" text-anchor="end" x="12" y="72">COM</text>
+<text fill="#8e9192" font-family="Archivo" font-size="6" font-weight="700" text-anchor="end" x="12" y="32">TEN</text>
+</svg>
+</div>
+<div class="mt-auto border-t border-outline-variant pt-stack-md">
+<ul class="font-mono text-[13px] text-on-surface-variant flex flex-col gap-2">
+<li class="flex justify-between border-b border-outline-variant/30 pb-1"><span>Gauge:</span> <span class="text-on-surface">1.25mm / 16L</span></li>
+<li class="flex justify-between border-b border-outline-variant/30 pb-1"><span>Material:</span> <span class="text-on-surface">Co-Polyester / Aluminum</span></li>
+<li class="flex justify-between border-b border-outline-variant/30 pb-1"><span>Tensão Rec:</span> <span class="text-on-surface">45 - 55 lbs</span></li>
+<li class="flex justify-between pb-1"><span>Preço:</span> <span class="text-secondary font-bold">R$ 142,70</span></li>
+</ul>
+</div>
+</div>
+<!-- Card 2: Babolat RPM Blast -->
+<div class="bg-surface-container border border-outline-variant p-stack-lg flex flex-col group hover:border-secondary transition-colors duration-300 relative">
+<div class="mb-stack-md">
+<h3 class="font-headline-lg-mobile text-[24px] text-on-surface uppercase leading-tight mb-1">Babolat RPM Blast</h3>
+<p class="font-label-sm text-secondary uppercase tracking-widest">Maximum Spin &amp; Snap-back</p>
+</div>
+<div class="w-full flex justify-center py-stack-sm">
+<img alt="Babolat RPM Blast" class="w-full aspect-square object-cover rounded-md border border-outline-variant/30" src="https://lh3.googleusercontent.com/aida/ADBb0uipL_jOQ5Vw2IwoeVl5I0pFpQHW0FnPabdD43mVcM1eeIEIfnzlBfY-_Chg93UdfZYvs6qXI7ne6BBL8YR3uiOSjlhOCHjRlI1i_kqiw9MLj346TPK-4iAjmK8Q7k6Gs1NXFf6LUehbVDYJtf7Y44fuNcL_nsdEiYtreJCZ8tkkRDn2nSFivhXWTXGxZUbNmuJO3ZP_qf8RZOaODzUXppBdBsbSEMtlXsWkuyOPM1t7V0fmzHKcuf_i2y4"/>
+</div>
+<div class="w-full py-4 flex justify-center relative">
+<svg class="w-32 h-32" viewbox="0 0 100 100">
+<polygon class="hex-bg" points="50,10 84.6,30 84.6,70 50,90 15.4,70 15.4,30"></polygon>
+<polygon class="hex-bg opacity-50" points="50,30 67.3,40 67.3,60 50,70 32.7,60 32.7,40"></polygon>
+<polygon class="hex-data" points="50,25 84,30 80,65 50,85 30,65 25,35"></polygon>
+<text fill="#8e9192" font-family="Archivo" font-size="6" font-weight="700" text-anchor="middle" x="50" y="8">PWR</text>
+<text fill="#8e9192" font-family="Archivo" font-size="6" font-weight="700" x="88" y="32">SPN</text>
+<text fill="#8e9192" font-family="Archivo" font-size="6" font-weight="700" x="88" y="72">CTL</text>
+<text fill="#8e9192" font-family="Archivo" font-size="6" font-weight="700" text-anchor="middle" x="50" y="96">DUR</text>
+<text fill="#8e9192" font-family="Archivo" font-size="6" font-weight="700" text-anchor="end" x="12" y="72">COM</text>
+<text fill="#8e9192" font-family="Archivo" font-size="6" font-weight="700" text-anchor="end" x="12" y="32">TEN</text>
+</svg>
+</div>
+<div class="mt-auto border-t border-outline-variant pt-stack-md">
+<ul class="font-mono text-[13px] text-on-surface-variant flex flex-col gap-2">
+<li class="flex justify-between border-b border-outline-variant/30 pb-1"><span>Gauge:</span> <span class="text-on-surface">1.25mm / 1.30mm</span></li>
+<li class="flex justify-between border-b border-outline-variant/30 pb-1"><span>Material:</span> <span class="text-on-surface">Co-Polyester Octagonal</span></li>
+<li class="flex justify-between border-b border-outline-variant/30 pb-1"><span>Tensão Rec:</span> <span class="text-on-surface">48 - 58 lbs</span></li>
+<li class="flex justify-between pb-1"><span>Preço:</span> <span class="text-secondary font-bold">R$ 120,70</span></li>
+</ul>
+</div>
+</div>
+<!-- Card 3: Yonex Poly Tour Pro -->
+<div class="bg-surface-container border border-outline-variant p-stack-lg flex flex-col group hover:border-secondary transition-colors duration-300 relative">
+<div class="mb-stack-md">
+<h3 class="font-headline-lg-mobile text-[24px] text-on-surface uppercase leading-tight mb-1">Yonex Poly Tour Pro</h3>
+<p class="font-label-sm text-secondary uppercase tracking-widest">Comfort &amp; Tension Maint.</p>
+</div>
+<div class="w-full flex justify-center py-stack-sm">
+<img alt="Yonex Poly Tour Pro" class="w-full aspect-square object-cover rounded-md border border-outline-variant/30" src="https://lh3.googleusercontent.com/aida/ADBb0ujXVdDyMMuSPsAXhVrC5aOUdsXDwP5fHAMzlAU8ikX6pes3E9dPwXuuo7x9qQyCCUdu8etHD7dWmoTC4ZY2s9PoUOQlWaZGnbqkjFVvhitnLUm4G-FNuKpnXMyN3FsIICI9EGmUoFhGs8b6H0vID_C3Ip1C2aNJsSf0mgMZlC9CFxfKpQG2ppqRX6LD8GbScbBuv8G5_qkYrjT4daSn-LwHdnDzNn-O0L553mPdELBDaccOyB5PZu0bSA"/>
+</div>
+<div class="w-full py-4 flex justify-center relative">
+<svg class="w-32 h-32" viewbox="0 0 100 100">
+<polygon class="hex-bg" points="50,10 84.6,30 84.6,70 50,90 15.4,70 15.4,30"></polygon>
+<polygon class="hex-bg opacity-50" points="50,30 67.3,40 67.3,60 50,70 32.7,60 32.7,40"></polygon>
+<polygon class="hex-data" points="50,30 70,40 80,65 50,75 20,60 20,35"></polygon>
+<text fill="#8e9192" font-family="Archivo" font-size="6" font-weight="700" text-anchor="middle" x="50" y="8">PWR</text>
+<text fill="#8e9192" font-family="Archivo" font-size="6" font-weight="700" x="88" y="32">SPN</text>
+<text fill="#8e9192" font-family="Archivo" font-size="6" font-weight="700" x="88" y="72">CTL</text>
+<text fill="#8e9192" font-family="Archivo" font-size="6" font-weight="700" text-anchor="middle" x="50" y="96">DUR</text>
+<text fill="#8e9192" font-family="Archivo" font-size="6" font-weight="700" text-anchor="end" x="12" y="72">COM</text>
+<text fill="#8e9192" font-family="Archivo" font-size="6" font-weight="700" text-anchor="end" x="12" y="32">TEN</text>
+</svg>
+</div>
+<div class="mt-auto border-t border-outline-variant pt-stack-md">
+<ul class="font-mono text-[13px] text-on-surface-variant flex flex-col gap-2">
+<li class="flex justify-between border-b border-outline-variant/30 pb-1"><span>Gauge:</span> <span class="text-on-surface">1.20mm / 1.25mm</span></li>
+<li class="flex justify-between border-b border-outline-variant/30 pb-1"><span>Material:</span> <span class="text-on-surface">Soft Co-Polyester</span></li>
+<li class="flex justify-between border-b border-outline-variant/30 pb-1"><span>Tensão Rec:</span> <span class="text-on-surface">42 - 52 lbs</span></li>
+<li class="flex justify-between pb-1"><span>Preço:</span> <span class="text-secondary font-bold">R$ 96,25</span></li>
+</ul>
+</div>
+</div>
+<!-- Card 4: Solinco Hyper-G -->
+<div class="bg-surface-container border border-outline-variant p-stack-lg flex flex-col group hover:border-secondary transition-colors duration-300 relative">
+<div class="mb-stack-md">
+<h3 class="font-headline-lg-mobile text-[24px] text-on-surface uppercase leading-tight mb-1">Solinco Hyper-G</h3>
+<p class="font-label-sm text-secondary uppercase tracking-widest">Bite &amp; Controlled Power</p>
+</div>
+<div class="w-full flex justify-center py-stack-sm">
+<img alt="Solinco Hyper-G" class="w-full aspect-square object-cover rounded-md border border-outline-variant/30" src="https://lh3.googleusercontent.com/aida/ADBb0ujurGnRWKDZW9azIYvbin1zec-EFNwtaJP5KA0OI2A0M3N3vdWfMobvG3sf_z_KbzZs36aZCCh62myyYfa7jk0rVzRfio2WWZ0pCcqsZioknrNprbRdGgXr0W3PkazBAudrPW92vRU1fSTaP8SRgFYMfdf-dQ6Vzh4g7NqBdwc68JoyRupugP4RMrp1oa7nKw8s5Dnakm3m57XAZaAegal1b2Y2vRap8op4vHVCYmV4252h5B-C0flE3w"/>
+</div>
+<div class="w-full py-4 flex justify-center relative">
+<svg class="w-32 h-32" viewbox="0 0 100 100">
+<polygon class="hex-bg" points="50,10 84.6,30 84.6,70 50,90 15.4,70 15.4,30"></polygon>
+<polygon class="hex-bg opacity-50" points="50,30 67.3,40 67.3,60 50,70 32.7,60 32.7,40"></polygon>
+<polygon class="hex-data" points="50,35 84,30 80,60 50,85 25,60 25,35"></polygon>
+<text fill="#8e9192" font-family="Archivo" font-size="6" font-weight="700" text-anchor="middle" x="50" y="8">PWR</text>
+<text fill="#8e9192" font-family="Archivo" font-size="6" font-weight="700" x="88" y="32">SPN</text>
+<text fill="#8e9192" font-family="Archivo" font-size="6" font-weight="700" x="88" y="72">CTL</text>
+<text fill="#8e9192" font-family="Archivo" font-size="6" font-weight="700" text-anchor="middle" x="50" y="96">DUR</text>
+<text fill="#8e9192" font-family="Archivo" font-size="6" font-weight="700" text-anchor="end" x="12" y="72">COM</text>
+<text fill="#8e9192" font-family="Archivo" font-size="6" font-weight="700" text-anchor="end" x="12" y="32">TEN</text>
+</svg>
+</div>
+<div class="mt-auto border-t border-outline-variant pt-stack-md">
+<ul class="font-mono text-[13px] text-on-surface-variant flex flex-col gap-2">
+<li class="flex justify-between border-b border-outline-variant/30 pb-1"><span>Gauge:</span> <span class="text-on-surface">1.25mm / 16L</span></li>
+<li class="flex justify-between border-b border-outline-variant/30 pb-1"><span>Material:</span> <span class="text-on-surface">Co-Polyester Square</span></li>
+<li class="flex justify-between border-b border-outline-variant/30 pb-1"><span>Tensão Rec:</span> <span class="text-on-surface">45 - 55 lbs</span></li>
+<li class="flex justify-between pb-1"><span>Preço:</span> <span class="text-secondary font-bold">R$ 120,00</span></li>
+</ul>
+</div>
+</div>
+<!-- Card 5: Head Lynx Tour -->
+<div class="bg-surface-container border border-outline-variant p-stack-lg flex flex-col group hover:border-secondary transition-colors duration-300 relative">
+<div class="mb-stack-md">
+<h3 class="font-headline-lg-mobile text-[24px] text-on-surface uppercase leading-tight mb-1">Head Lynx Tour</h3>
+<p class="font-label-sm text-secondary uppercase tracking-widest">Precision &amp; Durability</p>
+</div>
+<div class="w-full flex justify-center py-stack-sm">
+<img alt="Head Lynx Tour" class="w-full aspect-square object-cover rounded-md border border-outline-variant/30" src="https://lh3.googleusercontent.com/aida/ADBb0ugpOszWPquWSB7PSMwkaaxXkogoM0L4GAmDlnUkzTqGoKPYFKq6f-aMX-98D_-rSY3lt1QORaefldFTtyo6wloxyVrnoKG3RHh1YTMnkQ3nuvGwTUGI6K2Z_etZNuKzyqUG1pCpR8y6tfmkNdATJ4RD6AY_-L05M6wUbxhkrPSABEUe3OYUTGe4BqsczmvoGc-c2FkCNPwy_CVyXl9P1K0MMcbKb2MLQ_HWN9X_uDvLnAV_mIuQVmVTng"/>
+</div>
+<div class="w-full py-4 flex justify-center relative">
+<svg class="w-32 h-32" viewbox="0 0 100 100">
+<polygon class="hex-bg" points="50,10 84.6,30 84.6,70 50,90 15.4,70 15.4,30"></polygon>
+<polygon class="hex-bg opacity-50" points="50,30 67.3,40 67.3,60 50,70 32.7,60 32.7,40"></polygon>
+<polygon class="hex-data" points="50,35 80,35 84,65 50,85 30,60 20,35"></polygon>
+<text fill="#8e9192" font-family="Archivo" font-size="6" font-weight="700" text-anchor="middle" x="50" y="8">PWR</text>
+<text fill="#8e9192" font-family="Archivo" font-size="6" font-weight="700" x="88" y="32">SPN</text>
+<text fill="#8e9192" font-family="Archivo" font-size="6" font-weight="700" x="88" y="72">CTL</text>
+<text fill="#8e9192" font-family="Archivo" font-size="6" font-weight="700" text-anchor="middle" x="50" y="96">DUR</text>
+<text fill="#8e9192" font-family="Archivo" font-size="6" font-weight="700" text-anchor="end" x="12" y="72">COM</text>
+<text fill="#8e9192" font-family="Archivo" font-size="6" font-weight="700" text-anchor="end" x="12" y="32">TEN</text>
+</svg>
+</div>
+<div class="mt-auto border-t border-outline-variant pt-stack-md">
+<ul class="font-mono text-[13px] text-on-surface-variant flex flex-col gap-2">
+<li class="flex justify-between border-b border-outline-variant/30 pb-1"><span>Gauge:</span> <span class="text-on-surface">1.25mm / 16L</span></li>
+<li class="flex justify-between border-b border-outline-variant/30 pb-1"><span>Material:</span> <span class="text-on-surface">Co-Polyester Heptagonal</span></li>
+<li class="flex justify-between border-b border-outline-variant/30 pb-1"><span>Tensão Rec:</span> <span class="text-on-surface">44 - 54 lbs</span></li>
+<li class="flex justify-between pb-1"><span>Preço:</span> <span class="text-secondary font-bold">R$ 90,00</span></li>
+</ul>
+</div>
+</div>
+<!-- Card 6: Wilson NXT Comfort -->
+<div class="bg-surface-container border border-outline-variant p-stack-lg flex flex-col group hover:border-secondary transition-colors duration-300 relative">
+<div class="mb-stack-md">
+<h3 class="font-headline-lg-mobile text-[24px] text-on-surface uppercase leading-tight mb-1">Wilson NXT Comfort</h3>
+<p class="font-label-sm text-secondary uppercase tracking-widest">Arm Friendly &amp; Power</p>
+</div>
+<div class="w-full flex justify-center py-stack-sm">
+<img alt="Wilson NXT Comfort" class="w-full aspect-square object-cover rounded-md border border-outline-variant/30" src="https://lh3.googleusercontent.com/aida/ADBb0ug3ELgMxi-7E0x5NtgVLMvhITOrAw2bfbvotksr7nT2r1a53RKG_5Z_8_SLnj0lVRI5dRJtORS19ZZPbSkkeKj32-4Epyzq2NPQtDwj6E808Sb-_bXkHMm27IRgHXdYj5jknLQJAwqZ1cSzcjEZAB1ra3XYRgUs84Wu3jm6me4tBoqMozWidgkqhC6pD5CfyZHtdBRAuBwxM4xBtQ5AsKZz3fMD-i-Lpbdtfgs-F5q_v6hz2C3a2ojqAg"/>
+</div>
+<div class="w-full py-4 flex justify-center relative">
+<svg class="w-32 h-32" viewbox="0 0 100 100">
+<polygon class="hex-bg" points="50,10 84.6,30 84.6,70 50,90 15.4,70 15.4,30"></polygon>
+<polygon class="hex-bg opacity-50" points="50,30 67.3,40 67.3,60 50,70 32.7,60 32.7,40"></polygon>
+<polygon class="hex-data" points="50,15 60,40 60,60 50,75 15,70 20,35"></polygon>
+<text fill="#8e9192" font-family="Archivo" font-size="6" font-weight="700" text-anchor="middle" x="50" y="8">PWR</text>
+<text fill="#8e9192" font-family="Archivo" font-size="6" font-weight="700" x="88" y="32">SPN</text>
+<text fill="#8e9192" font-family="Archivo" font-size="6" font-weight="700" x="88" y="72">CTL</text>
+<text fill="#8e9192" font-family="Archivo" font-size="6" font-weight="700" text-anchor="middle" x="50" y="96">DUR</text>
+<text fill="#8e9192" font-family="Archivo" font-size="6" font-weight="700" text-anchor="end" x="12" y="72">COM</text>
+<text fill="#8e9192" font-family="Archivo" font-size="6" font-weight="700" text-anchor="end" x="12" y="32">TEN</text>
+</svg>
+</div>
+<div class="mt-auto border-t border-outline-variant pt-stack-md">
+<ul class="font-mono text-[13px] text-on-surface-variant flex flex-col gap-2">
+<li class="flex justify-between border-b border-outline-variant/30 pb-1"><span>Gauge:</span> <span class="text-on-surface">1.30mm / 16</span></li>
+<li class="flex justify-between border-b border-outline-variant/30 pb-1"><span>Material:</span> <span class="text-on-surface">Multifilament</span></li>
+<li class="flex justify-between border-b border-outline-variant/30 pb-1"><span>Tensão Rec:</span> <span class="text-on-surface">50 - 60 lbs</span></li>
+<li class="flex justify-between pb-1"><span>Preço:</span> <span class="text-secondary font-bold">R$ 132,00</span></li>
+</ul>
+</div>
+</div>
+<!-- Card 7: Sigma Poly Black -->
+<div class="bg-surface-container border border-outline-variant p-stack-lg flex flex-col group hover:border-secondary transition-colors duration-300 relative">
+<div class="mb-stack-md">
+<h3 class="font-headline-lg-mobile text-[24px] text-on-surface uppercase leading-tight mb-1">Sigma Poly Black</h3>
+<p class="font-label-sm text-secondary uppercase tracking-widest">Sleek Control</p>
+</div>
+<div class="w-full flex justify-center py-stack-sm">
+<img alt="Sigma Poly Black" class="w-full aspect-square object-cover rounded-md border border-outline-variant/30" src="https://lh3.googleusercontent.com/aida-public/AB6AXuDGqAi-6XtR5zHzfWfVYEgg5t3t5eaSmG9by56GkS8j_y8JclFc5Umg9NOc-sJxDXOtwvNSg3y3pwa5q52_mMP4r6M0P_oiakHTKshM5DOTac14-bXF2IiRQJUL2PNWbIglY1ZGSsiEYBCpsxzC1po28WiAZh28HaekSL6s6Bk1EgJ5bTGgocok2gTEinMcj1_-YUk58hCsxHvjlwSOFNRfHBvIKWdyr9iZQa1SsMSbJ6WnBoW9L92BDsDXAPUqR0x8AsmywLyx3aQ"/>
+</div>
+<div class="w-full py-4 flex justify-center relative">
+<svg class="w-32 h-32" viewbox="0 0 100 100">
+<polygon class="hex-bg" points="50,10 84.6,30 84.6,70 50,90 15.4,70 15.4,30"></polygon>
+<polygon class="hex-bg opacity-50" points="50,30 67.3,40 67.3,60 50,70 32.7,60 32.7,40"></polygon>
+<polygon class="hex-data" points="50,20 70,35 75,65 50,85 25,65 30,35"></polygon>
+<text fill="#8e9192" font-family="Archivo" font-size="6" font-weight="700" text-anchor="middle" x="50" y="8">PWR</text>
+<text fill="#8e9192" font-family="Archivo" font-size="6" font-weight="700" x="88" y="32">SPN</text>
+<text fill="#8e9192" font-family="Archivo" font-size="6" font-weight="700" x="88" y="72">CTL</text>
+<text fill="#8e9192" font-family="Archivo" font-size="6" font-weight="700" text-anchor="middle" x="50" y="96">DUR</text>
+<text fill="#8e9192" font-family="Archivo" font-size="6" font-weight="700" text-anchor="end" x="12" y="72">COM</text>
+<text fill="#8e9192" font-family="Archivo" font-size="6" font-weight="700" text-anchor="end" x="12" y="32">TEN</text>
+</svg>
+</div>
+<div class="mt-auto border-t border-outline-variant pt-stack-md">
+<ul class="font-mono text-[13px] text-on-surface-variant flex flex-col gap-2">
+<li class="flex justify-between border-b border-outline-variant/30 pb-1"><span>Gauge:</span> <span class="text-on-surface">1.25mm / 16L</span></li>
+<li class="flex justify-between border-b border-outline-variant/30 pb-1"><span>Material:</span> <span class="text-on-surface">Co-Polyester</span></li>
+<li class="flex justify-between border-b border-outline-variant/30 pb-1"><span>Tensão Rec:</span> <span class="text-on-surface">46 - 56 lbs</span></li>
+<li class="flex justify-between pb-1"><span>Preço:</span> <span class="text-secondary font-bold">R$ 50,00</span></li>
+</ul>
+</div>
+</div>
+<!-- Card 8: Sigma Poly Spin -->
+<div class="bg-surface-container border border-outline-variant p-stack-lg flex flex-col group hover:border-secondary transition-colors duration-300 relative">
+<div class="mb-stack-md">
+<h3 class="font-headline-lg-mobile text-[24px] text-on-surface uppercase leading-tight mb-1">Sigma Poly Spin</h3>
+<p class="font-label-sm text-secondary uppercase tracking-widest">Aggressive Bite</p>
+</div>
+<div class="w-full flex justify-center py-stack-sm">
+<img alt="Sigma Poly Spin" class="w-full aspect-square object-cover rounded-md border border-outline-variant/30" src="https://lh3.googleusercontent.com/aida-public/AB6AXuD3dpK2EG7N9curz-luqJC1kqF2yuJsbb3uXQl5MrKlbHSp4O70dIK6yg3bE3GxlIyjZUWUxbkXpKCSvx5rh_7HTjXXpPQSLOJ2SosoKnlevRsOqcVAdKbFKJ1zj3RRmShUn9pJjLrqayU57AyIjAbWj4o0mZ3MitLM5yh1Q09xdO0AEMj73M_M95FYKe5B1nFCar1sXF8aNoGf5q1QX8_CutzrIyu6wnriih1USgBpIWQx7nwusKVBTQS0fifkiiX04HZ6Y8ko_Y0"/>
+</div>
+<div class="w-full py-4 flex justify-center relative">
+<svg class="w-32 h-32" viewbox="0 0 100 100">
+<polygon class="hex-bg" points="50,10 84.6,30 84.6,70 50,90 15.4,70 15.4,30"></polygon>
+<polygon class="hex-bg opacity-50" points="50,30 67.3,40 67.3,60 50,70 32.7,60 32.7,40"></polygon>
+<polygon class="hex-data" points="50,25 80,30 85,60 50,80 30,65 20,35"></polygon>
+<text fill="#8e9192" font-family="Archivo" font-size="6" font-weight="700" text-anchor="middle" x="50" y="8">PWR</text>
+<text fill="#8e9192" font-family="Archivo" font-size="6" font-weight="700" x="88" y="32">SPN</text>
+<text fill="#8e9192" font-family="Archivo" font-size="6" font-weight="700" x="88" y="72">CTL</text>
+<text fill="#8e9192" font-family="Archivo" font-size="6" font-weight="700" text-anchor="middle" x="50" y="96">DUR</text>
+<text fill="#8e9192" font-family="Archivo" font-size="6" font-weight="700" text-anchor="end" x="12" y="72">COM</text>
+<text fill="#8e9192" font-family="Archivo" font-size="6" font-weight="700" text-anchor="end" x="12" y="32">TEN</text>
+</svg>
+</div>
+<div class="mt-auto border-t border-outline-variant pt-stack-md">
+<ul class="font-mono text-[13px] text-on-surface-variant flex flex-col gap-2">
+<li class="flex justify-between border-b border-outline-variant/30 pb-1"><span>Gauge:</span> <span class="text-on-surface">1.25mm / 16L</span></li>
+<li class="flex justify-between border-b border-outline-variant/30 pb-1"><span>Material:</span> <span class="text-on-surface">Shaped Co-Polyester</span></li>
+<li class="flex justify-between border-b border-outline-variant/30 pb-1"><span>Tensão Rec:</span> <span class="text-on-surface">45 - 55 lbs</span></li>
+<li class="flex justify-between pb-1"><span>Preço:</span> <span class="text-secondary font-bold">R$ 50,00</span></li>
+</ul>
+</div>
+</div>
+<!-- Card 9: Gamma Poly Z -->
+<div class="bg-surface-container border border-outline-variant p-stack-lg flex flex-col group hover:border-secondary transition-colors duration-300 relative">
+<div class="mb-stack-md">
+<h3 class="font-headline-lg-mobile text-[24px] text-on-surface uppercase leading-tight mb-1">Gamma Poly Z</h3>
+<p class="font-label-sm text-secondary uppercase tracking-widest">Durable Response</p>
+</div>
+<div class="w-full flex justify-center py-stack-sm">
+<img alt="Gamma Poly Z" class="w-full aspect-square object-cover rounded-md border border-outline-variant/30" src="https://lh3.googleusercontent.com/aida-public/AB6AXuCoHAYdu2nyKdwptpCmJ7R7FcgDfHWoPMV2MmrzPcZOL-krNUgDzgzCohhGE4hb66HQS5MPJ_7H2Kcok-KAQtOiBeJlBQrh-NWvZOunemMy6H1WPT-visZK26N0UJY2QjJi2RRfCFfZn92aqQsbHyeFSrr-oE9ebxmZI1wie31ypKTp2mpzYKiEWNxXUE0odXoAQMRp7TAdq9j0SLno7RzLX6SusmsF6h_5HZwvXWIKoPubOB_jKpGFpcPNvT5d8w0oVX1ZcuyfgHk"/>
+</div>
+<div class="w-full py-4 flex justify-center relative">
+<svg class="w-32 h-32" viewbox="0 0 100 100">
+<polygon class="hex-bg" points="50,10 84.6,30 84.6,70 50,90 15.4,70 15.4,30"></polygon>
+<polygon class="hex-bg opacity-50" points="50,30 67.3,40 67.3,60 50,70 32.7,60 32.7,40"></polygon>
+<polygon class="hex-data" points="50,20 65,35 70,60 50,90 30,65 25,35"></polygon>
+<text fill="#8e9192" font-family="Archivo" font-size="6" font-weight="700" text-anchor="middle" x="50" y="8">PWR</text>
+<text fill="#8e9192" font-family="Archivo" font-size="6" font-weight="700" x="88" y="32">SPN</text>
+<text fill="#8e9192" font-family="Archivo" font-size="6" font-weight="700" x="88" y="72">CTL</text>
+<text fill="#8e9192" font-family="Archivo" font-size="6" font-weight="700" text-anchor="middle" x="50" y="96">DUR</text>
+<text fill="#8e9192" font-family="Archivo" font-size="6" font-weight="700" text-anchor="end" x="12" y="72">COM</text>
+<text fill="#8e9192" font-family="Archivo" font-size="6" font-weight="700" text-anchor="end" x="12" y="32">TEN</text>
+</svg>
+</div>
+<div class="mt-auto border-t border-outline-variant pt-stack-md">
+<ul class="font-mono text-[13px] text-on-surface-variant flex flex-col gap-2">
+<li class="flex justify-between border-b border-outline-variant/30 pb-1"><span>Gauge:</span> <span class="text-on-surface">1.25mm / 16L</span></li>
+<li class="flex justify-between border-b border-outline-variant/30 pb-1"><span>Material:</span> <span class="text-on-surface">Co-Polyester</span></li>
+<li class="flex justify-between border-b border-outline-variant/30 pb-1"><span>Tensão Rec:</span> <span class="text-on-surface">48 - 58 lbs</span></li>
+<li class="flex justify-between pb-1"><span>Preço:</span> <span class="text-secondary font-bold">R$ 55,00</span></li>
+</ul>
+</div>
+</div>
+<!-- Card 10: Signum Pro Poly Plasma -->
+<div class="bg-surface-container border border-outline-variant p-stack-lg flex flex-col group hover:border-secondary transition-colors duration-300 relative">
+<div class="mb-stack-md">
+<h3 class="font-headline-lg-mobile text-[24px] text-on-surface uppercase leading-tight mb-1">Signum Pro Poly Plasma</h3>
+<p class="font-label-sm text-secondary uppercase tracking-widest">Iconic Tension Maint.</p>
+</div>
+<div class="w-full flex justify-center py-stack-sm">
+</div></div></div></div></section></main></body></html>

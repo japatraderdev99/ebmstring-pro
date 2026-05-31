@@ -1,0 +1,35 @@
+# dependencies
+node_modules/
+.pnpm-store/
+
+# build output
+web/dist/
+web/.astro/
+api/dist/
+
+# cloudflare
+.wrangler/
+.dev.vars
+.dev.vars.*
+
+# env & secrets
+.env
+.env.*
+!.env.example
+
+# logs
+*.log
+npm-debug.log*
+
+# os
+.DS_Store
+**/.DS_Store
+Thumbs.db
+
+# editor
+.vscode/
+.idea/
+
+# secret token file
+api-cloudfare-workers.txt
+*cloudfare*.txt

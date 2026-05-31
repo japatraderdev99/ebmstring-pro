@@ -1,0 +1,208 @@
+@import "tailwindcss";
+
+/* ============================================================
+   EBM STRING PRO — Design Tokens
+   "Pro Tension System" · athletic / technical / premium
+   ============================================================ */
+@theme {
+  /* — Core brand — */
+  --color-tinta: #0a0a0a; /* deep black chassis            */
+  --color-tinta-pure: #000000;
+  --color-lima: #9cd653; /* bola lima — high-energy accent  */
+  --color-lima-bright: #b8f46d;
+  --color-lima-dim: #6a9f21;
+  --color-quadra: #143a24; /* editorial court green          */
+  --color-quadra-deep: #0c2417;
+  --color-papel: #e6e2d6; /* warm artisanal neutral / text   */
+  --color-papel-bright: #f0ece0;
+
+  /* — Tonal surfaces (elevation by tone, not shadow) — */
+  --color-surface: #14140d;
+  --color-surface-1: #1c1c15;
+  --color-surface-2: #212019;
+  --color-surface-3: #2b2a22;
+  --color-surface-4: #36352d;
+  --color-ink: #0f0e08;
+
+  /* — Text / lines — */
+  --color-muted: #c4c7c7;
+  --color-faint: #8e9192;
+  --color-line: #444748;
+  --color-line-soft: rgba(142, 145, 146, 0.18);
+
+  /* — Type — */
+  --font-display: "Saira Condensed", "Archivo Narrow", sans-serif;
+  --font-body: "Archivo", system-ui, sans-serif;
+  --font-editorial: "EB Garamond", Georgia, serif;
+  --font-mono: "Geist Mono", ui-monospace, "SF Mono", monospace;
+
+  /* — Motion — */
+  --ease-out-expo: cubic-bezier(0.16, 1, 0.3, 1);
+  --ease-spring: cubic-bezier(0.34, 1.56, 0.64, 1);
+
+  /* — Radius (sharp by brand mandate) — */
+  --radius-sharp: 0px;
+}
+
+/* ============================================================
+   Base
+   ============================================================ */
+@layer base {
+  :root {
+    color-scheme: dark;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+    --grid: rgba(68, 71, 72, 0.5);
+  }
+
+  html {
+    scroll-behavior: smooth;
+    scroll-padding-top: 88px;
+  }
+
+  body {
+    background-color: var(--color-tinta);
+    color: var(--color-papel);
+    font-family: var(--font-body);
+    overflow-x: hidden;
+  }
+
+  ::selection {
+    background: var(--color-lima);
+    color: var(--color-tinta);
+  }
+
+  /* Custom scrollbar — technical feel */
+  ::-webkit-scrollbar {
+    width: 10px;
+    height: 10px;
+  }
+  ::-webkit-scrollbar-track {
+    background: var(--color-tinta);
+  }
+  ::-webkit-scrollbar-thumb {
+    background: var(--color-surface-3);
+    border: 2px solid var(--color-tinta);
+  }
+  ::-webkit-scrollbar-thumb:hover {
+    background: var(--color-lima-dim);
+  }
+
+  h1, h2, h3, h4 {
+    font-family: var(--font-display);
+    font-weight: 800;
+    letter-spacing: -0.01em;
+    text-transform: uppercase;
+  }
+}
+
+/* ============================================================
+   Utilities & atmosphere
+   ============================================================ */
+@layer utilities {
+  /* Tech label — uppercase micro caps */
+  .tech-label {
+    font-family: var(--font-body);
+    font-size: 0.6875rem;
+    font-weight: 700;
+    letter-spacing: 0.22em;
+    text-transform: uppercase;
+  }
+
+  /* Editorial italic serif */
+  .editorial {
+    font-family: var(--font-editorial);
+    font-style: italic;
+    font-weight: 500;
+  }
+
+  /* String-grid background (racket stringbed) */
+  .stringbed {
+    background-image:
+      linear-gradient(to right, var(--grid) 1px, transparent 1px),
+      linear-gradient(to bottom, var(--grid) 1px, transparent 1px);
+    background-size: 44px 44px;
+  }
+  .stringbed-fine {
+    background-image:
+      linear-gradient(to right, rgba(68, 71, 72, 0.35) 1px, transparent 1px),
+      linear-gradient(to bottom, rgba(68, 71, 72, 0.35) 1px, transparent 1px);
+    background-size: 22px 22px;
+  }
+
+  /* Film grain overlay */
+  .grain::after {
+    content: "";
+    position: absolute;
+    inset: 0;
+    pointer-events: none;
+    opacity: 0.04;
+    mix-blend-mode: overlay;
+    background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='120' height='120'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='3'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
+  }
+
+  /* Lima glow */
+  .glow-lima {
+    box-shadow: 0 0 0 1px rgba(156, 214, 83, 0.4), 0 0 28px -6px rgba(156, 214, 83, 0.55);
+  }
+  .text-glow {
+    text-shadow: 0 0 24px rgba(156, 214, 83, 0.45);
+  }
+
+  /* Brand logo mask — normalize any logo to a single tint silhouette */
+  .brand-mask {
+    background-color: var(--color-papel);
+    -webkit-mask-position: center;
+    mask-position: center;
+    -webkit-mask-repeat: no-repeat;
+    mask-repeat: no-repeat;
+    -webkit-mask-size: contain;
+    mask-size: contain;
+    transition: background-color 0.4s var(--ease-out-expo), transform 0.4s var(--ease-out-expo);
+  }
+
+  /* Diagonal tension hatch */
+  .hatch {
+    background-image: repeating-linear-gradient(
+      -45deg,
+      transparent,
+      transparent 6px,
+      rgba(156, 214, 83, 0.08) 6px,
+      rgba(156, 214, 83, 0.08) 7px
+    );
+  }
+
+  .clip-corner {
+    clip-path: polygon(0 0, 100% 0, 100% calc(100% - 14px), calc(100% - 14px) 100%, 0 100%);
+  }
+
+  .animate-marquee {
+    animation: marquee var(--marquee-duration, 40s) linear infinite;
+  }
+  .reveal {
+    opacity: 0;
+    transform: translateY(24px);
+    animation: reveal 0.9s var(--ease-out-expo) forwards;
+  }
+}
+
+@keyframes marquee {
+  from { transform: translateX(0); }
+  to { transform: translateX(-50%); }
+}
+@keyframes reveal {
+  to { opacity: 1; transform: translateY(0); }
+}
+@keyframes pulse-lima {
+  0%, 100% { opacity: 1; }
+  50% { opacity: 0.4; }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  *, *::before, *::after {
+    animation-duration: 0.001ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.001ms !important;
+    scroll-behavior: auto !important;
+  }
+}

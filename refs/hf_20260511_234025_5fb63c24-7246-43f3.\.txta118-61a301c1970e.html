@@ -1,0 +1,332 @@
+web application/stitch/projects/1962573520996585026/screens/1188472774418435097
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>EBM String Pro — Catálogo de Performance</title>
+<link href="https://fonts.googleapis.com/css2?family=Rajdhani:wght@400;500;600;700&family=Barlow+Condensed:wght@300;400;500;600;700&family=Barlow:wght@300;400;500&display=swap" rel="stylesheet">
+<style>
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+:root{
+  --g:#7AFF00;--gd:#4DB800;
+  --dark:#0A0A0A;--card:#121212;--border:#1E1E1E;
+  --txt:#FFFFFF;--muted:#888;--label:#444;
+  --fd:'Rajdhani',sans-serif;--fb:'Barlow',sans-serif;--fc:'Barlow Condensed',sans-serif;
+}
+body{background:var(--dark);color:var(--txt);font-family:var(--fb);font-weight:300;overflow-x:hidden}
+
+/* HEADER */
+header{background:#000;border-bottom:1px solid #1A1A1A;padding:0 2rem;display:flex;align-items:center;justify-content:space-between;height:56px;position:sticky;top:0;z-index:100}
+.logo{display:flex;align-items:center;gap:10px}
+.logo-icon{width:32px;height:32px}
+.lt{font-family:var(--fd);font-weight:700;font-size:16px;letter-spacing:.12em;line-height:1}
+.ls{font-family:var(--fc);font-size:10px;letter-spacing:.3em;color:var(--g);display:block;font-weight:500}
+nav{display:flex;gap:2rem}
+nav a{font-family:var(--fc);font-size:12px;letter-spacing:.12em;color:var(--muted);text-decoration:none;text-transform:uppercase}
+nav a:hover{color:var(--g)}
+.cta{background:var(--g);color:#000;font-family:var(--fc);font-weight:700;font-size:11px;letter-spacing:.15em;padding:8px 18px;border:none;cursor:pointer;text-transform:uppercase}
+
+/* HERO */
+.hero{padding:4rem 2rem 2rem;text-align:center}
+.pill{display:inline-block;border:1px solid var(--gd);color:var(--g);font-family:var(--fc);font-size:10px;letter-spacing:.2em;padding:4px 14px;text-transform:uppercase;margin-bottom:1rem}
+.htitle{font-family:var(--fd);font-weight:700;font-size:clamp(1.6rem,4vw,2.8rem);letter-spacing:.04em;margin-bottom:.75rem}
+.hdesc{color:var(--muted);font-size:13px;max-width:520px;margin:0 auto 3rem;line-height:1.7}
+
+/* GRID */
+.grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(320px,1fr));gap:1px;background:#1A1A1A;border:1px solid #1A1A1A;max-width:1280px;margin:0 auto 4rem}
+
+/* CARD */
+.card{background:var(--card);display:flex;flex-direction:column;overflow:hidden;transition:background .2s}
+.card:hover{background:#161616}
+.card-img{width:100%;height:176px;object-fit:cover;filter:grayscale(20%) brightness(.8);transition:filter .3s}
+.card:hover .card-img{filter:grayscale(0%) brightness(.92)}
+.card-ph{width:100%;height:176px;background:#0C0C0C;display:none;align-items:center;justify-content:center}
+.body{padding:1.25rem;flex:1;display:flex;flex-direction:column}
+
+/* CARD HEADER */
+.cbrand{font-family:var(--fc);font-size:10px;letter-spacing:.2em;color:var(--g);text-transform:uppercase;margin-bottom:2px;font-weight:500}
+.cname{font-family:var(--fd);font-weight:700;font-size:1.3rem;letter-spacing:.05em;line-height:1.1;margin-bottom:2px}
+.ctag{font-family:var(--fc);font-size:11px;letter-spacing:.12em;color:var(--gd);text-transform:uppercase;margin-bottom:.875rem;font-weight:500}
+
+/* HEX */
+.hexwrap{display:flex;justify-content:center;margin:.25rem 0 .875rem;height:130px}
+
+/* ANALYSIS */
+.analysis{background:#0D0D0D;border:1px solid #1C1C1C;padding:.875rem 1rem;margin-bottom:.875rem}
+.atitle{font-family:var(--fc);font-size:9px;letter-spacing:.22em;color:var(--label);text-transform:uppercase;margin-bottom:.625rem;padding-bottom:.5rem;border-bottom:1px solid #1C1C1C}
+.alist{list-style:none;display:flex;flex-direction:column;gap:6px}
+.aitem{display:grid;grid-template-columns:28px 1fr;gap:8px;align-items:baseline}
+.akey{font-family:var(--fc);font-size:9px;letter-spacing:.14em;font-weight:600;color:var(--g)}
+.adesc{font-family:var(--fb);font-size:11px;color:#AAAAAA;line-height:1.45;font-weight:300}
+.ascore{font-family:var(--fc);font-weight:700;font-size:10px;margin-right:4px}
+
+/* SPECS */
+.specs{border-top:1px solid var(--border);padding-top:.875rem;margin-top:auto;display:grid;grid-template-columns:1fr 1fr;gap:6px 12px}
+.sr{display:flex;flex-direction:column;gap:1px}
+.sl{font-family:var(--fc);font-size:9px;letter-spacing:.18em;color:var(--label);text-transform:uppercase}
+.sv{font-family:var(--fc);font-size:12px;font-weight:500;letter-spacing:.04em}
+
+/* PRICE */
+.prow{display:flex;align-items:center;justify-content:space-between;margin-top:1rem;padding-top:.875rem;border-top:1px solid var(--border)}
+.ptag{font-family:var(--fd);font-weight:700;font-size:1.1rem;color:var(--g);letter-spacing:.04em}
+.punit{font-family:var(--fc);font-size:10px;color:var(--muted);letter-spacing:.1em}
+.btn{background:transparent;border:1px solid var(--gd);color:var(--g);font-family:var(--fc);font-weight:600;font-size:10px;letter-spacing:.14em;padding:6px 14px;cursor:pointer;text-transform:uppercase;transition:background .2s,color .2s}
+.btn:hover{background:var(--g);color:#000}
+
+/* FOOTER */
+footer{border-top:1px solid #1A1A1A;padding:1.5rem 2rem;display:flex;align-items:center;justify-content:space-between}
+.fl{font-family:var(--fd);font-weight:700;font-size:14px;letter-spacing:.1em;color:var(--muted)}
+.fc2{font-size:11px;color:var(--label);font-family:var(--fc);letter-spacing:.08em}
+
+@media(max-width:640px){.grid{grid-template-columns:1fr}header{padding:0 1rem}nav{display:none}.hero{padding:2rem 1rem 1.5rem}}
+</style>
+</head>
+<body>
+
+<header>
+  <div class="logo">
+    <svg class="logo-icon" viewBox="0 0 32 32" fill="none">
+      <ellipse cx="16" cy="16" rx="14" ry="14" stroke="#7AFF00" stroke-width="1.2"/>
+      <path d="M7 16 Q11 8 16 16 Q21 24 25 16" stroke="#7AFF00" stroke-width="1.8" fill="none" stroke-linecap="round"/>
+    </svg>
+    <div><span class="lt">EBM</span><span class="ls">String Pro</span></div>
+  </div>
+  <nav><a href="#">Catálogo</a><a href="#">Stringer</a><a href="#">Capacidades</a></nav>
+  <button class="cta">Agendar Agora</button>
+</header>
+
+<div class="hero">
+  <div class="pill">Análise Biométrica</div>
+  <h2 class="htitle">CATÁLOGO DE PERFORMANCE</h2>
+  <p class="hdesc">As cordas mais elegíveis no circuito profissional, analisadas com precisão técnica para maximizar o seu jogo.</p>
+</div>
+
+<div class="grid" id="catalog"></div>
+
+<footer>
+  <div class="fl">EBM STRING PRO</div>
+  <div class="fc2">© 2024 EBM STRING PRO · PERFORMANCE ENGINEERED</div>
+</footer>
+
+<script>
+const strings=[
+{
+  brand:"Sigma",name:"Poly Black",tagline:"Control & Durability",
+  gauge:"1.25 / 16L",material:"Co-Polyester",tension:"46 – 56 lbs",price:"R$ 50,00",
+  img:"https://images.unsplash.com/photo-1622279485429-e6fe7f04c36c?w=600&q=80",
+  hex:{SPN:72,CTL:82,PWR:60,DUR:85,COM:65,TEN:70},hc:"#4A9EFF",
+  analysis:[
+    {k:"SPN",v:72,d:"Spin sólido para uma round poly. Perfil circular limita o snap-back extremo, mas entrega rotação consistente e fácil de dosar."},
+    {k:"CTL",v:82,d:"Ponto forte. Resposta previsível com trajetória precisa em golpes planos e agressivos a partir da baseline."},
+    {k:"PWR",v:60,d:"Potência contida — exige geração própria de ritmo. Ideal para jogadores com swing rápido que não precisam de pop extra."},
+    {k:"DUR",v:85,d:"Alta durabilidade. Perfil redondo reduz fricção entre as cordas e prolonga a vida útil do encordoamento."},
+    {k:"COM",v:65,d:"Conforto médio para uma co-poly. Não é agressiva no braço em partidas de duração normal."},
+    {k:"TEN",v:70,d:"Boa manutenção de tensão. Resposta estável por várias sessões antes de perder rendimento perceptível."}
+  ]
+},
+{
+  brand:"Sigma",name:"Poly Spin",tagline:"Maximum Spin & Bite",
+  gauge:"1.25 / 16L",material:"Co-Polyester Shaped",tension:"46 – 56 lbs",price:"R$ 50,00",
+  img:"https://images.unsplash.com/photo-1551698618-1dfe5d97d256?w=600&q=80",
+  hex:{SPN:88,CTL:75,PWR:62,DUR:80,COM:60,TEN:65},hc:"#7AFF00",
+  analysis:[
+    {k:"SPN",v:88,d:"Perfil shaped com arestas pronunciadas — mordida intensa na bola e snap-back agressivo geram topspin pesado."},
+    {k:"CTL",v:75,d:"Controle bom, mas o spin elevado exige ajuste de tensão para quem prefere trajetórias mais rasas e diretas."},
+    {k:"PWR",v:62,d:"Potência baixa a moderada. O shaped profile direciona energia para rotação, não para velocidade de saída da bola."},
+    {k:"DUR",v:80,d:"Durabilidade aceitável para polys anguladas. O desgaste nas arestas pode reduzir o spin após 8–10h de jogo."},
+    {k:"COM",v:60,d:"Mais firme que a Poly Black. Jogadores com sensibilidade no braço devem considerar uso em híbrido."},
+    {k:"TEN",v:65,d:"Perda de tensão ligeiramente mais rápida que perfis redondos — comportamento comum em shaped polys."}
+  ]
+},
+{
+  brand:"Gamma",name:"Poly Z",tagline:"Power & Precision",
+  gauge:"1.25 / 16L",material:"Co-Polyester",tension:"48 – 58 lbs",price:"R$ 55,00",
+  img:"https://images.unsplash.com/photo-1584466977773-e625c37cdd50?w=600&q=80",
+  hex:{SPN:75,CTL:80,PWR:78,DUR:88,COM:55,TEN:72},hc:"#FF8C00",
+  analysis:[
+    {k:"SPN",v:75,d:"Spin acima da média para o segmento. Jogadores com swing alto conseguem bolas com boa carga de rotação."},
+    {k:"CTL",v:80,d:"Controle firme e previsível. Resposta estável em golpes agressivos a partir da linha de fundo."},
+    {k:"PWR",v:78,d:"Uma das mais potentes da faixa de entrada. Oferece profundidade real mesmo em swings mais compactos."},
+    {k:"DUR",v:88,d:"Durabilidade excepcional — ponto mais elogiado nas reviews. Mantém performance por até 3 meses com uso moderado."},
+    {k:"COM",v:55,d:"Firme. Não recomendada para histórico de cotovelo. Melhor resultado com tensões na faixa baixa (48–52 lbs)."},
+    {k:"TEN",v:72,d:"Tensão estável. Perde levemente após 3–4 sessões mas sem queda brusca na sensação de jogo."}
+  ]
+},
+{
+  brand:"Head",name:"Lynx Tour",tagline:"Precision & Durability",
+  gauge:"1.25 / 16L",material:"Co-Polyester",tension:"46 – 58 lbs",price:"R$ 90,00",
+  img:"https://images.unsplash.com/photo-1542144582-1ba00456b5e3?w=600&q=80",
+  hex:{SPN:80,CTL:88,PWR:68,DUR:82,COM:70,TEN:75},hc:"#FF4040",
+  analysis:[
+    {k:"SPN",v:80,d:"Bom acesso ao spin com snap-back fluido. Perfil que favorece rotação sem sacrificar o controle de trajetória."},
+    {k:"CTL",v:88,d:"Destaque absoluto — referência de precisão. Resposta cirúrgica em golpes direcionados e na subida à rede."},
+    {k:"PWR",v:68,d:"Potência controlada. Adequada para quem gera o próprio ritmo. Evita excessos em swings longos e agressivos."},
+    {k:"DUR",v:82,d:"Alta durabilidade com baixo entalhe entre as cordas. Ótima relação custo-benefício para uso semanal intenso."},
+    {k:"COM",v:70,d:"Conforto acima da média para uma co-poly de alto controle. Absorve parte das vibrações de impacto off-center."},
+    {k:"TEN",v:75,d:"Uma das melhores manutenções de tensão do catálogo. Sensação de jogo consistente por 3–4 semanas."}
+  ]
+},
+{
+  brand:"Signum Pro",name:"Poly Plasma",tagline:"Control & Comfort",
+  gauge:"1.24 / 17",material:"Co-Polyester",tension:"46 – 56 lbs",price:"R$ 100,00",
+  img:"https://images.unsplash.com/photo-1526232761682-d26e03ac148e?w=600&q=80",
+  hex:{SPN:70,CTL:85,PWR:65,DUR:80,COM:75,TEN:72},hc:"#AA88FF",
+  analysis:[
+    {k:"SPN",v:70,d:"Spin moderado — perfil redondo não maximiza a mordida, mas entrega rotação previsível e fácil de dosar em cada golpe."},
+    {k:"CTL",v:85,d:"Controle excepcional. Trajetória previsível em swings de máxima velocidade. Ideal para jogadores que atacam com ritmo."},
+    {k:"PWR",v:65,d:"Potência abaixo das co-polys elásticas modernas. Requer geração própria de ritmo para extrair profundidade consistente."},
+    {k:"DUR",v:80,d:"Boa durabilidade. Não perde forma após várias horas intensas. Baixo desgaste friccional entre mains e crosses."},
+    {k:"COM",v:75,d:"Destaque: conforto acima da média para uma co-poly firme. Sensação amortecida sem sacrificar o feedback tátil."},
+    {k:"TEN",v:72,d:"Manutenção de tensão estável. Perda mínima entre sessões — diferencial das co-polys alemãs de alta densidade molecular."}
+  ]
+},
+{
+  brand:"Head",name:"Sonic Pro",tagline:"Comfort & Control",
+  gauge:"1.25 / 17",material:"Co-Polyester Mono",tension:"46 – 58 lbs",price:"R$ 90,00",
+  img:"https://images.unsplash.com/photo-1556745753-b2904692b3cd?w=600&q=80",
+  hex:{SPN:68,CTL:82,PWR:70,DUR:80,COM:78,TEN:65},hc:"#CC44CC",
+  analysis:[
+    {k:"SPN",v:68,d:"Spin funcional mas não é o ponto forte. Quem depende de rotação extrema deve avaliar opções com perfil shaped."},
+    {k:"CTL",v:82,d:"Controle sólido e consistente. Trajetória estável em rallies longos, especialmente com golpes planos e penetrantes."},
+    {k:"PWR",v:70,d:"Potência moderada com boa elasticidade — equilíbrio interessante para intermediários com swing completo e cadência."},
+    {k:"DUR",v:80,d:"Dura bem. Superfície lisa com baixa fricção entre as cordas reduz desgaste. Boa opção para custo-benefício semanal."},
+    {k:"COM",v:78,d:"Principal virtude: uma das mais confortáveis do catálogo. Construção molecular suave reduz vibração no braço ao longo das sessões."},
+    {k:"TEN",v:65,d:"Perde tensão com mais rapidez que cordas rígidas — característica esperada de co-polys com fórmula suavizante."}
+  ]
+},
+{
+  brand:"Yonex",name:"PolyTour Spin",tagline:"Maximum Spin & Snapback",
+  gauge:"1.25 / 16L",material:"Co-Poliéster Pent.",tension:"45 – 55 lbs",price:"R$ 120,00",
+  img:"https://images.unsplash.com/photo-1564415315949-7a0c4c73aab4?w=600&q=80",
+  hex:{SPN:90,CTL:80,PWR:65,DUR:78,COM:62,TEN:68},hc:"#00CCAA",
+  analysis:[
+    {k:"SPN",v:90,d:"Perfil pentagonal com snap-back agressivo — uma das cordas mais spin-friendly do circuito, usada por Casper Ruud em híbrido."},
+    {k:"CTL",v:80,d:"Controle preciso mesmo em swings de máxima velocidade. Profundidade e direção confiáveis no fundo de quadra."},
+    {k:"PWR",v:65,d:"Baixa potência — típico de cordas shaped de alto controle. Exige geração de ritmo própria para profundidade real."},
+    {k:"DUR",v:78,d:"Durabilidade boa, mas as arestas desgastam após 8–10h. O spin pode reduzir antes da ruptura física da corda."},
+    {k:"COM",v:62,d:"Firme. A rigidez do shaped profile cria feedback direto mas pode ser intensa no braço em sessões longas."},
+    {k:"TEN",v:68,d:"Perda de tensão moderada. Recomenda-se reencordoamento antes da corda fisicamente ceder para manter spin máximo."}
+  ]
+},
+{
+  brand:"Yonex",name:"PolyTour Air",tagline:"Comfort & Playability",
+  gauge:"1.25 / 16L",material:"Co-Polyester Mono",tension:"45 – 56 lbs",price:"R$ 120,00",
+  img:"https://images.unsplash.com/photo-1530549387789-4c1017266635?w=600&q=80",
+  hex:{SPN:72,CTL:80,PWR:75,DUR:72,COM:90,TEN:60},hc:"#00AAFF",
+  analysis:[
+    {k:"SPN",v:72,d:"Spin bom via pocketing profundo — o dwell time elevado compensa a ausência de arestas na geração de rotação."},
+    {k:"CTL",v:80,d:"Controle surpreendente para uma co-poly tão macia. Trajetória estável com sensação de bola conectada ao jogo."},
+    {k:"PWR",v:75,d:"A mais potente entre as co-polys do catálogo. Alta elasticidade entrega profundidade sem exigir swing agressivo."},
+    {k:"DUR",v:72,d:"Durabilidade menor que polys firmes — esperado em cordas com fórmula suavizante. Reencordoamento mais frequente."},
+    {k:"COM",v:90,d:"Máximo conforto do catálogo. Record histórico de suavidade nos testes da Tennis Warehouse — ideal para braços sensíveis."},
+    {k:"TEN",v:60,d:"Perde tensão rapidamente. Comum em soft polys. Tensionar 2–3 lbs acima do habitual para compensar a queda inicial."}
+  ]
+},
+{
+  brand:"Solinco",name:"Hyper-G Soft",tagline:"Maximum Power & Spin",
+  gauge:"1.25 / 16L",material:"Co-Polyester Soft",tension:"48 – 58 lbs",price:"R$ 120,00",
+  img:"https://images.unsplash.com/photo-1622279485429-e6fe7f04c36c?w=600&q=80",
+  hex:{SPN:92,CTL:90,PWR:75,DUR:78,COM:70,TEN:65},hc:"#7AFF00",
+  analysis:[
+    {k:"SPN",v:92,d:"Máximo do catálogo. Perfil quadrado com arestas afiadas e snap-back explosivo — topspin pesado e angles agressivos."},
+    {k:"CTL",v:90,d:"Elite. Permite swings a 100% sem medo de errar por excesso. Trajetória laser em golpes de fundo de quadra."},
+    {k:"PWR",v:75,d:"Acima da Hyper-G original. A fórmula soft aumenta o pocketing e gera pop extra em groundstrokes e saques."},
+    {k:"DUR",v:78,d:"Durabilidade comparável à versão original — surpreendente para uma soft co-poly. 3–4 semanas com uso regular."},
+    {k:"COM",v:70,d:"Muito mais confortável que a original (172 vs 218 lbs/in de rigidez). Adequada para sessões longas sem dano ao braço."},
+    {k:"TEN",v:65,d:"Perde tensão mais rápido que a versão standard — característica das soft polys. Tensionar levemente acima do habitual."}
+  ]
+},
+{
+  brand:"Wilson",name:"Poly Pro",tagline:"Control & Durability",
+  gauge:"1.25 / 16L",material:"Co-Polyester Mono",tension:"46 – 58 lbs",price:"R$ 80,00",
+  img:"https://images.unsplash.com/photo-1551698618-1dfe5d97d256?w=600&q=80",
+  hex:{SPN:72,CTL:82,PWR:65,DUR:84,COM:68,TEN:70},hc:"#FF3366",
+  analysis:[
+    {k:"SPN",v:72,d:"Spin funcional com low-friction coating que facilita o snap-back. Consistente e confiável em swings moderados a rápidos."},
+    {k:"CTL",v:82,d:"Controle sólido com resposta low-powered — ideal para precisão sem abrir mão da velocidade de swing."},
+    {k:"PWR",v:65,d:"Potência contida, como esperado de uma co-poly de controle. Exige geração própria para profundidade real."},
+    {k:"DUR",v:84,d:"Alta durabilidade e boa tensão estabilidade. Resistência ao entalhe destacada — boa escolha para uso frequente."},
+    {k:"COM",v:68,d:"Conforto aceitável para uma co-poly firme. Não é indicada para sensibilidade no braço, mas não é agressiva em uso normal."},
+    {k:"TEN",v:70,d:"Manutenção de tensão boa para a faixa de preço. Mantém feel de jogo consistente por 2–3 semanas de uso."}
+  ]
+}
+];
+
+/* ── HEX ── */
+function pts(cx,cy,r,vals){
+  const ax=['SPN','CTL','PWR','DUR','COM','TEN'];
+  return ax.map((k,i)=>{
+    const a=(Math.PI/2)+i*(2*Math.PI/6),ratio=(vals[k]||0)/100;
+    return{x:cx+r*ratio*Math.cos(a),y:cy-r*ratio*Math.sin(a)};
+  });
+}
+function gpts(cx,cy,r,f){
+  return Array.from({length:6},(_,i)=>{const a=(Math.PI/2)+i*(2*Math.PI/6);return{x:cx+r*f*Math.cos(a),y:cy-r*f*Math.sin(a)};});
+}
+function ps(p){return p.map(v=>`${v.x.toFixed(1)},${v.y.toFixed(1)}`).join(' ')}
+
+function buildHex(vals,color){
+  const cx=90,cy=80,R=56;
+  const ax=['SPN','CTL','PWR','DUR','COM','TEN'];
+  const an=ax.map((_,i)=>(Math.PI/2)+i*(2*Math.PI/6));
+  const lm=[{dx:0,dy:-10,a:'middle'},{dx:8,dy:-4,a:'start'},{dx:8,dy:5,a:'start'},{dx:0,dy:12,a:'middle'},{dx:-8,dy:5,a:'end'},{dx:-8,dy:-4,a:'end'}];
+
+  const grid=[.25,.5,.75,1].map(f=>`<polygon points="${ps(gpts(cx,cy,R,f))}" fill="none" stroke="#262626" stroke-width="0.5"/>`).join('');
+  const spokes=ax.map((_,i)=>`<line x1="${cx}" y1="${cy}" x2="${(cx+R*Math.cos(an[i])).toFixed(1)}" y2="${(cy-R*Math.sin(an[i])).toFixed(1)}" stroke="#262626" stroke-width="0.5"/>`).join('');
+  const dp=pts(cx,cy,R,vals);
+  const dots=dp.map(p=>`<circle cx="${p.x.toFixed(1)}" cy="${p.y.toFixed(1)}" r="2.5" fill="${color}"/>`).join('');
+  const labels=ax.map((k,i)=>{
+    const lx=cx+(R+13)*Math.cos(an[i])+lm[i].dx, ly=cy-(R+13)*Math.sin(an[i])+lm[i].dy;
+    const vx=cx+(R+25)*Math.cos(an[i])+lm[i].dx, vy=cy-(R+25)*Math.sin(an[i])+lm[i].dy;
+    return `<text x="${lx.toFixed(1)}" y="${ly.toFixed(1)}" text-anchor="${lm[i].a}" font-family="'Barlow Condensed',sans-serif" font-size="8.5" fill="#7AFF00" font-weight="600" letter-spacing="0.08em">${k}</text>`
+          +`<text x="${vx.toFixed(1)}" y="${vy.toFixed(1)}" text-anchor="${lm[i].a}" font-family="'Barlow Condensed',sans-serif" font-size="7.5" fill="${color}" font-weight="700">${vals[k]}</text>`;
+  }).join('');
+  return`<svg viewBox="0 0 180 160" width="180" height="130">${grid}${spokes}<polygon points="${ps(dp)}" fill="${color}" fill-opacity="0.18" stroke="${color}" stroke-width="1.3"/>${dots}${labels}</svg>`;
+}
+
+/* ── SCORE COLOR ── */
+function sc(v){return v>=85?'#7AFF00':v>=72?'#CCEE22':v>=60?'#FFAA00':'#FF5544'}
+
+/* ── CARD ── */
+function buildCard(s){
+  const hex=buildHex(s.hex,s.hc);
+  const alist=s.analysis.map(a=>`
+    <li class="aitem">
+      <span class="akey">${a.k}</span>
+      <span class="adesc"><span class="ascore" style="color:${sc(a.v)}">${a.v}</span>${a.d}</span>
+    </li>`).join('');
+  return`
+  <article class="card">
+    <img class="card-img" src="${s.img}" alt="${s.brand} ${s.name}" loading="lazy"
+      onerror="this.style.display='none';this.nextElementSibling.style.display='flex'">
+    <div class="card-ph">
+      <svg width="48" height="32" fill="none"><rect x="1" y="1" width="46" height="30" rx="2" stroke="#2A2A2A"/><line x1="1" y1="10" x2="47" y2="22" stroke="#2A2A2A"/><line x1="1" y1="22" x2="47" y2="10" stroke="#2A2A2A"/></svg>
+    </div>
+    <div class="body">
+      <div class="cbrand">${s.brand}</div>
+      <div class="cname">${s.name}</div>
+      <div class="ctag">${s.tagline}</div>
+      <div class="hexwrap">${hex}</div>
+      <div class="analysis">
+        <div class="atitle">Análise de Performance</div>
+        <ul class="alist">${alist}</ul>
+      </div>
+      <div class="specs">
+        <div class="sr"><span class="sl">Gauge</span><span class="sv">${s.gauge}</span></div>
+        <div class="sr"><span class="sl">Material</span><span class="sv">${s.material}</span></div>
+        <div class="sr"><span class="sl">Tensão Rec.</span><span class="sv">${s.tension}</span></div>
+        <div class="sr"><span class="sl">Categoria</span><span class="sv">Encordoamento</span></div>
+      </div>
+      <div class="prow">
+        <div><div class="ptag">${s.price}</div><div class="punit">por encordoamento</div></div>
+        <button class="btn">Agendar →</button>
+      </div>
+    </div>
+  </article>`;
+}
+
+document.getElementById('catalog').innerHTML=strings.map(buildCard).join('');
+</script>
+</body>
+</html>

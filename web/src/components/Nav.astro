@@ -1,0 +1,38 @@
+---
+import { NAV, WHATSAPP_LINK, SITE } from "@/lib/site";
+---
+
+<nav
+  id="nav"
+  class="sticky top-0 z-50 border-b border-line/60 bg-tinta/80 backdrop-blur-md"
+>
+  <div
+    class="mx-auto flex max-w-7xl items-center justify-between px-4 py-3 md:px-10"
+  >
+    <a href="/" class="flex items-center gap-3" aria-label={SITE.name}>
+      <img src="/ebm-logo.png" alt={SITE.name} class="h-9 w-auto md:h-11" />
+    </a>
+
+    <div class="hidden items-center gap-8 md:flex">
+      {
+        NAV.map((item) => (
+          <a
+            href={item.href}
+            class="tech-label text-faint transition-colors duration-300 hover:text-lima"
+          >
+            {item.label}
+          </a>
+        ))
+      }
+    </div>
+
+    <a
+      href={WHATSAPP_LINK}
+      target="_blank"
+      rel="noopener"
+      class="bg-lima px-5 py-3 tech-label text-tinta transition-colors duration-300 hover:bg-lima-bright"
+    >
+      Agendar
+    </a>
+  </div>
+</nav>

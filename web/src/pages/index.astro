@@ -1,0 +1,316 @@
+---
+import Base from "@/layouts/Base.astro";
+import Nav from "@/components/Nav.astro";
+import Footer from "@/components/Footer.astro";
+import BrandSlider from "@/components/BrandSlider.tsx";
+import StringFinder from "@/components/StringFinder.tsx";
+import CatalogGrid from "@/components/CatalogGrid.tsx";
+import Comparator from "@/components/Comparator.tsx";
+import { WHATSAPP_LINK } from "@/lib/site";
+
+const processo = [
+  {
+    n: "01",
+    t: "Diagnóstico",
+    d: "Analisamos seu jogo, raquete e histórico para definir corda e tensão ideais.",
+  },
+  {
+    n: "02",
+    t: "Tensão calibrada",
+    d: "Máquina de tração eletrônica com calibração constante — cada libra controlada.",
+  },
+  {
+    n: "03",
+    t: "Padrão de montagem",
+    d: "Nós e cruzamentos no padrão do fabricante, sem perda de tensão nas mãos.",
+  },
+  {
+    n: "04",
+    t: "Registro técnico",
+    d: "Você recebe a ficha: corda, tensão, gauge e data. Consistência rastreável.",
+  },
+];
+
+const depoimentos = [
+  {
+    q: "A diferença de controle foi absurda. Bola caindo dentro o tempo todo.",
+    a: "Rafael M.",
+    r: "Avançado · 4.5",
+  },
+  {
+    q: "Meu cotovelo agradeceu. Recomendaram a corda certa pro meu braço.",
+    a: "Patrícia L.",
+    r: "Intermediária · 3.5",
+  },
+  {
+    q: "Tensão idêntica toda vez que encordoo. Isso não tem preço.",
+    a: "Diego S.",
+    r: "Competitivo",
+  },
+];
+---
+
+<Base>
+  <Nav />
+
+  <main>
+    <!-- ============ HERO ============ -->
+    <section
+      class="grain relative flex min-h-[100svh] flex-col items-center justify-center overflow-hidden border-b border-line px-4 pb-32 pt-28 text-center md:pb-28"
+    >
+      <div class="stringbed absolute inset-0 opacity-[0.18]"></div>
+      <div
+        class="absolute inset-0"
+        style="background: radial-gradient(120% 80% at 50% 0%, rgba(20,58,36,0.45), transparent 60%);"
+      >
+      </div>
+      <!-- lima sweep -->
+      <div
+        class="pointer-events-none absolute -top-1/3 left-1/2 h-[70vh] w-[70vh] -translate-x-1/2 rounded-full opacity-30 blur-[120px]"
+        style="background: radial-gradient(circle, rgba(156,214,83,0.35), transparent 70%);"
+      >
+      </div>
+
+      <div class="relative z-10 mx-auto flex w-full max-w-5xl flex-col items-center">
+        <span
+          class="reveal tech-label mb-8 border border-lima/40 bg-quadra/30 px-3 py-2 text-center text-[10px] text-lima sm:px-4 sm:text-xs"
+          style="animation-delay: 0.1s"
+        >
+          Encordoamento de raquetes de tênis
+        </span>
+
+        <!-- Logo em destaque -->
+        <img
+          src="/ebm-logo.png"
+          alt="EBM String Pro"
+          width="600"
+          height="450"
+          fetchpriority="high"
+          class="reveal w-[78vw] max-w-[440px] drop-shadow-[0_0_45px_rgba(156,214,83,0.25)] sm:w-[60vw] md:max-w-[520px]"
+          style="animation-delay: 0.2s"
+        />
+
+        <h1
+          class="reveal mt-8 font-display text-[10vw] leading-[0.85] text-papel sm:text-[8vw] md:text-7xl lg:text-8xl"
+          style="animation-delay: 0.35s"
+        >
+          Performance <span class="text-lima text-glow italic">começa nas cordas.</span>
+        </h1>
+
+        <p
+          class="reveal editorial mt-6 max-w-2xl text-balance text-lg text-muted sm:text-xl md:text-2xl"
+          style="animation-delay: 0.5s"
+        >
+          Cada libra importa. Precisão técnica de tensão e consistência —
+          análise científica para encontrar a corda que o seu jogo exige.
+        </p>
+
+        <div
+          class="reveal mt-10 flex w-full flex-col gap-3 sm:w-auto sm:flex-row sm:gap-4"
+          style="animation-delay: 0.65s"
+        >
+          <a
+            href="#finder"
+            class="group flex items-center justify-center gap-3 bg-lima px-8 py-4 tech-label text-tinta transition-colors duration-300 hover:bg-lima-bright"
+          >
+            Encontrar minha corda
+            <span class="transition-transform duration-300 group-hover:translate-x-1"
+              >→</span
+            >
+          </a>
+          <a
+            href="#catalogo"
+            class="flex items-center justify-center border border-line px-8 py-4 tech-label text-papel transition-colors duration-300 hover:border-lima hover:text-lima"
+          >
+            Ver catálogo
+          </a>
+        </div>
+      </div>
+
+      <!-- metrics strip -->
+      <div
+        class="reveal absolute bottom-0 left-0 right-0 z-10 grid grid-cols-3 border-t border-line bg-tinta/60 backdrop-blur"
+        style="animation-delay: 0.7s"
+      >
+        {
+          [
+            ["±0.5", "lbs de precisão"],
+            ["6", "eixos analisados"],
+            ["10+", "cordas premium"],
+          ].map(([big, small]) => (
+            <div class="border-r border-line px-4 py-5 text-center last:border-r-0">
+              <div class="font-display text-3xl text-lima md:text-4xl">{big}</div>
+              <div class="tech-label mt-1 text-faint">{small}</div>
+            </div>
+          ))
+        }
+      </div>
+    </section>
+
+    <!-- ============ BRAND SLIDER ============ -->
+    <section class="border-b border-line bg-ink py-12">
+      <p class="mb-8 text-center tech-label text-faint">
+        As marcas mais exigidas do circuito
+      </p>
+      <BrandSlider client:visible />
+    </section>
+
+    <!-- ============ STRING FINDER ============ -->
+    <section
+      id="finder"
+      class="relative scroll-mt-24 overflow-hidden border-b border-line px-4 py-24 md:py-32"
+    >
+      <div class="stringbed-fine absolute inset-0 opacity-[0.06]"></div>
+      <div class="relative mx-auto max-w-5xl">
+        <div class="mb-12 text-center">
+          <span class="tech-label text-lima">Inteligência de encordoamento</span>
+          <h2
+            class="mt-3 font-display text-5xl leading-none text-papel md:text-7xl"
+          >
+            EBM String Finder
+          </h2>
+          <p class="mx-auto mt-5 max-w-2xl font-body text-muted">
+            Responda 5 perguntas. Nosso motor cruza o seu perfil com 6 atributos
+            técnicos de cada corda e revela o match científico — com gráfico de
+            aderência e % de compatibilidade.
+          </p>
+        </div>
+        <StringFinder client:visible />
+      </div>
+    </section>
+
+    <!-- ============ CATÁLOGO ============ -->
+    <section
+      id="catalogo"
+      class="scroll-mt-24 border-b border-line bg-ink px-4 py-24 md:px-10 md:py-32"
+    >
+      <div class="mx-auto max-w-7xl">
+        <div class="mb-12 flex flex-col items-center text-center">
+          <span
+            class="tech-label mb-3 border border-lima/40 bg-quadra/30 px-3 py-1.5 text-lima"
+            >Análise científica</span
+          >
+          <h2 class="font-display text-5xl leading-none text-papel md:text-7xl">
+            Catálogo de Performance
+          </h2>
+          <p class="mt-5 max-w-2xl font-body text-muted">
+            As cordas mais exigidas no circuito profissional, dissecadas em seis
+            eixos de performance. Filtre pelo que o seu jogo precisa.
+          </p>
+        </div>
+        <CatalogGrid client:visible />
+      </div>
+    </section>
+
+    <!-- ============ COMPARADOR ============ -->
+    <section
+      id="comparar"
+      class="scroll-mt-24 border-b border-line px-4 py-24 md:px-10 md:py-32"
+    >
+      <div class="mx-auto max-w-7xl">
+        <div class="mb-12">
+          <span class="tech-label text-lima">Lado a lado</span>
+          <h2
+            class="mt-3 font-display text-5xl leading-none text-papel md:text-7xl"
+          >
+            Comparador técnico
+          </h2>
+          <p class="mt-5 max-w-2xl font-body text-muted">
+            Coloque até três cordas frente a frente. O vencedor de cada atributo
+            acende em lima.
+          </p>
+        </div>
+        <Comparator client:visible />
+      </div>
+    </section>
+
+    <!-- ============ PROCESSO ============ -->
+    <section
+      id="processo"
+      class="scroll-mt-24 border-b border-line bg-ink px-4 py-24 md:px-10 md:py-32"
+    >
+      <div class="mx-auto max-w-7xl">
+        <div class="mb-14 max-w-2xl">
+          <span class="tech-label text-lima">O diferencial EBM</span>
+          <h2
+            class="mt-3 font-display text-5xl leading-none text-papel md:text-7xl"
+          >
+            Tensão é<br /><span class="editorial text-muted">uma ciência.</span>
+          </h2>
+        </div>
+        <div class="grid grid-cols-1 gap-px bg-line sm:grid-cols-2 lg:grid-cols-4">
+          {
+            processo.map((p) => (
+              <div class="group relative flex flex-col bg-tinta p-8 transition-colors duration-300 hover:bg-quadra/20">
+                <span class="font-display text-6xl text-surface-4 transition-colors duration-300 group-hover:text-lima">
+                  {p.n}
+                </span>
+                <h3 class="mt-6 font-display text-2xl text-papel">{p.t}</h3>
+                <p class="mt-3 font-body text-sm text-muted">{p.d}</p>
+              </div>
+            ))
+          }
+        </div>
+      </div>
+    </section>
+
+    <!-- ============ DEPOIMENTOS ============ -->
+    <section class="border-b border-line px-4 py-24 md:px-10 md:py-32">
+      <div class="mx-auto max-w-7xl">
+        <div class="mb-14 text-center">
+          <span class="tech-label text-lima">Quem joga, sente</span>
+          <h2
+            class="mt-3 font-display text-5xl leading-none text-papel md:text-6xl"
+          >
+            Depoimentos
+          </h2>
+        </div>
+        <div class="grid grid-cols-1 gap-4 md:grid-cols-3">
+          {
+            depoimentos.map((d) => (
+              <figure class="flex flex-col justify-between border border-line bg-surface-1 p-8 transition-colors duration-300 hover:border-lima">
+                <blockquote class="editorial text-xl text-papel">
+                  “{d.q}”
+                </blockquote>
+                <figcaption class="mt-8">
+                  <div class="font-display text-lg uppercase text-lima">{d.a}</div>
+                  <div class="tech-label text-faint">{d.r}</div>
+                </figcaption>
+              </figure>
+            ))
+          }
+        </div>
+      </div>
+    </section>
+
+    <!-- ============ CTA ============ -->
+    <section class="grain relative overflow-hidden bg-quadra px-4 py-28 md:py-40">
+      <div class="stringbed absolute inset-0 opacity-[0.12]"></div>
+      <div class="relative mx-auto max-w-4xl text-center">
+        <h2
+          class="font-display text-5xl leading-[0.9] text-papel-bright md:text-8xl"
+        >
+          Pronto para sentir<br /><span class="text-lima italic"
+            >a diferença?</span
+          >
+        </h2>
+        <p class="editorial mx-auto mt-6 max-w-xl text-xl text-papel/80">
+          Agende seu encordoamento e jogue com a tensão certa para o seu jogo.
+        </p>
+        <a
+          href={WHATSAPP_LINK}
+          target="_blank"
+          rel="noopener"
+          class="group mt-10 inline-flex items-center justify-center gap-3 bg-lima px-10 py-5 tech-label text-tinta transition-colors duration-300 hover:bg-lima-bright"
+        >
+          Agendar pelo WhatsApp
+          <span class="transition-transform duration-300 group-hover:translate-x-1"
+            >→</span
+          >
+        </a>
+      </div>
+    </section>
+  </main>
+
+  <Footer />
+</Base>

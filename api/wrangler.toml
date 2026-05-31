@@ -1,0 +1,12 @@
+name = "ebmstring-api"
+main = "src/index.ts"
+compatibility_date = "2025-05-01"
+compatibility_flags = ["nodejs_compat"]
+
+# Rota futura: api.ebmstring.pro (configurar quando o DNS estiver no Cloudflare)
+# [[routes]]
+# pattern = "api.ebmstring.pro"
+# custom_domain = true
+
+[observability]
+enabled = true

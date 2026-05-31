@@ -1,0 +1,150 @@
+<!DOCTYPE html>
+
+<html lang="pt-BR"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>EBM String Pro - Voz e Slogan</title>
+<!-- Tailwind CSS -->
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<!-- Google Fonts: Inter (sans-serif) and Cormorant Garamond (serif) -->
+<link href="https://fonts.googleapis.com" rel="preconnect"/>
+<link crossorigin="" href="https://fonts.gstatic.com" rel="preconnect"/>
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,600;1,400;1,600&amp;family=Inter:wght@400;500;600;700&amp;display=swap" rel="stylesheet"/>
+<!-- Tailwind Configuration -->
+<script data-purpose="tailwind-config">
+    tailwind.config = {
+      theme: {
+        extend: {
+          colors: {
+            ebm: {
+              black: '#0a0a0a',
+              green: '#8dc63f', // Approximate lime green from the image
+              gray: '#737373',
+              lightGray: '#a3a3a3',
+              white: '#f5f5f5'
+            }
+          },
+          fontFamily: {
+            sans: ['Inter', 'sans-serif'],
+            serif: ['Cormorant Garamond', 'serif'],
+          },
+          fontSize: {
+            '2xs': '0.65rem',
+            'slogan': '3.5rem',
+            'heading': '1.75rem',
+          },
+          lineHeight: {
+            'slogan': '1.1',
+          },
+          letterSpacing: {
+            'widest-xl': '0.2em',
+          }
+        }
+      }
+    }
+  </script>
+<!-- Custom Styles -->
+<style data-purpose="base-styles">
+    body {
+      background-color: #0a0a0a;
+      color: #f5f5f5;
+      font-family: 'Inter', sans-serif;
+      margin: 0;
+      padding: 0;
+      /* Fixed aspect ratio container to match print layout */
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      min-height: 100vh;
+    }
+    .page-container {
+      width: 100%;
+      max-width: 1200px;
+      aspect-ratio: 1.414 / 1; /* A4 Landscape approximate ratio */
+      position: relative;
+      background-color: #080808; /* Slightly darker than pure black to see edges if needed */
+      display: flex;
+      flex-direction: column;
+      padding: 3rem;
+      box-sizing: border-box;
+    }
+  </style>
+</head>
+<body>
+<!-- BEGIN: PageContainer -->
+<div class="page-container" data-purpose="page-wrapper">
+<!-- BEGIN: Header -->
+<header class="flex justify-between items-start text-ebm-gray text-2xs uppercase tracking-widest-xl mb-24 w-full" data-purpose="top-navigation">
+<div class="tracking-widest">SISTEMA · 03</div>
+<div class="tracking-widest">EBM · STRING PRO · MANUAL DE MARCA</div>
+</header>
+<!-- END: Header -->
+<!-- BEGIN: MainContent -->
+<main class="flex-1 grid grid-cols-1 md:grid-cols-2 gap-16 lg:gap-32 w-full h-full relative" data-purpose="main-layout">
+<!-- Divider Line for Print Spread (Optional, visual only) -->
+<!-- <div class="absolute inset-y-0 left-1/2 w-px bg-ebm-gray opacity-20 hidden md:block"></div> -->
+<!-- Left Column: Slogan -->
+<section class="flex flex-col justify-center" data-purpose="slogan-section">
+<div class="mb-6">
+<span class="text-ebm-green text-xs font-semibold tracking-widest uppercase">9.1 · O SLOGAN</span>
+</div>
+<h1 class="font-serif text-slogan leading-slogan font-normal mb-8 text-ebm-white italic">
+          Performance <br/>
+          começa nas <br/>
+<span class="text-ebm-green">cordas.</span>
+</h1>
+<div class="flex items-center mt-12">
+<div class="h-px w-12 bg-ebm-gray mr-4"></div>
+<span class="text-ebm-green text-xs font-semibold tracking-widest uppercase">EBM STRING PRO</span>
+</div>
+</section>
+<!-- Right Column: Tone of Voice -->
+<section class="flex flex-col pt-12 md:pt-0" data-purpose="tone-of-voice-section">
+<div class="mb-10">
+<span class="text-ebm-green text-xs font-semibold tracking-widest uppercase block mb-4">9.2 · TOM</span>
+<h2 class="font-sans text-heading font-bold italic tracking-tight text-ebm-white">Como falamos</h2>
+</div>
+<div class="flex flex-col space-y-0 relative w-full pr-8">
+<!-- Top Border -->
+<div class="w-full h-px bg-ebm-gray opacity-30 mb-8"></div>
+<!-- Item 1: Preciso -->
+<article class="grid grid-cols-[120px_1fr] gap-6 mb-8" data-purpose="tone-item">
+<h3 class="text-ebm-green font-bold text-lg italic tracking-tight">Preciso.</h3>
+<div>
+<p class="text-ebm-white font-semibold text-sm mb-2 leading-tight">Falamos de tensão em libras, não em sentimentos.</p>
+<p class="text-ebm-lightGray text-sm leading-relaxed">Frases curtas. Substantivos concretos. Sem enrolação.</p>
+</div>
+</article>
+<!-- Divider -->
+<div class="w-full h-px bg-ebm-gray opacity-30 mb-8"></div>
+<!-- Item 2: Respeitoso -->
+<article class="grid grid-cols-[120px_1fr] gap-6 mb-8" data-purpose="tone-item">
+<h3 class="text-ebm-green font-bold text-lg italic tracking-tight">Respeitoso.</h3>
+<div>
+<p class="text-ebm-white font-semibold text-sm mb-2 leading-tight">O jogador conhece o próprio jogo. Não explicamos demais.</p>
+<p class="text-ebm-lightGray text-sm leading-relaxed">Traduzimos o ofício, sem dar aula sobre ele.</p>
+</div>
+</article>
+<!-- Divider -->
+<div class="w-full h-px bg-ebm-gray opacity-30 mb-8"></div>
+<!-- Item 3: Confiante -->
+<article class="grid grid-cols-[120px_1fr] gap-6" data-purpose="tone-item">
+<h3 class="text-ebm-green font-bold text-lg italic tracking-tight">Confiante.</h3>
+<div>
+<p class="text-ebm-white font-semibold text-sm mb-2 leading-tight">Já fizemos isso milhares de vezes.</p>
+<p class="text-ebm-lightGray text-sm leading-relaxed">Autoridade tranquila. Sem ponto de exclamação.</p>
+</div>
+</article>
+</div>
+</section>
+</main>
+<!-- END: MainContent -->
+<!-- BEGIN: Footer -->
+<footer class="flex justify-between items-end text-ebm-gray text-2xs uppercase tracking-widest-xl mt-24 w-full" data-purpose="bottom-navigation">
+<div class="tracking-widest">VOZ E SLOGAN</div>
+<div class="tracking-widest">09 / 13</div>
+</footer>
+<!-- END: Footer -->
+</div>
+<!-- END: PageContainer -->
+</body></html>

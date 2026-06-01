@@ -7,7 +7,13 @@ import tailwindcss from "@tailwindcss/vite";
 // https://astro.build/config
 export default defineConfig({
   site: "https://ebmstring.pro",
-  integrations: [react(), sitemap()],
+  integrations: [
+    react(),
+    sitemap({
+      // Páginas internas de geração (PDF / imagem OG) ficam fora do índice.
+      filter: (page) => !/\/(catalogo-pdf|og-card)\/?$/.test(page),
+    }),
+  ],
   vite: {
     plugins: [tailwindcss()],
   },

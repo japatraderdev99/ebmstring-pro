@@ -6,7 +6,40 @@ import BrandSlider from "@/components/BrandSlider.tsx";
 import StringFinder from "@/components/StringFinder.tsx";
 import CatalogGrid from "@/components/CatalogGrid.tsx";
 import Comparator from "@/components/Comparator.tsx";
-import { WHATSAPP_LINK, CATALOG_PDF } from "@/lib/site";
+import { WHATSAPP_LINK, CATALOG_PDF, SITE } from "@/lib/site";
+
+const faqs = [
+  {
+    q: "Vocês fazem encordoamento de raquetes de tênis em Florianópolis?",
+    a: "Sim. A EBM String Pro atende Florianópolis e toda a Grande Florianópolis (São José, Palhoça, Biguaçu e região) com encordoamento profissional, tensão calibrada e cordas premium. O agendamento é pelo WhatsApp.",
+  },
+  {
+    q: "Quanto custa encordoar uma raquete?",
+    a: "O valor depende da corda escolhida. No nosso catálogo as cordas vão de R$ 50 a R$ 120 (mais a mão de obra de encordoamento). Use o EBM String Finder ou fale no WhatsApp para um orçamento exato.",
+  },
+  {
+    q: "De quanto em quanto tempo devo trocar a corda?",
+    a: "Uma regra prática: troque a corda tantas vezes por ano quantas vezes você joga por semana. Quem joga 3x na semana deve reencordoar cerca de 3 vezes ao ano — antes disso se a corda arrebentar ou perder tensão.",
+  },
+  {
+    q: "Como sei qual corda é ideal para o meu jogo?",
+    a: "Use o EBM String Finder: você responde 5 perguntas (nível, estilo, prioridade, braço e orçamento) e nosso sistema cruza seu perfil com 6 atributos técnicos de cada corda, mostrando as 3 melhores com porcentagem de match.",
+  },
+  {
+    q: "Qual tensão devo usar?",
+    a: "Tensão mais alta favorece controle; mais baixa, potência e conforto. Cada corda tem uma faixa recomendada (em libras) no catálogo. No diagnóstico definimos a tensão ideal para o seu jogo e registramos para manter constância nas próximas trocas.",
+  },
+];
+
+const faqJsonLd = {
+  "@context": "https://schema.org",
+  "@type": "FAQPage",
+  mainEntity: faqs.map((f) => ({
+    "@type": "Question",
+    name: f.q,
+    acceptedAnswer: { "@type": "Answer", text: f.a },
+  })),
+};
 
 const processo = [
   {
@@ -76,7 +109,7 @@ const depoimentos = [
           class="reveal tech-label mb-8 border border-lima/40 bg-quadra/30 px-3 py-2 text-center text-[10px] text-lima sm:px-4 sm:text-xs"
           style="animation-delay: 0.1s"
         >
-          Encordoamento de raquetes de tênis
+          Encordoamento de raquetes de tênis · Florianópolis
         </span>
 
         <!-- Logo em destaque -->
@@ -311,6 +344,76 @@ const depoimentos = [
       </div>
     </section>
 
+    <!-- ============ LOCAL + FAQ ============ -->
+    <section
+      id="atendimento"
+      class="scroll-mt-24 border-b border-line bg-ink px-4 py-24 md:px-10 md:py-32"
+    >
+      <div class="mx-auto grid max-w-7xl grid-cols-1 gap-16 lg:grid-cols-2">
+        <!-- Local -->
+        <div>
+          <span class="tech-label text-lima">Atendimento local</span>
+          <h2 class="mt-3 font-display text-4xl leading-none text-papel md:text-6xl">
+            Encordoamento de raquetes de tênis em Florianópolis
+          </h2>
+          <p class="mt-6 max-w-xl font-body text-muted">
+            A EBM String Pro atende <strong class="text-papel">Florianópolis</strong> e
+            toda a Grande Florianópolis com encordoamento profissional: diagnóstico
+            do seu jogo, tensão calibrada em máquina eletrônica e cordas premium das
+            melhores marcas. Agende pelo WhatsApp e jogue com a corda certa.
+          </p>
+          <div class="mt-8 flex flex-wrap gap-2">
+            {
+              SITE.areaServed.map((c) => (
+                <span class="tech-label border border-line px-3 py-2 text-faint">
+                  {c}
+                </span>
+              ))
+            }
+          </div>
+          <a
+            href={WHATSAPP_LINK}
+            target="_blank"
+            rel="noopener"
+            class="group mt-10 inline-flex items-center gap-3 bg-lima px-8 py-4 tech-label text-tinta transition-colors duration-300 hover:bg-lima-bright"
+          >
+            Agendar em Florianópolis
+            <span class="transition-transform duration-300 group-hover:translate-x-1"
+              >→</span
+            >
+          </a>
+        </div>
+
+        <!-- FAQ -->
+        <div>
+          <span class="tech-label text-lima">Perguntas frequentes</span>
+          <h2 class="mt-3 font-display text-4xl leading-none text-papel md:text-5xl">
+            Dúvidas sobre encordoamento
+          </h2>
+          <div class="mt-8 divide-y divide-line border-y border-line">
+            {
+              faqs.map((f) => (
+                <details class="group">
+                  <summary class="flex cursor-pointer list-none items-center justify-between gap-4 py-5 font-display text-lg uppercase text-papel transition-colors hover:text-lima">
+                    {f.q}
+                    <span
+                      class="shrink-0 text-lima transition-transform duration-300 group-open:rotate-45"
+                      aria-hidden
+                    >
+                      +
+                    </span>
+                  </summary>
+                  <p class="pb-5 font-body text-muted">{f.a}</p>
+                </details>
+              ))
+            }
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <script type="application/ld+json" set:html={JSON.stringify(faqJsonLd)} />
+
     <!-- ============ CTA ============ -->
     <section class="grain relative overflow-hidden bg-quadra px-4 py-28 md:py-40">
       <div class="stringbed absolute inset-0 opacity-[0.12]"></div>
@@ -323,7 +426,8 @@ const depoimentos = [
           >
         </h2>
         <p class="editorial mx-auto mt-6 max-w-xl text-xl text-papel/80">
-          Agende seu encordoamento e jogue com a tensão certa para o seu jogo.
+          Agende seu encordoamento em Florianópolis e jogue com a tensão certa
+          para o seu jogo.
         </p>
         <a
           href={WHATSAPP_LINK}

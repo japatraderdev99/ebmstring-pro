@@ -1,6 +1,6 @@
 ---
 import "@/styles/global.css";
-import { SITE } from "@/lib/site";
+import { SITE, WHATSAPP_NUMBER, INSTAGRAM } from "@/lib/site";
 
 interface Props {
   title?: string;
@@ -8,11 +8,51 @@ interface Props {
 }
 
 const {
-  title = `${SITE.name} — ${SITE.tagline}`,
+  title = SITE.seoTitle,
   description = SITE.description,
 } = Astro.props;
 
 const canonical = new URL(Astro.url.pathname, SITE.url).href;
+
+const businessJsonLd = {
+  "@context": "https://schema.org",
+  "@type": "LocalBusiness",
+  "@id": `${SITE.url}/#business`,
+  name: SITE.name,
+  description: SITE.description,
+  url: SITE.url,
+  telephone: `+${WHATSAPP_NUMBER}`,
+  image: `${SITE.url}/ebm-logo.png`,
+  logo: `${SITE.url}/ebm-logo.png`,
+  priceRange: "R$50–R$120",
+  slogan: SITE.tagline,
+  address: {
+    "@type": "PostalAddress",
+    addressLocality: SITE.city,
+    addressRegion: SITE.region,
+    addressCountry: SITE.country,
+  },
+  geo: {
+    "@type": "GeoCoordinates",
+    latitude: SITE.geo.lat,
+    longitude: SITE.geo.lng,
+  },
+  areaServed: SITE.areaServed.map((name) => ({ "@type": "City", name })),
+  knowsAbout: [
+    "encordoamento de raquetes de tênis",
+    "cordas de tênis",
+    "tensão de corda",
+  ],
+  makesOffer: {
+    "@type": "Offer",
+    itemOffered: {
+      "@type": "Service",
+      name: "Encordoamento de raquetes de tênis",
+      areaServed: SITE.city,
+    },
+  },
+  sameAs: [INSTAGRAM],
+};
 ---
 
 <!doctype html>
@@ -23,11 +63,19 @@ const canonical = new URL(Astro.url.pathname, SITE.url).href;
     <link rel="canonical" href={canonical} />
     <title>{title}</title>
     <meta name="description" content={description} />
+    <meta name="keywords" content={SITE.keywords.join(", ")} />
     <meta name="theme-color" content="#0a0a0a" />
     <meta name="generator" content={Astro.generator} />
 
+    <!-- Local / geo -->
+    <meta name="geo.region" content={`${SITE.country}-${SITE.region}`} />
+    <meta name="geo.placename" content={SITE.city} />
+    <meta name="geo.position" content={`${SITE.geo.lat};${SITE.geo.lng}`} />
+    <meta name="ICBM" content={`${SITE.geo.lat}, ${SITE.geo.lng}`} />
+
     <!-- Open Graph -->
     <meta property="og:type" content="website" />
+    <meta property="og:locale" content="pt_BR" />
     <meta property="og:site_name" content={SITE.name} />
     <meta property="og:title" content={title} />
     <meta property="og:description" content={description} />
@@ -45,18 +93,7 @@ const canonical = new URL(Astro.url.pathname, SITE.url).href;
       rel="stylesheet"
     />
 
-    <script
-      type="application/ld+json"
-      set:html={JSON.stringify({
-        "@context": "https://schema.org",
-        "@type": "LocalBusiness",
-        name: SITE.name,
-        description: SITE.description,
-        url: SITE.url,
-        slogan: SITE.tagline,
-        areaServed: SITE.city,
-      })}
-    />
+    <script type="application/ld+json" set:html={JSON.stringify(businessJsonLd)} />
   </head>
   <body>
     <slot />

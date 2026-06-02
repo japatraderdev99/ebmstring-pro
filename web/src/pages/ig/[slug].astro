@@ -1,8 +1,9 @@
 ---
 /**
- * Gerador de artes para Instagram (render → PNG via Chrome headless).
- *  - Carrossel por corda: <id>--1..4   (1080 x 1350)
- *  - Capas de destaque:   cover--<tipo> (1080 x 1920)
+ * Gerador de artes p/ Instagram (render → PNG via Chrome headless).
+ *  - Carrossel de corda (feed 1080x1350):  <id>--c<1..6>
+ *  - Stories de destaque (9:16 1080x1920):  h--<hl>--<1..N>
+ *  - Capas de destaque (1080x1920):         cover--<hl>
  * Rota interna, noindex.
  */
 import "@/styles/global.css";
@@ -16,24 +17,9 @@ import {
   type StringModel,
   type Attr,
 } from "@/data/strings";
-import { SITE, WHATSAPP_DISPLAY } from "@/lib/site";
+import { SITE } from "@/lib/site";
+import { HIGHLIGHTS, type Story, type Highlight } from "@/lib/ig-content";
 
-export function getStaticPaths() {
-  const avail = STRINGS.filter((s) => s.available !== false);
-  const paths: { params: { slug: string } }[] = [];
-  for (const s of avail) for (let n = 1; n <= 4; n++) paths.push({ params: { slug: `${s.id}--${n}` } });
-  for (const c of ["catalogo", "cordas", "finder", "entrega", "processo"])
-    paths.push({ params: { slug: `cover--${c}` } });
-  return paths;
-}
-
-const { slug } = Astro.params;
-const [id, nStr] = slug.split("--");
-const isCover = id === "cover";
-const n = Number(nStr);
-const s = isCover ? undefined : STRINGS.find((x) => x.id === id);
-
-const fmt = (v: number) => `R$ ${v.toFixed(2).replace(".", ",")}`;
 const STYLE_LABEL: Record<string, string> = {
   controle: "Controle e precisão",
   agressivo: "Topspin agressivo",
@@ -46,23 +32,59 @@ const LEVEL_LABEL: Record<string, string> = {
   avancado: "Avançado",
   competitivo: "Competitivo",
 };
-function topAttrs(m: StringModel): Attr[] {
-  return [...ATTRS].sort((a, b) => m.attrs[b] - m.attrs[a]).slice(0, 2);
-}
+const TYPE_CONCEPT: Record<string, string> = {
+  poliester:
+    "Co-poliéster: o monofilamento que entrega controle e durabilidade para quem bate forte e exige a bola caindo dentro.",
+  nylon:
+    "Nylon (synthetic gut): núcleo macio que prioriza conforto e potência — gentil com o braço, ideal pra quem está evoluindo.",
+  multifilamento:
+    "Multifilamento: centenas de microfibras que imitam a tripa natural — máximo conforto e potência.",
+  hibrido: "Híbrido: o melhor de dois mundos, combinando cordas diferentes no sentido vertical e horizontal.",
+  natural: "Tripa natural: o ápice em conforto, potência e manutenção de tensão.",
+};
 function levelRange(m: StringModel): string {
   const ls = m.levels.map((l) => LEVEL_LABEL[l]);
   return ls.length > 1 ? `${ls[0]} ao ${ls[ls.length - 1]}` : ls[0];
 }
+function brandMask(logo: string, w: number, h: number, color = "var(--color-papel)") {
+  return `width:${w}px;height:${h}px;background-color:${color};-webkit-mask-image:url(${logo});mask-image:url(${logo});-webkit-mask-repeat:no-repeat;mask-repeat:no-repeat;-webkit-mask-position:left center;mask-position:left center;-webkit-mask-size:contain;mask-size:contain;`;
+}
 
-const COVERS: Record<string, { icon: string; label: string; sub: string }> = {
-  catalogo: { icon: "▦", label: "Catálogo", sub: "Todas as cordas" },
-  cordas: { icon: "◉", label: "Cordas", sub: "Perfil técnico" },
-  finder: { icon: "✦", label: "Finder", sub: "Sua corda ideal" },
-  entrega: { icon: "⇄", label: "Busca & Entrega", sub: "Em Floripa" },
-  processo: { icon: "⊹", label: "Processo", sub: "Tensão calibrada" },
-};
-const cover = isCover ? COVERS[nStr] : undefined;
+export function getStaticPaths() {
+  const avail = STRINGS.filter((s) => s.available !== false);
+  const paths: { params: { slug: string } }[] = [];
+  for (const s of avail) for (let n = 1; n <= 6; n++) paths.push({ params: { slug: `${s.id}--c${n}` } });
+  for (const [hl, data] of Object.entries(HIGHLIGHTS)) {
+    paths.push({ params: { slug: `cover--${hl}` } });
+    data.stories.forEach((_, i) => paths.push({ params: { slug: `h--${hl}--${i + 1}` } }));
+  }
+  return paths;
+}
+
+const { slug } = Astro.params;
+const parts = slug.split("--");
+const mode = parts[0] === "cover" ? "cover" : parts[0] === "h" ? "story" : "carousel";
+
+let s: StringModel | undefined;
+let cn = 0;
+let hl: Highlight | undefined;
+let story: Story | undefined;
+let storyIdx = 0;
+let coverHl: Highlight | undefined;
+
+if (mode === "carousel") {
+  s = STRINGS.find((x) => x.id === parts[0]);
+  cn = Number(parts[1].replace("c", ""));
+} else if (mode === "cover") {
+  coverHl = HIGHLIGHTS[parts[1]];
+} else {
+  hl = HIGHLIGHTS[parts[1]];
+  storyIdx = Number(parts[2]) - 1;
+  story = hl?.stories[storyIdx];
+}
+
 const img = s ? stringImage(s.id) : null;
+const topAttrs = s ? [...ATTRS].sort((a, b) => s!.attrs[b] - s!.attrs[a]) : [];
 ---
 
 <!doctype html>
@@ -81,71 +103,30 @@ const img = s ? stringImage(s.id) : null;
       * { -webkit-print-color-adjust: exact !important; print-color-adjust: exact !important; }
       html, body { margin: 0; padding: 0; background: #0a0a0a; }
       .slide { position: relative; overflow: hidden; background: #0a0a0a; }
-      .carousel { width: 1080px; height: 1350px; }
+      .feed { width: 1080px; height: 1350px; }
       .story { width: 1080px; height: 1920px; }
+      /* zona segura dos stories: conteúdo entre y=250 e y=1670 */
+      .safe { position: absolute; left: 90px; right: 90px; top: 260px; bottom: 300px; }
     </style>
   </head>
   <body class="font-body text-papel">
-    {/* ===================== CAPAS DE DESTAQUE ===================== */}
+    {/* ===================================================== CARROSSEL ===================================================== */}
     {
-      isCover && cover && (
-        <div class="slide story grain text-center">
-          <div class="stringbed absolute inset-0 opacity-[0.14]" />
-          <div
-            class="absolute inset-0"
-            style="background: radial-gradient(70% 44% at 50% 50%, rgba(20,58,36,0.6), transparent 60%);"
-          />
-          {/* ícone no centro exato (zona do recorte circular do destaque) */}
-          <div
-            class="absolute left-1/2 top-1/2 flex h-[320px] w-[320px] -translate-x-1/2 -translate-y-1/2 items-center justify-center rounded-full border-2 border-lima/50 text-lima"
-            style="box-shadow: 0 0 80px -10px rgba(156,214,83,0.55); font-size: 160px; line-height:1;"
-          >
-            {cover.icon}
-          </div>
-          <div class="absolute inset-x-0 top-[62%] text-center">
-            <div class="font-display text-[92px] font-extrabold uppercase leading-none text-papel">
-              {cover.label}
-            </div>
-            <div class="tech-label mt-[24px] text-[26px] tracking-[0.3em] text-lima">
-              {cover.sub}
-            </div>
-          </div>
-          <img src="/ebm-logo.png" class="absolute bottom-[240px] left-1/2 w-[260px] -translate-x-1/2 opacity-90" />
-        </div>
-      )
-    }
-
-    {/* ===================== CARROSSEL: SLIDE 1 — CAPA ===================== */}
-    {
-      s && n === 1 && (
-        <div class="slide carousel flex flex-col justify-end">
-          {img ? (
-            <img src={img} class="absolute inset-0 h-full w-full object-cover" />
-          ) : (
-            <div class="stringbed absolute inset-0 opacity-30" />
-          )}
-          <div
-            class="absolute inset-0"
-            style="background: linear-gradient(to top, #0a0a0a 4%, rgba(10,10,10,0.2) 45%, rgba(10,10,10,0.55) 100%);"
-          />
+      mode === "carousel" && s && cn === 1 && (
+        <div class="slide feed flex flex-col justify-end">
+          {img ? <img src={img} class="absolute inset-0 h-full w-full object-cover" /> : <div class="stringbed absolute inset-0 opacity-30" />}
+          <div class="absolute inset-0" style="background: linear-gradient(to top, #0a0a0a 3%, rgba(10,10,10,0.15) 45%, rgba(10,10,10,0.5) 100%);" />
           <div class="absolute left-[80px] right-[80px] top-[80px] flex items-center justify-between">
             {brandLogo(s.brand) ? (
-              <span
-                aria-label={s.brand}
-                style={`width:210px;height:42px;background-color:var(--color-papel);-webkit-mask-image:url(${brandLogo(s.brand)});mask-image:url(${brandLogo(s.brand)});-webkit-mask-repeat:no-repeat;mask-repeat:no-repeat;-webkit-mask-position:left center;mask-position:left center;-webkit-mask-size:contain;mask-size:contain;`}
-              />
+              <span aria-label={s.brand} style={brandMask(brandLogo(s.brand)!, 210, 42)} />
             ) : (
               <span class="font-display text-[46px] font-extrabold uppercase italic text-papel">{s.brand}</span>
             )}
-            <span class="tech-label border border-lima/50 bg-quadra/40 px-[24px] py-[12px] text-[26px] text-lima">
-              Análise técnica
-            </span>
+            <span class="tech-label border border-lima/50 bg-quadra/40 px-[24px] py-[12px] text-[26px] text-lima">Análise técnica</span>
           </div>
           <div class="relative z-10 px-[80px] pb-[150px]">
             <div class="tech-label text-[30px] text-lima">{s.tagline}</div>
-            <h1 class="mt-[16px] font-display text-[128px] font-extrabold uppercase leading-[0.86] text-papel">
-              {s.name}
-            </h1>
+            <h1 class="mt-[16px] font-display text-[128px] font-extrabold uppercase leading-[0.86] text-papel">{s.name}</h1>
             <div class="mt-[44px] flex items-center gap-[20px]">
               <span class="font-display text-[44px] uppercase text-papel">Arrasta</span>
               <span class="text-[52px] text-lima">→</span>
@@ -154,48 +135,103 @@ const img = s ? stringImage(s.id) : null;
         </div>
       )
     }
-
-    {/* ===================== SLIDE 2 — RADAR ===================== */}
     {
-      s && n === 2 && (
-        <div class="slide carousel grain flex flex-col items-center px-[80px] pb-[90px] pt-[100px] text-center">
+      mode === "carousel" && s && cn === 2 && (
+        <div class="slide feed flex flex-col justify-end">
+          {img && (
+            <div class="absolute inset-0 overflow-hidden">
+              <img src={img} class="h-full w-full object-cover" style="object-position: 75% 35%; transform: scale(1.6);" />
+            </div>
+          )}
+          <div class="absolute inset-0" style="background: linear-gradient(to top, #0a0a0a 8%, rgba(10,10,10,0.55) 55%, rgba(10,10,10,0.7) 100%);" />
+          <div class="relative z-10 px-[80px] pb-[110px] pt-[100px]">
+            <div class="tech-label text-[30px] text-lima">O conceito</div>
+            <h2 class="mt-[18px] font-display text-[72px] font-extrabold uppercase leading-[0.95] text-papel">
+              {s.material} · {s.shape}
+            </h2>
+            <p class="editorial mt-[34px] max-w-[900px] text-[42px] leading-snug text-papel/90">
+              {TYPE_CONCEPT[s.type]}
+            </p>
+          </div>
+        </div>
+      )
+    }
+    {
+      mode === "carousel" && s && cn === 3 && (
+        <div class="slide feed grain flex flex-col items-center px-[80px] pb-[90px] pt-[110px] text-center">
           <div class="stringbed-fine absolute inset-0 opacity-[0.07]" />
           <div class="relative">
             <div class="tech-label text-[28px] text-lima">O perfil técnico</div>
-            <h2 class="mt-[12px] font-display text-[78px] font-extrabold uppercase leading-none text-papel">
-              {s.brand} {s.name}
-            </h2>
+            <h2 class="mt-[12px] font-display text-[78px] font-extrabold uppercase leading-none text-papel">{s.brand} {s.name}</h2>
           </div>
-          <div class="relative my-[24px] w-[800px]">
-            <RadarChart data={s.attrs} size={800} />
-          </div>
+          <div class="relative my-[20px] w-[820px]"><RadarChart data={s.attrs} size={820} /></div>
           <div class="relative flex w-full gap-[24px]">
-            {topAttrs(s).map((a) => (
+            {topAttrs.slice(0, 2).map((a) => (
               <div class="flex-1 border border-lima/40 bg-quadra/25 py-[30px]">
                 <div class="font-display text-[78px] leading-none text-lima">{s.attrs[a]}</div>
                 <div class="tech-label mt-[12px] text-[28px] text-papel">{ATTR_LABELS[a].label}</div>
               </div>
             ))}
           </div>
-          <div class="relative mt-[36px] font-mono text-[28px] text-faint">
-            6 eixos · 0–100 · análise EBM
+        </div>
+      )
+    }
+    {
+      mode === "carousel" && s && cn === 4 && (
+        <div class="slide feed flex flex-col px-[80px] pb-[90px] pt-[110px]">
+          <div class="stringbed-fine absolute inset-0 opacity-[0.06]" />
+          <div class="relative">
+            <div class="tech-label text-[28px] text-lima">Leitura do radar</div>
+            <h2 class="mt-[12px] font-display text-[74px] font-extrabold uppercase leading-[0.95] text-papel">Os 6 eixos</h2>
+          </div>
+          <div class="relative mt-[44px] flex flex-1 flex-col justify-center gap-[30px]">
+            {ATTRS.map((a) => (
+              <div>
+                <div class="flex items-end justify-between">
+                  <span class="font-display text-[40px] uppercase text-papel">{ATTR_LABELS[a].label}</span>
+                  <span class="font-mono text-[40px] text-lima">{s.attrs[a]}</span>
+                </div>
+                <div class="mt-[12px] h-[18px] w-full bg-surface-3">
+                  <div class="h-full bg-lima" style={`width:${s.attrs[a]}%`} />
+                </div>
+              </div>
+            ))}
           </div>
         </div>
       )
     }
-
-    {/* ===================== SLIDE 3 — SPECS + PRA QUEM ===================== */}
     {
-      s && n === 3 && (
-        <div class="slide carousel flex flex-col px-[80px] pb-[90px] pt-[100px]">
-          <div class="stringbed-fine absolute inset-0 opacity-[0.06]" />
+      mode === "carousel" && s && cn === 5 && (
+        <div class="slide feed flex flex-col justify-end">
+          {img && (
+            <div class="absolute inset-0 overflow-hidden">
+              <img src={img} class="h-full w-full object-cover" style="object-position: 30% 60%; transform: scale(1.3);" />
+            </div>
+          )}
+          <div class="absolute inset-0" style="background: linear-gradient(to top, #0a0a0a 10%, rgba(10,10,10,0.45) 60%, rgba(10,10,10,0.65) 100%);" />
+          <div class="relative z-10 px-[80px] pb-[120px] pt-[110px]">
+            <div class="tech-label text-[30px] text-lima">Pra quem é</div>
+            <h2 class="mt-[18px] font-display text-[80px] font-extrabold uppercase leading-[0.95] text-papel">
+              {s.bestFor.map((b) => STYLE_LABEL[b]).join(" · ")}
+            </h2>
+            <p class="mt-[28px] font-body text-[38px] text-papel/85">
+              Indicada do nível {levelRange(s).toLowerCase()}.
+            </p>
+            <p class="editorial mt-[26px] max-w-[880px] text-[36px] leading-snug text-muted">{s.blurb}</p>
+          </div>
+        </div>
+      )
+    }
+    {
+      mode === "carousel" && s && cn === 6 && (
+        <div class="slide feed grain flex flex-col px-[80px] pb-[90px] pt-[110px]">
+          <div class="stringbed absolute inset-0 opacity-[0.1]" />
+          <div class="absolute inset-0" style="background:#143a24;opacity:0.16;" />
           <div class="relative">
             <div class="tech-label text-[28px] text-lima">Ficha técnica</div>
-            <h2 class="mt-[12px] font-display text-[86px] font-extrabold uppercase leading-[0.9] text-papel">
-              {s.name}
-            </h2>
+            <h2 class="mt-[12px] font-display text-[84px] font-extrabold uppercase leading-[0.9] text-papel">{s.name}</h2>
           </div>
-          <ul class="relative mt-[46px] flex flex-col gap-[2px] font-mono text-[32px]">
+          <ul class="relative mt-[40px] flex flex-col gap-[2px] font-mono text-[32px]">
             {[
               ["Marca", s.brand],
               ["Material", s.material],
@@ -204,54 +240,100 @@ const img = s ? stringImage(s.id) : null;
               ["Tensão rec.", `${s.tensionRec[0]}–${s.tensionRec[1]} lbs`],
               ["Braço", s.armFriendly ? "Amiga do braço" : "Resposta firme"],
             ].map(([k, v]) => (
-              <li class="flex items-center justify-between gap-[24px] border-b border-line py-[22px]">
+              <li class="flex items-center justify-between gap-[24px] border-b border-line py-[20px]">
                 <span class="shrink-0 text-faint">{k}</span>
                 <span class="text-right text-papel">{v}</span>
               </li>
             ))}
           </ul>
-          <div class="relative mt-[42px] border border-lima/40 bg-quadra/20 p-[44px]">
-            <div class="tech-label text-[26px] text-lima">Pra quem é</div>
-            <div class="mt-[14px] font-display text-[48px] uppercase leading-[1.05] text-papel">
-              {s.bestFor.map((b) => STYLE_LABEL[b]).join(" · ")}
+          <div class="relative mt-auto border-t-2 border-lima pt-[40px]">
+            <div class="flex items-center gap-[22px]">
+              <span class="flex h-[90px] w-[90px] shrink-0 items-center justify-center rounded-full border-2 border-lima/50 text-[50px] text-lima">⇄</span>
+              <div class="font-display text-[52px] uppercase leading-[0.95] text-papel">Buscamos e entregamos sua raquete</div>
             </div>
-            <div class="mt-[10px] font-body text-[30px] text-muted">Nível {levelRange(s).toLowerCase()}</div>
-          </div>
-          <div class="relative mt-auto flex items-end justify-between border-t-2 border-line pt-[36px]">
-            <span class="tech-label max-w-[460px] text-[28px] leading-tight text-faint">
-              Encordoamento · corda + serviço
-            </span>
-            <span class="font-display text-[104px] leading-none text-lima">{fmt(s.priceBRL)}</span>
+            <div class="mt-[26px] font-body text-[34px] text-muted">Agende pelo WhatsApp · {SITE.domain}</div>
           </div>
         </div>
       )
     }
 
-    {/* ===================== SLIDE 4 — CTA ===================== */}
+    {/* ===================================================== CAPA DESTAQUE ===================================================== */}
     {
-      s && n === 4 && (
-        <div class="slide carousel grain flex flex-col items-center justify-center px-[80px] text-center">
-          <div class="stringbed absolute inset-0 opacity-[0.12]" />
-          <div class="absolute inset-0" style="background:#143a24;opacity:0.18;" />
-          <div class="relative flex flex-col items-center">
-            <img src="/ebm-logo.png" class="w-[300px]" />
-            <div
-              class="mt-[60px] flex h-[150px] w-[150px] items-center justify-center rounded-full border-2 border-lima/50 text-[80px] text-lima"
-              style="box-shadow:0 0 60px -10px rgba(156,214,83,0.5);"
-            >
-              ⇄
-            </div>
-            <h2 class="mt-[44px] font-display text-[76px] font-extrabold uppercase leading-[0.95] text-papel">
-              Buscamos e<br />entregamos<br /><span class="text-lima italic">sua raquete</span>
-            </h2>
-            <p class="editorial mt-[34px] max-w-[800px] text-[38px] leading-snug text-muted">
-              Em Florianópolis e Grande Floripa. Você agenda, a gente cuida do resto.
-            </p>
-            <div class="mt-[64px] bg-lima px-[72px] py-[40px] font-display text-[46px] uppercase leading-none text-tinta">
-              WhatsApp · {WHATSAPP_DISPLAY}
-            </div>
-            <div class="tech-label mt-[38px] text-[30px] text-faint">{SITE.domain} · String Finder</div>
+      mode === "cover" && coverHl && (
+        <div class="slide story grain text-center">
+          <div class="stringbed absolute inset-0 opacity-[0.14]" />
+          <div class="absolute inset-0" style="background: radial-gradient(70% 44% at 50% 50%, rgba(20,58,36,0.6), transparent 60%);" />
+          <div class="absolute left-1/2 top-1/2 flex h-[320px] w-[320px] -translate-x-1/2 -translate-y-1/2 items-center justify-center rounded-full border-2 border-lima/50 text-lima" style="box-shadow: 0 0 80px -10px rgba(156,214,83,0.55); font-size: 160px; line-height:1;">{coverHl.icon}</div>
+          <div class="absolute inset-x-0 top-[62%] text-center">
+            <div class="font-display text-[92px] font-extrabold uppercase leading-none text-papel">{coverHl.label}</div>
+            <div class="tech-label mt-[24px] text-[26px] tracking-[0.3em] text-lima">{coverHl.sub}</div>
           </div>
+          <img src="/ebm-logo.png" class="absolute bottom-[240px] left-1/2 w-[260px] -translate-x-1/2 opacity-90" />
+        </div>
+      )
+    }
+
+    {/* ===================================================== STORY DE DESTAQUE ===================================================== */}
+    {
+      mode === "story" && hl && story && (
+        <div class="slide story grain">
+          <div class="stringbed-fine absolute inset-0 opacity-[0.06]" />
+          <div class="absolute inset-0" style="background: radial-gradient(80% 50% at 50% 38%, rgba(20,58,36,0.4), transparent 62%);" />
+          {/* topo: marca do destaque */}
+          <div class="absolute left-[90px] right-[90px] top-[120px] flex items-center justify-between">
+            <span class="tech-label text-[28px] text-lima">{hl.label}</span>
+            <span class="font-mono text-[26px] text-faint">{String(storyIdx + 1).padStart(2, "0")}/{String(hl.stories.length).padStart(2, "0")}</span>
+          </div>
+
+          <div class="safe flex flex-col justify-center">
+            {story.kind === "intro" && (
+              <div>
+                <div class="tech-label text-[30px] text-lima">{story.kicker}</div>
+                <h2 class="mt-[26px] font-display text-[96px] font-extrabold uppercase leading-[0.92] text-papel">{story.big}</h2>
+                {story.note && <p class="editorial mt-[40px] text-[44px] leading-snug text-muted">{story.note}</p>}
+              </div>
+            )}
+            {story.kind === "list" && (
+              <div>
+                <div class="tech-label text-[30px] text-lima">{story.kicker}</div>
+                <h2 class="mt-[20px] font-display text-[80px] font-extrabold uppercase leading-[0.95] text-papel">{story.title}</h2>
+                <div class="mt-[60px] flex flex-col gap-[26px]">
+                  {story.items.map((it) => (
+                    <div class="flex items-center gap-[28px] border border-line bg-surface-1/70 px-[40px] py-[34px]">
+                      <span class="text-[40px] text-lima">›</span>
+                      <span class="font-display text-[52px] uppercase text-papel">{it}</span>
+                    </div>
+                  ))}
+                </div>
+              </div>
+            )}
+            {story.kind === "steps" && (
+              <div>
+                <div class="tech-label text-[30px] text-lima">{story.kicker}</div>
+                <h2 class="mt-[20px] font-display text-[80px] font-extrabold uppercase leading-[0.95] text-papel">{story.title}</h2>
+                <div class="mt-[56px] flex flex-col gap-[34px]">
+                  {story.steps.map((st) => (
+                    <div class="flex items-start gap-[30px]">
+                      <span class="font-display text-[64px] leading-none text-lima">{st.n}</span>
+                      <div>
+                        <div class="font-display text-[48px] uppercase leading-none text-papel">{st.t}</div>
+                        <div class="mt-[10px] font-body text-[34px] text-muted">{st.d}</div>
+                      </div>
+                    </div>
+                  ))}
+                </div>
+              </div>
+            )}
+            {story.kind === "cta" && (
+              <div class="text-center">
+                <div class="mx-auto flex h-[150px] w-[150px] items-center justify-center rounded-full border-2 border-lima/50 text-[80px] text-lima" style="box-shadow:0 0 60px -10px rgba(156,214,83,0.5);">→</div>
+                <h2 class="mt-[50px] font-display text-[92px] font-extrabold uppercase leading-[0.95] text-papel">{story.big}</h2>
+                <div class="mt-[36px] inline-block bg-lima px-[56px] py-[30px] font-display text-[44px] uppercase leading-none text-tinta">{story.note}</div>
+              </div>
+            )}
+          </div>
+
+          <img src="/ebm-logo.png" class="absolute bottom-[140px] left-1/2 w-[230px] -translate-x-1/2 opacity-80" />
         </div>
       )
     }

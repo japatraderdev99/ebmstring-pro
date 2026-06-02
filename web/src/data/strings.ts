@@ -24,7 +24,7 @@ export const ATTR_LABELS: Record<Attr, { short: string; label: string }> = {
 
 export type PlayStyle = "controle" | "agressivo" | "all-court" | "potencia";
 export type Level = "iniciante" | "intermediario" | "avancado" | "competitivo";
-export type StringType = "poliester" | "multifilamento" | "hibrido" | "natural";
+export type StringType = "poliester" | "multifilamento" | "nylon" | "hibrido" | "natural";
 
 export interface StringModel {
   id: string;
@@ -43,6 +43,8 @@ export interface StringModel {
   bestFor: PlayStyle[];
   levels: Level[];
   blurb: string;
+  /** false = fora de estoque (não recomendada no Finder, não vai pro PDF). */
+  available?: boolean;
 }
 
 export const STRINGS: StringModel[] = [
@@ -104,6 +106,25 @@ export const STRINGS: StringModel[] = [
       "Durabilidade acima da média com controle firme. Para quem arrebenta corda rápido e não quer reencordoar toda semana.",
   },
   {
+    id: "babolat-syn-gut",
+    brand: "Babolat",
+    name: "Syn Gut",
+    tagline: "Conforto e potência · porta de entrada",
+    type: "nylon",
+    material: "Nylon (synthetic gut)",
+    shape: "Redonda",
+    gauges: ["1.25mm / 17", "1.30mm / 16"],
+    tensionRec: [50, 60],
+    priceBRL: 75.0,
+    armFriendly: true,
+    colors: ["Natural", "Preto", "Azul"],
+    attrs: { power: 80, spin: 52, control: 60, durability: 56, comfort: 84, tension: 60 },
+    bestFor: ["potencia", "all-court"],
+    levels: ["iniciante", "intermediario"],
+    blurb:
+      "Nylon macio e equilibrado: conforto, potência e toque agradável. A escolha certa para iniciantes, retorno ao tênis ou braços sensíveis a cordas rígidas.",
+  },
+  {
     id: "wilson-poly-pro",
     brand: "Wilson",
     name: "Poly Pro",
@@ -161,6 +182,25 @@ export const STRINGS: StringModel[] = [
       "Heptagonal de baixa potência para quem busca controle cirúrgico e durabilidade. Resposta seca e precisa do começo ao fim.",
   },
   {
+    id: "yonex-polytour-pro",
+    brand: "Yonex",
+    name: "PolyTour Pro",
+    tagline: "Poli macio all-around · manutenção de tensão",
+    type: "poliester",
+    material: "Co-poliéster (SIF)",
+    shape: "Redonda",
+    gauges: ["1.25mm / 16L", "1.30mm / 16"],
+    tensionRec: [45, 55],
+    priceBRL: 100.0,
+    armFriendly: false,
+    colors: ["Amarelo", "Azul", "Preto"],
+    attrs: { power: 72, spin: 74, control: 84, durability: 78, comfort: 70, tension: 88 },
+    bestFor: ["all-court", "controle"],
+    levels: ["intermediario", "avancado", "competitivo"],
+    blurb:
+      "O poli all-around da Yonex: toque macio, ótima manutenção de tensão (tech SIF) e controle consistente do fundo de quadra. Versátil e durável para quem joga muito.",
+  },
+  {
     id: "signum-pro-poly-plasma",
     brand: "Signum Pro",
     name: "Poly Plasma",
@@ -172,6 +212,7 @@ export const STRINGS: StringModel[] = [
     tensionRec: [46, 56],
     priceBRL: 100.0,
     armFriendly: true,
+    available: false,
     colors: ["Verde", "Cinza"],
     attrs: { power: 74, spin: 76, control: 80, durability: 72, comfort: 66, tension: 82 },
     bestFor: ["all-court", "controle"],
@@ -252,9 +293,11 @@ const STRINGS_WITH_PHOTOS = new Set<string>([
   "sigma-poly-black",
   "sigma-poly-spin",
   "gamma-poly-z",
+  "babolat-syn-gut",
   "wilson-poly-pro",
   "head-sonic-pro",
   "head-lynx-tour",
+  "yonex-polytour-pro",
   "signum-pro-poly-plasma",
   "yonex-polytour-spin",
   "yonex-polytour-air",
@@ -263,4 +306,17 @@ const STRINGS_WITH_PHOTOS = new Set<string>([
 
 export function stringImage(id: string): string | null {
   return STRINGS_WITH_PHOTOS.has(id) ? `/strings/${id}.jpg` : null;
+}
+
+/** Logos de marca (PNG com alpha) para tratamento monocromático nos cards. */
+const BRAND_LOGOS: Record<string, string> = {
+  Wilson: "/brands/wilson.png",
+  Head: "/brands/head.png",
+  Yonex: "/brands/yonex.png",
+  Solinco: "/brands/solinco.png",
+  Babolat: "/brands/babolat.png",
+};
+
+export function brandLogo(brand: string): string | null {
+  return BRAND_LOGOS[brand] ?? null;
 }

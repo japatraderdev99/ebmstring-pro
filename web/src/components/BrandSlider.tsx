@@ -8,6 +8,7 @@ const BRANDS: Brand[] = [
   { name: "Wilson", logo: "/brands/wilson.png" },
   { name: "Head", logo: "/brands/head.png" },
   { name: "Yonex", logo: "/brands/yonex.png" },
+  { name: "Babolat", logo: "/brands/babolat.png" },
   // Solinco tem marca mais "quadrada" → altura maior p/ peso visual equivalente.
   { name: "Solinco", logo: "/brands/solinco.png?v=2", h: "h-14" },
   { name: "Gamma", wordmark: true },

@@ -5,9 +5,10 @@ export const SITE = {
   domain: "ebmstring.pro",
   url: "https://ebmstring.pro",
   tagline: "Performance começa nas cordas.",
-  seoTitle: "Encordoamento de Raquetes de Tênis em Florianópolis | EBM String Pro",
+  seoTitle:
+    "Encordoamento de Raquetes de Tênis em Florianópolis | Busca e Entrega | EBM String Pro",
   description:
-    "Encordoamento profissional de raquetes de tênis em Florianópolis e Grande Florianópolis. Precisão técnica de tensão e consistência, cordas premium e agendamento pelo WhatsApp.",
+    "Encordoamento profissional de raquetes de tênis em Florianópolis e Grande Florianópolis. Buscamos e entregamos sua raquete — tensão calibrada, cordas premium e agendamento pelo WhatsApp.",
   city: "Florianópolis",
   region: "SC",
   regionName: "Santa Catarina",
@@ -27,6 +28,8 @@ export const SITE = {
     "cordas de tênis Florianópolis",
     "encordoador Florianópolis",
     "troca de corda de raquete Florianópolis",
+    "busca e entrega de raquete Florianópolis",
+    "encordoamento com busca e entrega",
     "encordoamento profissional tênis",
     "tensão de corda de tênis",
   ],

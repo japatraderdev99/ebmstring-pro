@@ -81,7 +81,7 @@ export function scoreStrings(a: FinderAnswers): MatchResult[] {
   const totalW = ATTRS.reduce((sum, k) => sum + weights[k], 0);
   const cap = BUDGET_CAP[a.budget];
 
-  const results = STRINGS.map((s) => {
+  const results = STRINGS.filter((s) => s.available !== false).map((s) => {
     // Aderência ponderada do perfil da corda ao perfil ideal (0–100).
     let base = ATTRS.reduce((sum, k) => sum + weights[k] * s.attrs[k], 0) / totalW;
     const reasons: string[] = [];

@@ -1,0 +1,17 @@
+{
+  "version": "0.0.1",
+  "configurations": [
+    {
+      "name": "web (Astro)",
+      "runtimeExecutable": "pnpm",
+      "runtimeArgs": ["--filter", "web", "dev"],
+      "port": 4321
+    },
+    {
+      "name": "api (Worker)",
+      "runtimeExecutable": "pnpm",
+      "runtimeArgs": ["--filter", "api", "dev"],
+      "port": 8787
+    }
+  ]
+}

@@ -6,16 +6,24 @@
  */
 import "@/styles/global.css";
 import RadarChart from "@/components/RadarChart.tsx";
-import { STRINGS, stringImage, ATTR_LABELS, ATTRS } from "@/data/strings";
+import { STRINGS, stringImage, brandLogo, ATTR_LABELS, ATTRS } from "@/data/strings";
+
+const brandMaskStyle = (logo: string) =>
+  `width:24mm;height:4mm;background-color:var(--color-papel);` +
+  `-webkit-mask-image:url(${logo});mask-image:url(${logo});` +
+  `-webkit-mask-repeat:no-repeat;mask-repeat:no-repeat;` +
+  `-webkit-mask-position:left center;mask-position:left center;` +
+  `-webkit-mask-size:contain;mask-size:contain;`;
 import { SITE, WHATSAPP_DISPLAY, WHATSAPP_LINK, INSTAGRAM } from "@/lib/site";
 
 const year = new Date().getFullYear();
 const agendarUrl = `${WHATSAPP_LINK}?text=${encodeURIComponent(
   "Olá EBM String Pro! Vi o catálogo e quero agendar um encordoamento.",
 )}`;
-// 2 cordas por página
+// Só cordas disponíveis no PDF · 2 por página
+const disponiveis = STRINGS.filter((s) => s.available !== false);
 const pages: (typeof STRINGS)[] = [];
-for (let i = 0; i < STRINGS.length; i += 2) pages.push(STRINGS.slice(i, i + 2));
+for (let i = 0; i < disponiveis.length; i += 2) pages.push(disponiveis.slice(i, i + 2));
 const fmt = (n: number) => `R$ ${n.toFixed(2).replace(".", ",")}`;
 ---
 
@@ -139,8 +147,18 @@ const fmt = (n: number) => `R$ ${n.toFixed(2).replace(".", ",")}`;
                       </div>
                     )}
                     <div class="absolute inset-x-0 bottom-0 bg-gradient-to-t from-tinta to-transparent p-[4mm] pt-[12mm]">
-                      <span class="tech-label text-papel/70">{s.brand}</span>
-                      <div class="font-display text-[7mm] leading-none text-papel">
+                      {
+                        brandLogo(s.brand) ? (
+                          <span
+                            class="block"
+                            style={brandMaskStyle(brandLogo(s.brand)!)}
+                            aria-label={s.brand}
+                          />
+                        ) : (
+                          <span class="tech-label text-papel/70">{s.brand}</span>
+                        )
+                      }
+                      <div class="mt-[1.5mm] font-display text-[7mm] leading-none text-papel">
                         {s.name}
                       </div>
                     </div>

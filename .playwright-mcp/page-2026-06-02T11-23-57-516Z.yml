@@ -1,0 +1,736 @@
+- generic [active] [ref=e1]:
+  - navigation [ref=e2]:
+    - generic [ref=e3]:
+      - link "EBM String Pro" [ref=e4] [cursor=pointer]:
+        - /url: /
+        - img "EBM String Pro" [ref=e5]
+      - link "Agendar" [ref=e6] [cursor=pointer]:
+        - /url: https://wa.me/5548992034224
+  - main [ref=e7]:
+    - generic [ref=e8]:
+      - generic [ref=e11]:
+        - generic [ref=e12]: Encordoamento de raquetes de tênis · Florianópolis
+        - img "EBM String Pro" [ref=e13]
+        - heading "Performance começa nas cordas." [level=1] [ref=e14]
+        - paragraph [ref=e15]: Cada libra importa. Precisão técnica de tensão e consistência — análise científica para encontrar a corda que o seu jogo exige.
+        - generic [ref=e16]:
+          - link "Encontrar minha corda →" [ref=e17] [cursor=pointer]:
+            - /url: "#finder"
+            - text: Encontrar minha corda
+            - generic [ref=e18]: →
+          - link "Ver catálogo" [ref=e19] [cursor=pointer]:
+            - /url: "#catalogo"
+        - link "↓ Baixar catálogo em PDF" [ref=e20] [cursor=pointer]:
+          - /url: /catalogo-ebm-string-pro.pdf
+          - generic [ref=e21]: ↓
+          - text: Baixar catálogo em PDF
+      - generic [ref=e22]:
+        - generic [ref=e23]:
+          - generic [ref=e24]: ±0.5
+          - generic [ref=e25]: lbs de precisão
+        - generic [ref=e26]:
+          - generic [ref=e27]: "6"
+          - generic [ref=e28]: eixos analisados
+        - generic [ref=e29]:
+          - generic [ref=e30]: "12"
+          - generic [ref=e31]: cordas premium
+    - generic [ref=e33]:
+      - img [ref=e34]
+      - paragraph [ref=e39]:
+        - strong [ref=e40]: Buscamos e entregamos sua raquete
+        - text: em Florianópolis e Grande Florianópolis — você agenda pelo WhatsApp e a gente cuida do resto.
+      - link "Agendar coleta" [ref=e41] [cursor=pointer]:
+        - /url: https://wa.me/5548992034224?text=Ol%C3%A1!%20Quero%20agendar%20a%20coleta%20da%20minha%20raquete%20para%20encordoamento.
+    - generic [ref=e42]:
+      - paragraph [ref=e43]: As marcas mais exigidas do circuito
+      - generic [ref=e46]:
+        - img "Wilson" [ref=e48]
+        - img "Head" [ref=e50]
+        - img "Yonex" [ref=e52]
+        - img "Babolat" [ref=e54]
+        - img "Solinco" [ref=e56]
+        - generic [ref=e58]: Gamma
+        - generic [ref=e60]: Signum Pro
+        - generic [ref=e62]: Sigma
+        - img "Wilson" [ref=e64]
+        - img "Head" [ref=e66]
+        - img "Yonex" [ref=e68]
+        - img "Babolat" [ref=e70]
+        - img "Solinco" [ref=e72]
+        - generic [ref=e74]: Gamma
+        - generic [ref=e76]: Signum Pro
+        - generic [ref=e78]: Sigma
+    - generic [ref=e81]:
+      - generic [ref=e82]:
+        - text: Inteligência de encordoamento
+        - heading "EBM String Finder" [level=2] [ref=e83]
+        - paragraph [ref=e84]: Responda 5 perguntas. Nosso motor cruza o seu perfil com 6 atributos técnicos de cada corda e revela o match científico — com gráfico de aderência e % de compatibilidade.
+      - generic [ref=e89]:
+        - generic [ref=e90]:
+          - generic [ref=e91]: 01 — Perfil
+          - generic [ref=e92]: 01 / 05
+        - heading "Qual o seu nível de jogo?" [level=3] [ref=e93]
+        - generic [ref=e94]:
+          - button "Iniciante Comecei a jogar há pouco →" [ref=e95]:
+            - generic [ref=e96]:
+              - generic [ref=e97]: Iniciante
+              - text: Comecei a jogar há pouco
+            - generic [ref=e98]: →
+          - button "Intermediário Jogo com regularidade →" [ref=e99]:
+            - generic [ref=e100]:
+              - generic [ref=e101]: Intermediário
+              - text: Jogo com regularidade
+            - generic [ref=e102]: →
+          - button "Avançado Competitivo amador →" [ref=e103]:
+            - generic [ref=e104]:
+              - generic [ref=e105]: Avançado
+              - text: Competitivo amador
+            - generic [ref=e106]: →
+          - button "Competitivo Treino / competição séria →" [ref=e107]:
+            - generic [ref=e108]:
+              - generic [ref=e109]: Competitivo
+              - text: Treino / competição séria
+            - generic [ref=e110]: →
+    - generic [ref=e112]:
+      - generic [ref=e113]:
+        - generic [ref=e114]: Análise científica
+        - heading "Catálogo de Performance" [level=2] [ref=e115]
+        - paragraph [ref=e116]: As cordas mais exigidas no circuito profissional, dissecadas em seis eixos de performance. Filtre pelo que o seu jogo precisa.
+        - link "↓ Baixar catálogo completo (PDF)" [ref=e117] [cursor=pointer]:
+          - /url: /catalogo-ebm-string-pro.pdf
+          - generic [ref=e118]: ↓
+          - text: Baixar catálogo completo (PDF)
+      - generic [ref=e120]:
+        - generic [ref=e121]:
+          - generic [ref=e122]:
+            - button "Todos" [ref=e123]
+            - button "Poliéster" [ref=e124]
+            - button "Nylon / macias" [ref=e125]
+            - button "Mais spin" [ref=e126]
+            - button "Mais controle" [ref=e127]
+            - button "Amigas do braço" [ref=e128]
+          - generic [ref=e129]:
+            - generic [ref=e130]: Ordenar
+            - combobox [ref=e131]:
+              - option "Destaque" [selected]
+              - option "Menor preço"
+              - option "Maior preço"
+        - generic [ref=e132]:
+          - article [ref=e133]:
+            - generic [ref=e134]:
+              - img "Sigma Poly Black — corda de tênis" [ref=e135]
+              - generic [ref=e137]: Redonda
+              - generic [ref=e138]:
+                - text: Sigma
+                - heading "Poly Black" [level=3] [ref=e139]
+            - paragraph [ref=e140]: Controle elegante · custo-benefício
+            - img "Gráfico de atributos da corda" [ref=e142]:
+              - generic [ref=e158]: POT
+              - generic [ref=e159]: SPN
+              - generic [ref=e160]: CTL
+              - generic [ref=e161]: DUR
+              - generic [ref=e162]: CFT
+              - generic [ref=e163]: TEN
+            - list [ref=e165]:
+              - listitem [ref=e166]:
+                - generic [ref=e167]: Gauge
+                - generic [ref=e168]: 1.25mm / 16L
+              - listitem [ref=e169]:
+                - generic [ref=e170]: Material
+                - generic [ref=e171]: Co-poliéster
+              - listitem [ref=e172]:
+                - generic [ref=e173]: Tensão
+                - generic [ref=e174]: 46–56 lbs
+              - listitem [ref=e175]:
+                - generic [ref=e176]: Preço
+                - generic [ref=e177]: R$ 50,00
+            - link "Encordoar com esta" [ref=e178] [cursor=pointer]:
+              - /url: https://wa.me/5548992034224?text=Ol%C3%A1!%20Quero%20encordoar%20com%20a%20Sigma%20Poly%20Black.
+          - article [ref=e179]:
+            - generic [ref=e180]:
+              - img "Sigma Poly Spin — corda de tênis" [ref=e181]
+              - generic [ref=e183]: Perfilada
+              - generic [ref=e184]:
+                - text: Sigma
+                - heading "Poly Spin" [level=3] [ref=e185]
+            - paragraph [ref=e186]: Mordida agressiva · giro de sobra
+            - img "Gráfico de atributos da corda" [ref=e188]:
+              - generic [ref=e204]: POT
+              - generic [ref=e205]: SPN
+              - generic [ref=e206]: CTL
+              - generic [ref=e207]: DUR
+              - generic [ref=e208]: CFT
+              - generic [ref=e209]: TEN
+            - list [ref=e211]:
+              - listitem [ref=e212]:
+                - generic [ref=e213]: Gauge
+                - generic [ref=e214]: 1.25mm / 16L
+              - listitem [ref=e215]:
+                - generic [ref=e216]: Material
+                - generic [ref=e217]: Co-poliéster perfilado
+              - listitem [ref=e218]:
+                - generic [ref=e219]: Tensão
+                - generic [ref=e220]: 45–55 lbs
+              - listitem [ref=e221]:
+                - generic [ref=e222]: Preço
+                - generic [ref=e223]: R$ 50,00
+            - link "Encordoar com esta" [ref=e224] [cursor=pointer]:
+              - /url: https://wa.me/5548992034224?text=Ol%C3%A1!%20Quero%20encordoar%20com%20a%20Sigma%20Poly%20Spin.
+          - article [ref=e225]:
+            - generic [ref=e226]:
+              - img "Gamma Poly Z — corda de tênis" [ref=e227]
+              - generic [ref=e229]: Redonda
+              - generic [ref=e230]:
+                - text: Gamma
+                - heading "Poly Z" [level=3] [ref=e231]
+            - paragraph [ref=e232]: Resposta durável · controle firme
+            - img "Gráfico de atributos da corda" [ref=e234]:
+              - generic [ref=e250]: POT
+              - generic [ref=e251]: SPN
+              - generic [ref=e252]: CTL
+              - generic [ref=e253]: DUR
+              - generic [ref=e254]: CFT
+              - generic [ref=e255]: TEN
+            - list [ref=e257]:
+              - listitem [ref=e258]:
+                - generic [ref=e259]: Gauge
+                - generic [ref=e260]: 1.25mm / 16L
+              - listitem [ref=e261]:
+                - generic [ref=e262]: Material
+                - generic [ref=e263]: Co-poliéster
+              - listitem [ref=e264]:
+                - generic [ref=e265]: Tensão
+                - generic [ref=e266]: 48–58 lbs
+              - listitem [ref=e267]:
+                - generic [ref=e268]: Preço
+                - generic [ref=e269]: R$ 55,00
+            - link "Encordoar com esta" [ref=e270] [cursor=pointer]:
+              - /url: https://wa.me/5548992034224?text=Ol%C3%A1!%20Quero%20encordoar%20com%20a%20Gamma%20Poly%20Z.
+          - article [ref=e271]:
+            - generic [ref=e272]:
+              - img "Babolat Syn Gut — corda de tênis" [ref=e273]
+              - generic [ref=e275]: Redonda
+              - generic [ref=e276]:
+                - img "Babolat" [ref=e277]
+                - heading "Syn Gut" [level=3] [ref=e278]
+            - paragraph [ref=e279]: Conforto e potência · porta de entrada
+            - img "Gráfico de atributos da corda" [ref=e281]:
+              - generic [ref=e297]: POT
+              - generic [ref=e298]: SPN
+              - generic [ref=e299]: CTL
+              - generic [ref=e300]: DUR
+              - generic [ref=e301]: CFT
+              - generic [ref=e302]: TEN
+            - list [ref=e304]:
+              - listitem [ref=e305]:
+                - generic [ref=e306]: Gauge
+                - generic [ref=e307]: 1.25mm / 17
+              - listitem [ref=e308]:
+                - generic [ref=e309]: Material
+                - generic [ref=e310]: Nylon (synthetic gut)
+              - listitem [ref=e311]:
+                - generic [ref=e312]: Tensão
+                - generic [ref=e313]: 50–60 lbs
+              - listitem [ref=e314]:
+                - generic [ref=e315]: Preço
+                - generic [ref=e316]: R$ 75,00
+            - link "Encordoar com esta" [ref=e317] [cursor=pointer]:
+              - /url: https://wa.me/5548992034224?text=Ol%C3%A1!%20Quero%20encordoar%20com%20a%20Babolat%20Syn%20Gut.
+          - article [ref=e318]:
+            - generic [ref=e319]:
+              - img "Wilson Poly Pro — corda de tênis" [ref=e320]
+              - generic [ref=e322]: Redonda
+              - generic [ref=e323]:
+                - img "Wilson" [ref=e324]
+                - heading "Poly Pro" [level=3] [ref=e325]
+            - paragraph [ref=e326]: Controle confiável · durabilidade
+            - img "Gráfico de atributos da corda" [ref=e328]:
+              - generic [ref=e344]: POT
+              - generic [ref=e345]: SPN
+              - generic [ref=e346]: CTL
+              - generic [ref=e347]: DUR
+              - generic [ref=e348]: CFT
+              - generic [ref=e349]: TEN
+            - list [ref=e351]:
+              - listitem [ref=e352]:
+                - generic [ref=e353]: Gauge
+                - generic [ref=e354]: 1.25mm / 16L
+              - listitem [ref=e355]:
+                - generic [ref=e356]: Material
+                - generic [ref=e357]: Co-poliéster
+              - listitem [ref=e358]:
+                - generic [ref=e359]: Tensão
+                - generic [ref=e360]: 48–58 lbs
+              - listitem [ref=e361]:
+                - generic [ref=e362]: Preço
+                - generic [ref=e363]: R$ 80,00
+            - link "Encordoar com esta" [ref=e364] [cursor=pointer]:
+              - /url: https://wa.me/5548992034224?text=Ol%C3%A1!%20Quero%20encordoar%20com%20a%20Wilson%20Poly%20Pro.
+          - article [ref=e365]:
+            - generic [ref=e366]:
+              - img "Head Sonic Pro — corda de tênis" [ref=e367]
+              - generic [ref=e369]: Redonda
+              - generic [ref=e370]:
+                - img "Head" [ref=e371]
+                - heading "Sonic Pro" [level=3] [ref=e372]
+            - paragraph [ref=e373]: Durabilidade · controle de fundo
+            - img "Gráfico de atributos da corda" [ref=e375]:
+              - generic [ref=e391]: POT
+              - generic [ref=e392]: SPN
+              - generic [ref=e393]: CTL
+              - generic [ref=e394]: DUR
+              - generic [ref=e395]: CFT
+              - generic [ref=e396]: TEN
+            - list [ref=e398]:
+              - listitem [ref=e399]:
+                - generic [ref=e400]: Gauge
+                - generic [ref=e401]: 1.25mm / 16L
+              - listitem [ref=e402]:
+                - generic [ref=e403]: Material
+                - generic [ref=e404]: Co-poliéster
+              - listitem [ref=e405]:
+                - generic [ref=e406]: Tensão
+                - generic [ref=e407]: 50–60 lbs
+              - listitem [ref=e408]:
+                - generic [ref=e409]: Preço
+                - generic [ref=e410]: R$ 90,00
+            - link "Encordoar com esta" [ref=e411] [cursor=pointer]:
+              - /url: https://wa.me/5548992034224?text=Ol%C3%A1!%20Quero%20encordoar%20com%20a%20Head%20Sonic%20Pro.
+          - article [ref=e412]:
+            - generic [ref=e413]:
+              - img "Head Lynx Tour — corda de tênis" [ref=e414]
+              - generic [ref=e416]: Heptagonal
+              - generic [ref=e417]:
+                - img "Head" [ref=e418]
+                - heading "Lynx Tour" [level=3] [ref=e419]
+            - paragraph [ref=e420]: Precisão + durabilidade
+            - img "Gráfico de atributos da corda" [ref=e422]:
+              - generic [ref=e438]: POT
+              - generic [ref=e439]: SPN
+              - generic [ref=e440]: CTL
+              - generic [ref=e441]: DUR
+              - generic [ref=e442]: CFT
+              - generic [ref=e443]: TEN
+            - list [ref=e445]:
+              - listitem [ref=e446]:
+                - generic [ref=e447]: Gauge
+                - generic [ref=e448]: 1.25mm / 16L
+              - listitem [ref=e449]:
+                - generic [ref=e450]: Material
+                - generic [ref=e451]: Co-poliéster heptagonal
+              - listitem [ref=e452]:
+                - generic [ref=e453]: Tensão
+                - generic [ref=e454]: 44–54 lbs
+              - listitem [ref=e455]:
+                - generic [ref=e456]: Preço
+                - generic [ref=e457]: R$ 90,00
+            - link "Encordoar com esta" [ref=e458] [cursor=pointer]:
+              - /url: https://wa.me/5548992034224?text=Ol%C3%A1!%20Quero%20encordoar%20com%20a%20Head%20Lynx%20Tour.
+          - article [ref=e459]:
+            - generic [ref=e460]:
+              - img "Yonex PolyTour Pro — corda de tênis" [ref=e461]
+              - generic [ref=e463]: Redonda
+              - generic [ref=e464]:
+                - img "Yonex" [ref=e465]
+                - heading "PolyTour Pro" [level=3] [ref=e466]
+            - paragraph [ref=e467]: Poli macio all-around · manutenção de tensão
+            - img "Gráfico de atributos da corda" [ref=e469]:
+              - generic [ref=e485]: POT
+              - generic [ref=e486]: SPN
+              - generic [ref=e487]: CTL
+              - generic [ref=e488]: DUR
+              - generic [ref=e489]: CFT
+              - generic [ref=e490]: TEN
+            - list [ref=e492]:
+              - listitem [ref=e493]:
+                - generic [ref=e494]: Gauge
+                - generic [ref=e495]: 1.25mm / 16L
+              - listitem [ref=e496]:
+                - generic [ref=e497]: Material
+                - generic [ref=e498]: Co-poliéster (SIF)
+              - listitem [ref=e499]:
+                - generic [ref=e500]: Tensão
+                - generic [ref=e501]: 45–55 lbs
+              - listitem [ref=e502]:
+                - generic [ref=e503]: Preço
+                - generic [ref=e504]: R$ 100,00
+            - link "Encordoar com esta" [ref=e505] [cursor=pointer]:
+              - /url: https://wa.me/5548992034224?text=Ol%C3%A1!%20Quero%20encordoar%20com%20a%20Yonex%20PolyTour%20Pro.
+          - article [ref=e506]:
+            - generic [ref=e507]:
+              - img "Yonex PolyTour Spin — corda de tênis" [ref=e508]
+              - generic [ref=e510]: Hexagonal
+              - generic [ref=e511]:
+                - img "Yonex" [ref=e512]
+                - heading "PolyTour Spin" [level=3] [ref=e513]
+            - paragraph [ref=e514]: Spin agressivo · perfil hexagonal
+            - img "Gráfico de atributos da corda" [ref=e516]:
+              - generic [ref=e532]: POT
+              - generic [ref=e533]: SPN
+              - generic [ref=e534]: CTL
+              - generic [ref=e535]: DUR
+              - generic [ref=e536]: CFT
+              - generic [ref=e537]: TEN
+            - list [ref=e539]:
+              - listitem [ref=e540]:
+                - generic [ref=e541]: Gauge
+                - generic [ref=e542]: 1.20mm / 18
+              - listitem [ref=e543]:
+                - generic [ref=e544]: Material
+                - generic [ref=e545]: Co-poliéster hexagonal
+              - listitem [ref=e546]:
+                - generic [ref=e547]: Tensão
+                - generic [ref=e548]: 45–55 lbs
+              - listitem [ref=e549]:
+                - generic [ref=e550]: Preço
+                - generic [ref=e551]: R$ 120,00
+            - link "Encordoar com esta" [ref=e552] [cursor=pointer]:
+              - /url: https://wa.me/5548992034224?text=Ol%C3%A1!%20Quero%20encordoar%20com%20a%20Yonex%20PolyTour%20Spin.
+          - article [ref=e553]:
+            - generic [ref=e554]:
+              - img "Yonex PolyTour Air — corda de tênis" [ref=e555]
+              - generic [ref=e557]: Redonda
+              - generic [ref=e558]:
+                - img "Yonex" [ref=e559]
+                - heading "PolyTour Air" [level=3] [ref=e560]
+            - paragraph [ref=e561]: Leve e macia · spin com conforto
+            - img "Gráfico de atributos da corda" [ref=e563]:
+              - generic [ref=e579]: POT
+              - generic [ref=e580]: SPN
+              - generic [ref=e581]: CTL
+              - generic [ref=e582]: DUR
+              - generic [ref=e583]: CFT
+              - generic [ref=e584]: TEN
+            - list [ref=e586]:
+              - listitem [ref=e587]:
+                - generic [ref=e588]: Gauge
+                - generic [ref=e589]: 1.20mm / 18
+              - listitem [ref=e590]:
+                - generic [ref=e591]: Material
+                - generic [ref=e592]: Co-poliéster macio (Air)
+              - listitem [ref=e593]:
+                - generic [ref=e594]: Tensão
+                - generic [ref=e595]: 42–52 lbs
+              - listitem [ref=e596]:
+                - generic [ref=e597]: Preço
+                - generic [ref=e598]: R$ 120,00
+            - link "Encordoar com esta" [ref=e599] [cursor=pointer]:
+              - /url: https://wa.me/5548992034224?text=Ol%C3%A1!%20Quero%20encordoar%20com%20a%20Yonex%20PolyTour%20Air.
+          - article [ref=e600]:
+            - generic [ref=e601]:
+              - img "Solinco Hyper-G — corda de tênis" [ref=e602]
+              - generic [ref=e604]: Quadrada
+              - generic [ref=e605]:
+                - img "Solinco" [ref=e606]
+                - heading "Hyper-G" [level=3] [ref=e607]
+            - paragraph [ref=e608]: Mordida + potência controlada
+            - img "Gráfico de atributos da corda" [ref=e610]:
+              - generic [ref=e626]: POT
+              - generic [ref=e627]: SPN
+              - generic [ref=e628]: CTL
+              - generic [ref=e629]: DUR
+              - generic [ref=e630]: CFT
+              - generic [ref=e631]: TEN
+            - list [ref=e633]:
+              - listitem [ref=e634]:
+                - generic [ref=e635]: Gauge
+                - generic [ref=e636]: 1.20mm / 18
+              - listitem [ref=e637]:
+                - generic [ref=e638]: Material
+                - generic [ref=e639]: Co-poliéster quadrado
+              - listitem [ref=e640]:
+                - generic [ref=e641]: Tensão
+                - generic [ref=e642]: 45–55 lbs
+              - listitem [ref=e643]:
+                - generic [ref=e644]: Preço
+                - generic [ref=e645]: R$ 120,00
+            - link "Encordoar com esta" [ref=e646] [cursor=pointer]:
+              - /url: https://wa.me/5548992034224?text=Ol%C3%A1!%20Quero%20encordoar%20com%20a%20Solinco%20Hyper-G.
+          - article [ref=e647]:
+            - generic [ref=e648]: Indisponível
+            - generic [ref=e649]:
+              - img "Signum Pro Poly Plasma — corda de tênis" [ref=e650]
+              - generic [ref=e652]: Redonda
+              - generic [ref=e653]:
+                - text: Signum Pro
+                - heading "Poly Plasma" [level=3] [ref=e654]
+            - paragraph [ref=e655]: Ícone europeu · manutenção de tensão
+            - img "Gráfico de atributos da corda" [ref=e657]:
+              - generic [ref=e673]: POT
+              - generic [ref=e674]: SPN
+              - generic [ref=e675]: CTL
+              - generic [ref=e676]: DUR
+              - generic [ref=e677]: CFT
+              - generic [ref=e678]: TEN
+            - list [ref=e680]:
+              - listitem [ref=e681]:
+                - generic [ref=e682]: Gauge
+                - generic [ref=e683]: 1.23mm / 17
+              - listitem [ref=e684]:
+                - generic [ref=e685]: Material
+                - generic [ref=e686]: Co-poliéster
+              - listitem [ref=e687]:
+                - generic [ref=e688]: Tensão
+                - generic [ref=e689]: 46–56 lbs
+              - listitem [ref=e690]:
+                - generic [ref=e691]: Preço
+                - generic [ref=e692]: R$ 100,00
+            - generic [ref=e693]: Indisponível no momento
+    - generic [ref=e695]:
+      - generic [ref=e696]:
+        - text: Lado a lado
+        - heading "Comparador técnico" [level=2] [ref=e697]
+        - paragraph [ref=e698]: Coloque até três cordas frente a frente. O vencedor de cada atributo acende em lima.
+      - generic [ref=e700]:
+        - generic [ref=e701]:
+          - button "Sigma Poly Black" [ref=e702]
+          - button "Sigma Poly Spin" [ref=e703]
+          - button "Gamma Poly Z" [ref=e704]
+          - button "Babolat Syn Gut" [ref=e705]
+          - button "Wilson Poly Pro" [ref=e706]
+          - button "Head Sonic Pro" [ref=e707]
+          - button "Head Lynx Tour" [ref=e708]
+          - button "Yonex PolyTour Pro" [ref=e709]
+          - button "Signum Pro Poly Plasma" [ref=e710]
+          - button "Yonex PolyTour Spin" [ref=e711]
+          - button "Yonex PolyTour Air" [ref=e712]
+          - button "Solinco Hyper-G" [ref=e713]
+        - paragraph [ref=e714]: Selecione até 3 cordas · 3/3
+        - generic [ref=e715]:
+          - generic [ref=e716]:
+            - generic [ref=e717]:
+              - generic [ref=e718]: Solinco
+              - generic [ref=e719]: Hyper-G
+              - img "Gráfico de atributos da corda" [ref=e720]:
+                - generic [ref=e736]: POT
+                - generic [ref=e737]: SPN
+                - generic [ref=e738]: CTL
+                - generic [ref=e739]: DUR
+                - generic [ref=e740]: CFT
+                - generic [ref=e741]: TEN
+              - generic [ref=e742]: R$ 120,00
+            - generic [ref=e743]:
+              - generic [ref=e744]: Head
+              - generic [ref=e745]: Lynx Tour
+              - img "Gráfico de atributos da corda" [ref=e746]:
+                - generic [ref=e762]: POT
+                - generic [ref=e763]: SPN
+                - generic [ref=e764]: CTL
+                - generic [ref=e765]: DUR
+                - generic [ref=e766]: CFT
+                - generic [ref=e767]: TEN
+              - generic [ref=e768]: R$ 90,00
+            - generic [ref=e769]:
+              - generic [ref=e770]: Yonex
+              - generic [ref=e771]: PolyTour Air
+              - img "Gráfico de atributos da corda" [ref=e772]:
+                - generic [ref=e788]: POT
+                - generic [ref=e789]: SPN
+                - generic [ref=e790]: CTL
+                - generic [ref=e791]: DUR
+                - generic [ref=e792]: CFT
+                - generic [ref=e793]: TEN
+              - generic [ref=e794]: R$ 120,00
+          - table [ref=e796]:
+            - rowgroup [ref=e797]:
+              - row "Atributo Hyper-G Lynx Tour PolyTour Air" [ref=e798]:
+                - columnheader "Atributo" [ref=e799]
+                - columnheader "Hyper-G" [ref=e800]
+                - columnheader "Lynx Tour" [ref=e801]
+                - columnheader "PolyTour Air" [ref=e802]
+            - rowgroup [ref=e803]:
+              - row "Potência 75 64 78" [ref=e804]:
+                - cell "Potência" [ref=e805]
+                - cell "75" [ref=e806]:
+                  - generic [ref=e808]: "75"
+                - cell "64" [ref=e809]:
+                  - generic [ref=e811]: "64"
+                - cell "78" [ref=e812]:
+                  - generic [ref=e814]: "78"
+              - row "Spin 88 80 80" [ref=e815]:
+                - cell "Spin" [ref=e816]
+                - cell "88" [ref=e817]:
+                  - generic [ref=e819]: "88"
+                - cell "80" [ref=e820]:
+                  - generic [ref=e822]: "80"
+                - cell "80" [ref=e823]:
+                  - generic [ref=e825]: "80"
+              - row "Controle 84 88 76" [ref=e826]:
+                - cell "Controle" [ref=e827]
+                - cell "84" [ref=e828]:
+                  - generic [ref=e830]: "84"
+                - cell "88" [ref=e831]:
+                  - generic [ref=e833]: "88"
+                - cell "76" [ref=e834]:
+                  - generic [ref=e836]: "76"
+              - row "Durabilidade 74 82 60" [ref=e837]:
+                - cell "Durabilidade" [ref=e838]
+                - cell "74" [ref=e839]:
+                  - generic [ref=e841]: "74"
+                - cell "82" [ref=e842]:
+                  - generic [ref=e844]: "82"
+                - cell "60" [ref=e845]:
+                  - generic [ref=e847]: "60"
+              - row "Conforto 52 54 80" [ref=e848]:
+                - cell "Conforto" [ref=e849]
+                - cell "52" [ref=e850]:
+                  - generic [ref=e852]: "52"
+                - cell "54" [ref=e853]:
+                  - generic [ref=e855]: "54"
+                - cell "80" [ref=e856]:
+                  - generic [ref=e858]: "80"
+              - row "Tensão 70 76 74" [ref=e859]:
+                - cell "Tensão" [ref=e860]
+                - cell "70" [ref=e861]:
+                  - generic [ref=e863]: "70"
+                - cell "76" [ref=e864]:
+                  - generic [ref=e866]: "76"
+                - cell "74" [ref=e867]:
+                  - generic [ref=e869]: "74"
+              - row "Tensão rec. 45–55 44–54 42–52" [ref=e870]:
+                - cell "Tensão rec." [ref=e871]
+                - cell "45–55" [ref=e872]
+                - cell "44–54" [ref=e873]
+                - cell "42–52" [ref=e874]
+              - row "Braço Firme Firme Amiga ✓" [ref=e875]:
+                - cell "Braço" [ref=e876]
+                - cell "Firme" [ref=e877]
+                - cell "Firme" [ref=e878]
+                - cell "Amiga ✓" [ref=e879]
+    - generic [ref=e881]:
+      - generic [ref=e882]:
+        - text: O diferencial EBM
+        - heading "Tensão é uma ciência." [level=2] [ref=e883]:
+          - text: Tensão é
+          - text: uma ciência.
+      - generic [ref=e884]:
+        - generic [ref=e885]:
+          - generic [ref=e886]: "01"
+          - heading "Diagnóstico" [level=3] [ref=e887]
+          - paragraph [ref=e888]: Analisamos seu jogo, raquete e histórico para definir corda e tensão ideais.
+        - generic [ref=e889]:
+          - generic [ref=e890]: "02"
+          - heading "Tensão calibrada" [level=3] [ref=e891]
+          - paragraph [ref=e892]: Máquina de tração eletrônica com calibração constante — cada libra controlada.
+        - generic [ref=e893]:
+          - generic [ref=e894]: "03"
+          - heading "Padrão de montagem" [level=3] [ref=e895]
+          - paragraph [ref=e896]: Nós e cruzamentos no padrão do fabricante, sem perda de tensão nas mãos.
+        - generic [ref=e897]:
+          - generic [ref=e898]: "04"
+          - heading "Registro técnico" [level=3] [ref=e899]
+          - paragraph [ref=e900]: "Você recebe a ficha: corda, tensão, gauge e data. Consistência rastreável."
+    - generic [ref=e902]:
+      - generic [ref=e903]:
+        - text: Quem joga, sente
+        - heading "Depoimentos" [level=2] [ref=e904]
+      - generic [ref=e905]:
+        - figure "Rafael M. Avançado · 4.5" [ref=e906]:
+          - blockquote [ref=e907]: “A diferença de controle foi absurda. Bola caindo dentro o tempo todo.”
+          - generic [ref=e908]:
+            - generic [ref=e909]: Rafael M.
+            - generic [ref=e910]: Avançado · 4.5
+        - figure "Patrícia L. Intermediária · 3.5" [ref=e911]:
+          - blockquote [ref=e912]: “Meu cotovelo agradeceu. Recomendaram a corda certa pro meu braço.”
+          - generic [ref=e913]:
+            - generic [ref=e914]: Patrícia L.
+            - generic [ref=e915]: Intermediária · 3.5
+        - figure "Diego S. Competitivo" [ref=e916]:
+          - blockquote [ref=e917]: “Tensão idêntica toda vez que encordoo. Isso não tem preço.”
+          - generic [ref=e918]:
+            - generic [ref=e919]: Diego S.
+            - generic [ref=e920]: Competitivo
+    - generic [ref=e922]:
+      - generic [ref=e923]:
+        - text: Atendimento local
+        - heading "Encordoamento de raquetes de tênis em Florianópolis com busca e entrega" [level=2] [ref=e924]
+        - paragraph [ref=e925]:
+          - text: A EBM String Pro atende
+          - strong [ref=e926]: Florianópolis
+          - text: "e toda a Grande Florianópolis com encordoamento profissional: diagnóstico do seu jogo, tensão calibrada em máquina eletrônica e cordas premium das melhores marcas. E o melhor —"
+          - strong [ref=e927]: buscamos e entregamos a sua raquete
+          - text: ": você agenda pelo WhatsApp, sem sair de casa, e recebe de volta pronta para jogar."
+        - generic [ref=e928]:
+          - generic [ref=e929]: Florianópolis
+          - generic [ref=e930]: São José
+          - generic [ref=e931]: Palhoça
+          - generic [ref=e932]: Biguaçu
+          - generic [ref=e933]: Santo Amaro da Imperatriz
+        - link "Agendar em Florianópolis →" [ref=e934] [cursor=pointer]:
+          - /url: https://wa.me/5548992034224
+          - text: Agendar em Florianópolis
+          - generic [ref=e935]: →
+      - generic [ref=e936]:
+        - text: Perguntas frequentes
+        - heading "Dúvidas sobre encordoamento" [level=2] [ref=e937]
+        - generic [ref=e938]:
+          - group [ref=e939]:
+            - generic "Vocês fazem encordoamento de raquetes de tênis em Florianópolis? +" [ref=e940] [cursor=pointer]:
+              - text: Vocês fazem encordoamento de raquetes de tênis em Florianópolis?
+              - generic [ref=e941]: +
+          - group [ref=e942]:
+            - generic "Vocês buscam e entregam a raquete? +" [ref=e943] [cursor=pointer]:
+              - text: Vocês buscam e entregam a raquete?
+              - generic [ref=e944]: +
+          - group [ref=e945]:
+            - generic "Quanto custa encordoar uma raquete? +" [ref=e946] [cursor=pointer]:
+              - text: Quanto custa encordoar uma raquete?
+              - generic [ref=e947]: +
+          - group [ref=e948]:
+            - generic "De quanto em quanto tempo devo trocar a corda? +" [ref=e949] [cursor=pointer]:
+              - text: De quanto em quanto tempo devo trocar a corda?
+              - generic [ref=e950]: +
+          - group [ref=e951]:
+            - generic "Como sei qual corda é ideal para o meu jogo? +" [ref=e952] [cursor=pointer]:
+              - text: Como sei qual corda é ideal para o meu jogo?
+              - generic [ref=e953]: +
+          - group [ref=e954]:
+            - generic "Qual tensão devo usar? +" [ref=e955] [cursor=pointer]:
+              - text: Qual tensão devo usar?
+              - generic [ref=e956]: +
+    - generic [ref=e959]:
+      - heading "Pronto para sentir a diferença?" [level=2] [ref=e960]:
+        - text: Pronto para sentir
+        - text: a diferença?
+      - paragraph [ref=e961]: Agende seu encordoamento em Florianópolis — buscamos e entregamos sua raquete — e jogue com a tensão certa para o seu jogo.
+      - link "Agendar pelo WhatsApp →" [ref=e962] [cursor=pointer]:
+        - /url: https://wa.me/5548992034224
+        - text: Agendar pelo WhatsApp
+        - generic [ref=e963]: →
+  - contentinfo [ref=e964]:
+    - generic [ref=e965]:
+      - generic [ref=e966]:
+        - generic [ref=e967]:
+          - img "EBM String Pro" [ref=e968]
+          - paragraph [ref=e969]: “Cada libra importa. Precisão técnica para o seu jogo.”
+          - paragraph [ref=e970]: Encordoamento de raquetes de tênis em Florianópolis e Grande Florianópolis · São José · Palhoça · Biguaçu.
+        - generic [ref=e971]:
+          - heading "Navegar" [level=4] [ref=e972]
+          - list [ref=e973]:
+            - listitem [ref=e974]:
+              - link "Finder" [ref=e975] [cursor=pointer]:
+                - /url: /#finder
+            - listitem [ref=e976]:
+              - link "Catálogo" [ref=e977] [cursor=pointer]:
+                - /url: /#catalogo
+            - listitem [ref=e978]:
+              - link "Comparar" [ref=e979] [cursor=pointer]:
+                - /url: /#comparar
+            - listitem [ref=e980]:
+              - link "Processo" [ref=e981] [cursor=pointer]:
+                - /url: /#processo
+        - generic [ref=e982]:
+          - heading "Contato" [level=4] [ref=e983]
+          - list [ref=e984]:
+            - listitem [ref=e985]:
+              - link "WhatsApp" [ref=e986] [cursor=pointer]:
+                - /url: https://wa.me/5548992034224
+            - listitem [ref=e987]:
+              - link "Instagram" [ref=e988] [cursor=pointer]:
+                - /url: https://instagram.com/ebmstringpro
+            - listitem [ref=e989]:
+              - link "Catálogo PDF ↓" [ref=e990] [cursor=pointer]:
+                - /url: /catalogo-ebm-string-pro.pdf
+      - generic [ref=e991]:
+        - generic [ref=e992]: © 2026 EBM String Pro · ebmstring.pro
+        - generic [ref=e993]: Performance começa nas cordas

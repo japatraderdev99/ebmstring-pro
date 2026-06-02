@@ -14,6 +14,10 @@ const faqs = [
     a: "Sim. A EBM String Pro atende Florianópolis e toda a Grande Florianópolis (São José, Palhoça, Biguaçu e região) com encordoamento profissional, tensão calibrada e cordas premium. O agendamento é pelo WhatsApp.",
   },
   {
+    q: "Vocês buscam e entregam a raquete?",
+    a: "Sim — esse é um diferencial da EBM String Pro. Buscamos a sua raquete e devolvemos encordoada em Florianópolis e Grande Florianópolis. Você agenda pelo WhatsApp, combina o ponto de coleta e recebe a raquete pronta para jogar, sem precisar se deslocar.",
+  },
+  {
     q: "Quanto custa encordoar uma raquete?",
     a: "O valor depende da corda escolhida. No nosso catálogo as cordas vão de R$ 50 a R$ 120 (mais a mão de obra de encordoamento). Use o EBM String Finder ou fale no WhatsApp para um orçamento exato.",
   },
@@ -89,7 +93,7 @@ const depoimentos = [
   <main>
     <!-- ============ HERO ============ -->
     <section
-      class="grain relative flex min-h-[100svh] flex-col items-center justify-center overflow-hidden border-b border-line px-4 pb-32 pt-28 text-center md:pb-28"
+      class="grain relative flex min-h-[100svh] flex-col items-center justify-center overflow-hidden border-b border-line px-4 pb-36 pt-24 text-center md:pb-28"
     >
       <div class="stringbed absolute inset-0 opacity-[0.18]"></div>
       <div
@@ -104,9 +108,9 @@ const depoimentos = [
       >
       </div>
 
-      <div class="relative z-10 mx-auto flex w-full max-w-5xl flex-col items-center">
+      <div class="relative z-10 mx-auto flex w-full max-w-3xl flex-col items-center">
         <span
-          class="reveal tech-label mb-8 border border-lima/40 bg-quadra/30 px-3 py-2 text-center text-[10px] text-lima sm:px-4 sm:text-xs"
+          class="reveal tech-label mb-7 border border-lima/40 bg-quadra/30 px-3 py-1.5 text-center text-[9px] text-lima sm:px-4 sm:text-[11px]"
           style="animation-delay: 0.1s"
         >
           Encordoamento de raquetes de tênis · Florianópolis
@@ -119,19 +123,19 @@ const depoimentos = [
           width="600"
           height="450"
           fetchpriority="high"
-          class="reveal w-[78vw] max-w-[440px] drop-shadow-[0_0_45px_rgba(156,214,83,0.25)] sm:w-[60vw] md:max-w-[520px]"
+          class="reveal w-[58vw] max-w-[280px] drop-shadow-[0_0_38px_rgba(156,214,83,0.2)] sm:max-w-[330px] md:max-w-[380px]"
           style="animation-delay: 0.2s"
         />
 
         <h1
-          class="reveal mt-8 font-display text-[10vw] leading-[0.85] text-papel sm:text-[8vw] md:text-7xl lg:text-8xl"
+          class="reveal mt-10 font-display text-[7vw] leading-[0.95] text-papel sm:text-5xl md:text-6xl lg:text-7xl"
           style="animation-delay: 0.35s"
         >
           Performance <span class="text-lima text-glow italic">começa nas cordas.</span>
         </h1>
 
         <p
-          class="reveal editorial mt-6 max-w-2xl text-balance text-lg text-muted sm:text-xl md:text-2xl"
+          class="reveal editorial mt-5 max-w-xl text-balance text-base text-muted sm:text-lg md:text-xl"
           style="animation-delay: 0.5s"
         >
           Cada libra importa. Precisão técnica de tensão e consistência —
@@ -139,7 +143,7 @@ const depoimentos = [
         </p>
 
         <div
-          class="reveal mt-10 flex w-full flex-col gap-3 sm:w-auto sm:flex-row sm:gap-4"
+          class="reveal mt-9 flex w-full flex-col gap-3 sm:w-auto sm:flex-row sm:gap-4"
           style="animation-delay: 0.65s"
         >
           <a
@@ -184,7 +188,7 @@ const depoimentos = [
           [
             ["±0.5", "lbs de precisão"],
             ["6", "eixos analisados"],
-            ["10+", "cordas premium"],
+            ["12", "cordas premium"],
           ].map(([big, small]) => (
             <div class="border-r border-line px-4 py-5 text-center last:border-r-0">
               <div class="font-display text-3xl text-lima md:text-4xl">{big}</div>
@@ -192,6 +196,43 @@ const depoimentos = [
             </div>
           ))
         }
+      </div>
+    </section>
+
+    <!-- ============ DIFERENCIAL: BUSCA E ENTREGA ============ -->
+    <section class="border-b border-line bg-quadra/15">
+      <div
+        class="mx-auto flex max-w-5xl flex-col items-center gap-4 px-4 py-6 text-center sm:flex-row sm:justify-center sm:gap-5 sm:text-left"
+      >
+        <svg
+          class="h-8 w-8 shrink-0 text-lima"
+          viewBox="0 0 24 24"
+          fill="none"
+          stroke="currentColor"
+          stroke-width="1.6"
+          stroke-linecap="round"
+          stroke-linejoin="round"
+          aria-hidden="true"
+        >
+          <path d="M3 7h10v8H3z"></path>
+          <path d="M13 9h4l3 3v3h-7z"></path>
+          <circle cx="7" cy="17.5" r="1.7"></circle>
+          <circle cx="17" cy="17.5" r="1.7"></circle>
+        </svg>
+        <p class="font-body text-sm text-muted sm:text-base">
+          <strong class="font-display uppercase tracking-wide text-lima"
+            >Buscamos e entregamos sua raquete</strong
+          > em Florianópolis e Grande Florianópolis — você agenda pelo WhatsApp e a
+          gente cuida do resto.
+        </p>
+        <a
+          href={`${WHATSAPP_LINK}?text=${encodeURIComponent("Olá! Quero agendar a coleta da minha raquete para encordoamento.")}`}
+          target="_blank"
+          rel="noopener"
+          class="shrink-0 bg-lima px-6 py-3 tech-label text-tinta transition-colors duration-300 hover:bg-lima-bright"
+        >
+          Agendar coleta
+        </a>
       </div>
     </section>
 
@@ -355,12 +396,16 @@ const depoimentos = [
           <span class="tech-label text-lima">Atendimento local</span>
           <h2 class="mt-3 font-display text-4xl leading-none text-papel md:text-6xl">
             Encordoamento de raquetes de tênis em Florianópolis
+            <span class="text-lima">com busca e entrega</span>
           </h2>
           <p class="mt-6 max-w-xl font-body text-muted">
             A EBM String Pro atende <strong class="text-papel">Florianópolis</strong> e
             toda a Grande Florianópolis com encordoamento profissional: diagnóstico
             do seu jogo, tensão calibrada em máquina eletrônica e cordas premium das
-            melhores marcas. Agende pelo WhatsApp e jogue com a corda certa.
+            melhores marcas. E o melhor —
+            <strong class="text-papel">buscamos e entregamos a sua raquete</strong>:
+            você agenda pelo WhatsApp, sem sair de casa, e recebe de volta pronta
+            para jogar.
           </p>
           <div class="mt-8 flex flex-wrap gap-2">
             {
@@ -426,8 +471,8 @@ const depoimentos = [
           >
         </h2>
         <p class="editorial mx-auto mt-6 max-w-xl text-xl text-papel/80">
-          Agende seu encordoamento em Florianópolis e jogue com a tensão certa
-          para o seu jogo.
+          Agende seu encordoamento em Florianópolis — buscamos e entregamos
+          sua raquete — e jogue com a tensão certa para o seu jogo.
         </p>
         <a
           href={WHATSAPP_LINK}

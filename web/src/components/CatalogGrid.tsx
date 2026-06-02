@@ -178,7 +178,7 @@ export default function CatalogGrid() {
   const [sort, setSort] = useState<Sort>("destaque");
 
   const list = useMemo(() => {
-    const arr = STRINGS.filter((s) => matches(s, filter));
+    const arr = STRINGS.filter((s) => s.available !== false && matches(s, filter));
     if (sort === "preco-asc") arr.sort((a, b) => a.priceBRL - b.priceBRL);
     if (sort === "preco-desc") arr.sort((a, b) => b.priceBRL - a.priceBRL);
     // Indisponíveis sempre ao final.

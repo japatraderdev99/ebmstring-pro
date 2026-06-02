@@ -66,6 +66,7 @@ export const STRINGS: StringModel[] = [
     levels: ["iniciante", "intermediario", "avancado"],
     blurb:
       "Entra forte no custo-benefício: controle de poli premium por uma fração do preço. Porta de entrada ideal para o mundo do poliéster.",
+    available: false,
   },
   {
     id: "sigma-poly-spin",
@@ -85,6 +86,7 @@ export const STRINGS: StringModel[] = [
     levels: ["intermediario", "avancado"],
     blurb:
       "Perfil agressivo focado em giro. Para o jogador de fundo que vive de topspin e quer spin de elite gastando pouco.",
+    available: false,
   },
   {
     id: "gamma-poly-z",
@@ -287,7 +289,7 @@ export function getString(id: string): StringModel | undefined {
 
 /**
  * Cordas com foto macro disponível em /public/strings/<id>.jpg.
- * (Todas as 10 cordas do catálogo possuem foto.)
+ * (Todas as cordas do catálogo possuem foto.)
  */
 const STRINGS_WITH_PHOTOS = new Set<string>([
   "sigma-poly-black",

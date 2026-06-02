@@ -10,8 +10,8 @@ export default defineConfig({
   integrations: [
     react(),
     sitemap({
-      // Páginas internas de geração (PDF / imagem OG) ficam fora do índice.
-      filter: (page) => !/\/(catalogo-pdf|og-card)\/?$/.test(page),
+      // Páginas internas de geração (PDF / OG / artes IG) ficam fora do índice.
+      filter: (page) => !/\/(catalogo-pdf|og-card|ig)\b/.test(page),
     }),
   ],
   vite: {

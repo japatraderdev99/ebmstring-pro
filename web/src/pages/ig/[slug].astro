@@ -1,0 +1,259 @@
+---
+/**
+ * Gerador de artes para Instagram (render → PNG via Chrome headless).
+ *  - Carrossel por corda: <id>--1..4   (1080 x 1350)
+ *  - Capas de destaque:   cover--<tipo> (1080 x 1920)
+ * Rota interna, noindex.
+ */
+import "@/styles/global.css";
+import RadarChart from "@/components/RadarChart.tsx";
+import {
+  STRINGS,
+  stringImage,
+  brandLogo,
+  ATTR_LABELS,
+  ATTRS,
+  type StringModel,
+  type Attr,
+} from "@/data/strings";
+import { SITE, WHATSAPP_DISPLAY } from "@/lib/site";
+
+export function getStaticPaths() {
+  const avail = STRINGS.filter((s) => s.available !== false);
+  const paths: { params: { slug: string } }[] = [];
+  for (const s of avail) for (let n = 1; n <= 4; n++) paths.push({ params: { slug: `${s.id}--${n}` } });
+  for (const c of ["catalogo", "cordas", "finder", "entrega", "processo"])
+    paths.push({ params: { slug: `cover--${c}` } });
+  return paths;
+}
+
+const { slug } = Astro.params;
+const [id, nStr] = slug.split("--");
+const isCover = id === "cover";
+const n = Number(nStr);
+const s = isCover ? undefined : STRINGS.find((x) => x.id === id);
+
+const fmt = (v: number) => `R$ ${v.toFixed(2).replace(".", ",")}`;
+const STYLE_LABEL: Record<string, string> = {
+  controle: "Controle e precisão",
+  agressivo: "Topspin agressivo",
+  "all-court": "Jogo all-court",
+  potencia: "Potência e profundidade",
+};
+const LEVEL_LABEL: Record<string, string> = {
+  iniciante: "Iniciante",
+  intermediario: "Intermediário",
+  avancado: "Avançado",
+  competitivo: "Competitivo",
+};
+function topAttrs(m: StringModel): Attr[] {
+  return [...ATTRS].sort((a, b) => m.attrs[b] - m.attrs[a]).slice(0, 2);
+}
+function levelRange(m: StringModel): string {
+  const ls = m.levels.map((l) => LEVEL_LABEL[l]);
+  return ls.length > 1 ? `${ls[0]} ao ${ls[ls.length - 1]}` : ls[0];
+}
+
+const COVERS: Record<string, { icon: string; label: string; sub: string }> = {
+  catalogo: { icon: "▦", label: "Catálogo", sub: "Todas as cordas" },
+  cordas: { icon: "◉", label: "Cordas", sub: "Perfil técnico" },
+  finder: { icon: "✦", label: "Finder", sub: "Sua corda ideal" },
+  entrega: { icon: "⇄", label: "Busca & Entrega", sub: "Em Floripa" },
+  processo: { icon: "⊹", label: "Processo", sub: "Tensão calibrada" },
+};
+const cover = isCover ? COVERS[nStr] : undefined;
+const img = s ? stringImage(s.id) : null;
+---
+
+<!doctype html>
+<html lang="pt-BR" class="dark">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="robots" content="noindex" />
+    <title>IG {slug}</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Archivo:ital,wght@0,300..800;1,400..700&family=EB+Garamond:ital,wght@0,400..600;1,400..600&family=Geist+Mono:wght@400;500;600&family=Saira+Condensed:wght@400;500;600;700;800;900&display=swap"
+      rel="stylesheet"
+    />
+    <style is:global>
+      * { -webkit-print-color-adjust: exact !important; print-color-adjust: exact !important; }
+      html, body { margin: 0; padding: 0; background: #0a0a0a; }
+      .slide { position: relative; overflow: hidden; background: #0a0a0a; }
+      .carousel { width: 1080px; height: 1350px; }
+      .story { width: 1080px; height: 1920px; }
+    </style>
+  </head>
+  <body class="font-body text-papel">
+    {/* ===================== CAPAS DE DESTAQUE ===================== */}
+    {
+      isCover && cover && (
+        <div class="slide story grain text-center">
+          <div class="stringbed absolute inset-0 opacity-[0.14]" />
+          <div
+            class="absolute inset-0"
+            style="background: radial-gradient(70% 44% at 50% 50%, rgba(20,58,36,0.6), transparent 60%);"
+          />
+          {/* ícone no centro exato (zona do recorte circular do destaque) */}
+          <div
+            class="absolute left-1/2 top-1/2 flex h-[320px] w-[320px] -translate-x-1/2 -translate-y-1/2 items-center justify-center rounded-full border-2 border-lima/50 text-lima"
+            style="box-shadow: 0 0 80px -10px rgba(156,214,83,0.55); font-size: 160px; line-height:1;"
+          >
+            {cover.icon}
+          </div>
+          <div class="absolute inset-x-0 top-[62%] text-center">
+            <div class="font-display text-[92px] font-extrabold uppercase leading-none text-papel">
+              {cover.label}
+            </div>
+            <div class="tech-label mt-[24px] text-[26px] tracking-[0.3em] text-lima">
+              {cover.sub}
+            </div>
+          </div>
+          <img src="/ebm-logo.png" class="absolute bottom-[240px] left-1/2 w-[260px] -translate-x-1/2 opacity-90" />
+        </div>
+      )
+    }
+
+    {/* ===================== CARROSSEL: SLIDE 1 — CAPA ===================== */}
+    {
+      s && n === 1 && (
+        <div class="slide carousel flex flex-col justify-end">
+          {img ? (
+            <img src={img} class="absolute inset-0 h-full w-full object-cover" />
+          ) : (
+            <div class="stringbed absolute inset-0 opacity-30" />
+          )}
+          <div
+            class="absolute inset-0"
+            style="background: linear-gradient(to top, #0a0a0a 4%, rgba(10,10,10,0.2) 45%, rgba(10,10,10,0.55) 100%);"
+          />
+          <div class="absolute left-[80px] right-[80px] top-[80px] flex items-center justify-between">
+            {brandLogo(s.brand) ? (
+              <span
+                aria-label={s.brand}
+                style={`width:210px;height:42px;background-color:var(--color-papel);-webkit-mask-image:url(${brandLogo(s.brand)});mask-image:url(${brandLogo(s.brand)});-webkit-mask-repeat:no-repeat;mask-repeat:no-repeat;-webkit-mask-position:left center;mask-position:left center;-webkit-mask-size:contain;mask-size:contain;`}
+              />
+            ) : (
+              <span class="font-display text-[46px] font-extrabold uppercase italic text-papel">{s.brand}</span>
+            )}
+            <span class="tech-label border border-lima/50 bg-quadra/40 px-[24px] py-[12px] text-[26px] text-lima">
+              Análise técnica
+            </span>
+          </div>
+          <div class="relative z-10 px-[80px] pb-[150px]">
+            <div class="tech-label text-[30px] text-lima">{s.tagline}</div>
+            <h1 class="mt-[16px] font-display text-[128px] font-extrabold uppercase leading-[0.86] text-papel">
+              {s.name}
+            </h1>
+            <div class="mt-[44px] flex items-center gap-[20px]">
+              <span class="font-display text-[44px] uppercase text-papel">Arrasta</span>
+              <span class="text-[52px] text-lima">→</span>
+            </div>
+          </div>
+        </div>
+      )
+    }
+
+    {/* ===================== SLIDE 2 — RADAR ===================== */}
+    {
+      s && n === 2 && (
+        <div class="slide carousel grain flex flex-col items-center px-[80px] pb-[90px] pt-[100px] text-center">
+          <div class="stringbed-fine absolute inset-0 opacity-[0.07]" />
+          <div class="relative">
+            <div class="tech-label text-[28px] text-lima">O perfil técnico</div>
+            <h2 class="mt-[12px] font-display text-[78px] font-extrabold uppercase leading-none text-papel">
+              {s.brand} {s.name}
+            </h2>
+          </div>
+          <div class="relative my-[24px] w-[800px]">
+            <RadarChart data={s.attrs} size={800} />
+          </div>
+          <div class="relative flex w-full gap-[24px]">
+            {topAttrs(s).map((a) => (
+              <div class="flex-1 border border-lima/40 bg-quadra/25 py-[30px]">
+                <div class="font-display text-[78px] leading-none text-lima">{s.attrs[a]}</div>
+                <div class="tech-label mt-[12px] text-[28px] text-papel">{ATTR_LABELS[a].label}</div>
+              </div>
+            ))}
+          </div>
+          <div class="relative mt-[36px] font-mono text-[28px] text-faint">
+            6 eixos · 0–100 · análise EBM
+          </div>
+        </div>
+      )
+    }
+
+    {/* ===================== SLIDE 3 — SPECS + PRA QUEM ===================== */}
+    {
+      s && n === 3 && (
+        <div class="slide carousel flex flex-col px-[80px] pb-[90px] pt-[100px]">
+          <div class="stringbed-fine absolute inset-0 opacity-[0.06]" />
+          <div class="relative">
+            <div class="tech-label text-[28px] text-lima">Ficha técnica</div>
+            <h2 class="mt-[12px] font-display text-[86px] font-extrabold uppercase leading-[0.9] text-papel">
+              {s.name}
+            </h2>
+          </div>
+          <ul class="relative mt-[46px] flex flex-col gap-[2px] font-mono text-[32px]">
+            {[
+              ["Marca", s.brand],
+              ["Material", s.material],
+              ["Formato", s.shape],
+              ["Gauge", s.gauges.join(" · ")],
+              ["Tensão rec.", `${s.tensionRec[0]}–${s.tensionRec[1]} lbs`],
+              ["Braço", s.armFriendly ? "Amiga do braço" : "Resposta firme"],
+            ].map(([k, v]) => (
+              <li class="flex items-center justify-between gap-[24px] border-b border-line py-[22px]">
+                <span class="shrink-0 text-faint">{k}</span>
+                <span class="text-right text-papel">{v}</span>
+              </li>
+            ))}
+          </ul>
+          <div class="relative mt-[42px] border border-lima/40 bg-quadra/20 p-[44px]">
+            <div class="tech-label text-[26px] text-lima">Pra quem é</div>
+            <div class="mt-[14px] font-display text-[48px] uppercase leading-[1.05] text-papel">
+              {s.bestFor.map((b) => STYLE_LABEL[b]).join(" · ")}
+            </div>
+            <div class="mt-[10px] font-body text-[30px] text-muted">Nível {levelRange(s).toLowerCase()}</div>
+          </div>
+          <div class="relative mt-auto flex items-end justify-between border-t-2 border-line pt-[36px]">
+            <span class="tech-label max-w-[460px] text-[28px] leading-tight text-faint">
+              Encordoamento · corda + serviço
+            </span>
+            <span class="font-display text-[104px] leading-none text-lima">{fmt(s.priceBRL)}</span>
+          </div>
+        </div>
+      )
+    }
+
+    {/* ===================== SLIDE 4 — CTA ===================== */}
+    {
+      s && n === 4 && (
+        <div class="slide carousel grain flex flex-col items-center justify-center px-[80px] text-center">
+          <div class="stringbed absolute inset-0 opacity-[0.12]" />
+          <div class="absolute inset-0" style="background:#143a24;opacity:0.18;" />
+          <div class="relative flex flex-col items-center">
+            <img src="/ebm-logo.png" class="w-[300px]" />
+            <div
+              class="mt-[60px] flex h-[150px] w-[150px] items-center justify-center rounded-full border-2 border-lima/50 text-[80px] text-lima"
+              style="box-shadow:0 0 60px -10px rgba(156,214,83,0.5);"
+            >
+              ⇄
+            </div>
+            <h2 class="mt-[44px] font-display text-[76px] font-extrabold uppercase leading-[0.95] text-papel">
+              Buscamos e<br />entregamos<br /><span class="text-lima italic">sua raquete</span>
+            </h2>
+            <p class="editorial mt-[34px] max-w-[800px] text-[38px] leading-snug text-muted">
+              Em Florianópolis e Grande Floripa. Você agenda, a gente cuida do resto.
+            </p>
+            <div class="mt-[64px] bg-lima px-[72px] py-[40px] font-display text-[46px] uppercase leading-none text-tinta">
+              WhatsApp · {WHATSAPP_DISPLAY}
+            </div>
+            <div class="tech-label mt-[38px] text-[30px] text-faint">{SITE.domain} · String Finder</div>
+          </div>
+        </div>
+      )
+    }
+  </body>
+</html>

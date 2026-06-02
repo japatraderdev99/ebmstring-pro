@@ -30,10 +30,14 @@ export default function RadarChart({
   className = "",
   highlight = null,
 }: Props) {
-  const pad = showLabels ? 30 : 8;
+  // Tudo proporcional ao tamanho — legível tanto em cards (210) quanto em arte IG (760).
+  const labelFont = Math.round(size * 0.04);
+  const pad = showLabels ? Math.round(size * 0.115) : Math.round(size * 0.04);
   const cx = size / 2;
   const cy = size / 2;
   const r = size / 2 - pad;
+  const dotR = Math.max(2, size * 0.011);
+  const lineW = Math.max(1.6, size * 0.0042);
 
   const values = ATTRS.map((a) => data[a]);
   const overlayValues = overlay ? ATTRS.map((a) => overlay[a]) : null;
@@ -91,7 +95,7 @@ export default function RadarChart({
         points={polygon(cx, cy, r, values)}
         fill="rgba(156, 214, 83, 0.22)"
         stroke="var(--color-lima)"
-        strokeWidth={1.6}
+        strokeWidth={lineW}
         style={{ filter: "drop-shadow(0 0 5px rgba(156,214,83,0.4))" }}
       />
 
@@ -104,7 +108,7 @@ export default function RadarChart({
             key={i}
             cx={x}
             cy={y}
-            r={isHi ? 3.4 : 2}
+            r={isHi ? dotR * 1.7 : dotR}
             fill={isHi ? "var(--color-lima-bright)" : "var(--color-lima)"}
           />
         );
@@ -113,7 +117,7 @@ export default function RadarChart({
       {/* labels */}
       {showLabels &&
         ATTRS.map((a, i) => {
-          const [x, y] = point(cx, cy, r + 16, i, 1);
+          const [x, y] = point(cx, cy, r + labelFont * 0.85, i, 1);
           const isHi = highlight === a;
           return (
             <text
@@ -123,7 +127,7 @@ export default function RadarChart({
               textAnchor="middle"
               dominantBaseline="middle"
               fill={isHi ? "var(--color-lima)" : "var(--color-faint)"}
-              fontSize={9}
+              fontSize={labelFont}
               fontWeight={700}
               fontFamily="var(--font-body)"
               letterSpacing="0.05em"

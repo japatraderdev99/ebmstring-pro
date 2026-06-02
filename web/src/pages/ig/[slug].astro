@@ -53,7 +53,7 @@ function brandMask(logo: string, w: number, h: number, color = "var(--color-pape
 export function getStaticPaths() {
   const avail = STRINGS.filter((s) => s.available !== false);
   const paths: { params: { slug: string } }[] = [];
-  for (const s of avail) for (let n = 1; n <= 6; n++) paths.push({ params: { slug: `${s.id}--c${n}` } });
+  for (const s of avail) for (let n = 1; n <= 7; n++) paths.push({ params: { slug: `${s.id}--c${n}` } });
   for (const [hl, data] of Object.entries(HIGHLIGHTS)) {
     paths.push({ params: { slug: `cover--${hl}` } });
     data.stories.forEach((_, i) => paths.push({ params: { slug: `h--${hl}--${i + 1}` } }));
@@ -246,12 +246,36 @@ const topAttrs = s ? [...ATTRS].sort((a, b) => s!.attrs[b] - s!.attrs[a]) : [];
               </li>
             ))}
           </ul>
-          <div class="relative mt-auto border-t-2 border-lima pt-[40px]">
-            <div class="flex items-center gap-[22px]">
-              <span class="flex h-[90px] w-[90px] shrink-0 items-center justify-center rounded-full border-2 border-lima/50 text-[50px] text-lima">⇄</span>
-              <div class="font-display text-[52px] uppercase leading-[0.95] text-papel">Buscamos e entregamos sua raquete</div>
+          <div class="relative mt-auto flex items-center justify-between border-t border-line pt-[34px]">
+            <span class="tech-label text-[26px] text-faint">Análise técnica EBM</span>
+            <span class="tech-label text-[26px] text-lima">{SITE.domain}</span>
+          </div>
+        </div>
+      )
+    }
+    {
+      mode === "carousel" && s && cn === 7 && (
+        <div class="slide feed grain flex flex-col items-center justify-center px-[90px] text-center">
+          <div class="stringbed absolute inset-0 opacity-[0.12]" />
+          <div class="absolute inset-0" style="background: radial-gradient(75% 55% at 50% 45%, rgba(20,58,36,0.5), transparent 62%);" />
+          <div class="relative flex flex-col items-center">
+            <img src="/ebm-logo.png" class="w-[280px]" />
+            <h2 class="mt-[54px] font-display text-[94px] font-extrabold uppercase leading-[0.9] text-papel">
+              A {s.name} é a<br /><span class="text-lima italic">sua corda?</span>
+            </h2>
+            <p class="editorial mt-[30px] max-w-[840px] text-[38px] leading-snug text-muted">
+              Salva esse post 📌 e confirma no String Finder o match científico com o seu jogo.
+            </p>
+            <div class="mt-[46px] flex items-center gap-[18px]">
+              {["Salva", "Comenta", "Compartilha"].map((c) => (
+                <span class="tech-label border border-line px-[28px] py-[16px] text-[26px] text-papel">{c}</span>
+              ))}
             </div>
-            <div class="mt-[26px] font-body text-[34px] text-muted">Agende pelo WhatsApp · {SITE.domain}</div>
+            <div class="mt-[52px] flex items-center gap-[22px] bg-lima px-[56px] py-[34px]">
+              <span class="text-[44px] text-tinta">⇄</span>
+              <span class="font-display text-[44px] uppercase leading-none text-tinta">Busca e entrega em Floripa</span>
+            </div>
+            <div class="tech-label mt-[34px] text-[28px] text-faint">@ebmstring.pro · {SITE.domain}</div>
           </div>
         </div>
       )

@@ -14,13 +14,7 @@ export const SITE = {
   regionName: "Santa Catarina",
   country: "BR",
   geo: { lat: -27.5954, lng: -48.548 },
-  areaServed: [
-    "Florianópolis",
-    "São José",
-    "Palhoça",
-    "Biguaçu",
-    "Santo Amaro da Imperatriz",
-  ],
+  areaServed: ["Florianópolis", "São José"],
   keywords: [
     "encordoamento Florianópolis",
     "encordoamento de raquetes de tênis Florianópolis",

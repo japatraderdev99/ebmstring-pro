@@ -33,7 +33,7 @@ export default function Comparator() {
     <div>
       {/* selector */}
       <div className="mb-8 flex flex-wrap gap-2">
-        {STRINGS.map((s) => {
+        {STRINGS.filter((s) => s.available !== false).map((s) => {
           const on = selected.includes(s.id);
           return (
             <button

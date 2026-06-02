@@ -103,7 +103,7 @@ const fmt = (n: number) => `R$ ${n.toFixed(2).replace(".", ",")}`;
           [
             ["±0,5", "lbs de precisão"],
             ["6", "eixos analisados"],
-            ["10", "cordas premium"],
+            ["9", "cordas premium"],
           ].map(([b, s]) => (
             <div class="border-r border-line px-[6mm] py-[7mm] text-center last:border-r-0">
               <div class="font-display text-[12mm] leading-none text-lima">{b}</div>
@@ -236,6 +236,13 @@ const fmt = (n: number) => `R$ ${n.toFixed(2).replace(".", ",")}`;
         <p class="editorial mt-[6mm] max-w-[140mm] text-[5.5mm] leading-snug text-muted">
           Agende seu encordoamento e jogue com a tensão certa. Atendimento
           profissional, cordas premium e constância rastreável.
+        </p>
+        <p
+          class="mt-[8mm] max-w-[150mm] border border-lima/40 bg-quadra/30 px-[8mm] py-[4mm] text-center text-[4.5mm] leading-snug text-papel"
+        >
+          <span class="text-lima">⇄</span> Buscamos e entregamos a sua raquete em
+          <span class="text-lima">Florianópolis</span> e
+          <span class="text-lima">São José</span>.
         </p>
 
         <div class="mt-[12mm] flex flex-col items-center gap-[4mm]">

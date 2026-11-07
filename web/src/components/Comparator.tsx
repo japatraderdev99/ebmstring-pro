@@ -1,6 +1,5 @@
 import { useState } from "react";
 import { motion } from "motion/react";
-import RadarChart from "./RadarChart";
 import { STRINGS, ATTRS, ATTR_LABELS, type StringModel } from "@/data/strings";
 
 const MAX = 3;
@@ -54,9 +53,9 @@ export default function Comparator() {
         Selecione até {MAX} cordas · {selected.length}/{MAX}
       </p>
 
-      <div className="grid grid-cols-1 gap-6 lg:grid-cols-[1fr_1.2fr]">
-        {/* radars */}
-        <div className="grid grid-cols-1 gap-4 sm:grid-cols-3 lg:grid-cols-1 xl:grid-cols-3">
+      <div className="grid grid-cols-1 gap-6">
+        {/* cartões das cordas (as barras ficam na tabela) */}
+        <div className="grid grid-cols-1 gap-4 sm:grid-cols-3">
           {cols.map((c) => (
             <motion.div
               key={c.id}
@@ -69,7 +68,7 @@ export default function Comparator() {
               <span className="mb-1 text-center font-display text-lg leading-tight text-papel">
                 {c.name}
               </span>
-              <RadarChart data={c.attrs} size={170} />
+              
               <span className="mt-2 font-display text-lg text-lima">
                 R$ {c.priceBRL.toFixed(2).replace(".", ",")}
               </span>
@@ -103,13 +102,23 @@ export default function Comparator() {
                     return (
                       <td key={c.id} className="px-3 py-3 text-center">
                         <div className="flex items-center justify-center gap-2">
-                          <div className="hidden h-1.5 w-12 bg-surface-3 sm:block">
-                            <div
-                              className={best ? "h-full bg-lima" : "h-full bg-faint"}
-                              style={{ width: `${v}%` }}
-                            />
-                          </div>
-                          <span className={best ? "font-bold text-lima" : "text-papel"}>
+                          <span className="hidden gap-[3px] sm:flex" aria-hidden>
+                            {[0, 1, 2, 3, 4].map((i) => {
+                              const fill = Math.max(0, Math.min(1, v / 20 - i));
+                              return (
+                                <i
+                                  key={i}
+                                  className="relative block h-2.5 w-6 overflow-hidden shadow-[inset_0_0_0_1px_var(--color-surface-4)]"
+                                >
+                                  <b
+                                    className={`absolute inset-y-0 left-0 block ${best ? "bg-lima" : "bg-faint"}`}
+                                    style={{ width: `${fill * 100}%` }}
+                                  />
+                                </i>
+                              );
+                            })}
+                          </span>
+                          <span className={`w-7 text-right ${best ? "font-bold text-lima" : "text-papel"}`}>
                             {v}
                           </span>
                         </div>

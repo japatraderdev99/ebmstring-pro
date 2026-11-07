@@ -1,6 +1,6 @@
 import { useMemo, useState } from "react";
 import { AnimatePresence, motion } from "motion/react";
-import RadarChart from "./RadarChart";
+import AttrBars from "./AttrBars";
 import { STRINGS, stringImage, brandLogo, type Attr, type StringModel } from "@/data/strings";
 import { WHATSAPP_LINK } from "@/lib/site";
 
@@ -125,8 +125,8 @@ function Card({ s, index }: { s: StringModel; index: number }) {
         </div>
       )}
 
-      <div className="flex justify-center py-2">
-        <RadarChart data={s.attrs} size={210} highlight={hi} />
+      <div className="py-3 text-[15px]">
+        <AttrBars data={s.attrs} highlight={hi} />
       </div>
 
       <div className="mt-4 border-t border-line pt-4">

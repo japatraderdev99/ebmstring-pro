@@ -5,8 +5,8 @@
  * Rota: /catalogo-pdf  (não linkada na navegação; uso interno de geração).
  */
 import "@/styles/global.css";
-import RadarChart from "@/components/RadarChart.tsx";
-import { STRINGS, stringImage, brandLogo, ATTR_LABELS, ATTRS } from "@/data/strings";
+import AttrBars from "@/components/AttrBars.tsx";
+import { STRINGS, stringImage, brandLogo, ATTR_LABELS, ATTR_HELP, ATTRS } from "@/data/strings";
 
 const brandMaskStyle = (logo: string) =>
   `width:24mm;height:4mm;background-color:var(--color-papel);` +
@@ -103,7 +103,7 @@ const fmt = (n: number) => `R$ ${n.toFixed(2).replace(".", ",")}`;
           [
             ["±0,5", "lbs de precisão"],
             ["6", "eixos analisados"],
-            ["9", "cordas premium"],
+            [String(disponiveis.length), "cordas premium"],
           ].map(([b, s]) => (
             <div class="border-r border-line px-[6mm] py-[7mm] text-center last:border-r-0">
               <div class="font-display text-[12mm] leading-none text-lima">{b}</div>
@@ -112,6 +112,54 @@ const fmt = (n: number) => `R$ ${n.toFixed(2).replace(".", ",")}`;
           ))
         }
       </div>
+    </section>
+
+    <!-- ============ COMO LER ============ -->
+    <section class="sheet flex flex-col px-[16mm] py-[14mm]">
+      <header class="mb-[8mm] flex items-end justify-between border-b border-line pb-[5mm]">
+        <div>
+          <span class="tech-label text-lima">Guia de leitura</span>
+          <h2 class="font-display text-[11mm] leading-none text-papel">Como ler as barras</h2>
+        </div>
+        <img src="/ebm-logo.png" alt="EBM" class="h-[14mm]" />
+      </header>
+
+      <p class="editorial max-w-[160mm] text-[4.6mm] leading-snug text-muted">
+        Cada corda é avaliada em <span class="text-lima">6 eixos</span>. Cada barra tem
+        5 blocos, e cada bloco vale 20 pontos — quanto mais cheia, mais forte a corda
+        naquele quesito. Não existe corda nota 10 em tudo: <span class="text-papel">escolher é
+        decidir o que você não abre mão.</span>
+      </p>
+
+      <div class="mt-[8mm] flex flex-1 flex-col gap-[4.5mm]">
+        {
+          ATTRS.map((a) => (
+            <div class="grid flex-1 grid-cols-[42mm_1fr] items-center gap-[6mm] border border-line bg-surface-1 px-[6mm]">
+              <div>
+                <div class="font-display text-[6.4mm] uppercase leading-none text-papel">{ATTR_LABELS[a].label}</div>
+                <div class="mt-[2mm] flex gap-[1.2mm]">
+                  {[1, 2, 3, 4, 5].map((n) => (
+                    <i class:list={["block h-[3mm] flex-1 border border-lima", n <= 4 && "bg-lima"]} />
+                  ))}
+                </div>
+              </div>
+              <p class="text-[3.7mm] leading-snug text-muted">{ATTR_HELP[a]}</p>
+            </div>
+          ))
+        }
+      </div>
+
+      <p class="mt-[6mm] border-l-2 border-lima pl-[4mm] text-[3.4mm] leading-snug text-muted">
+        <span class="tech-label text-lima">Como usar · </span>
+        Defina sua prioridade (controle, spin, conforto…), procure as barras mais cheias
+        nesse eixo e confira o que você abre mão. Em dúvida, o EBM String Finder faz esse
+        cruzamento por você em 1 minuto.
+      </p>
+
+      <footer class="mt-[6mm] flex justify-between font-mono text-[2.8mm] text-faint">
+        <span>EBM String Pro · {SITE.domain}</span>
+        <span>02 / {String(pages.length + 3).padStart(2, "0")}</span>
+      </footer>
     </section>
 
     <!-- ============ PÁGINAS DE CORDAS ============ -->
@@ -134,7 +182,7 @@ const fmt = (n: number) => `R$ ${n.toFixed(2).replace(".", ",")}`;
               return (
                 <article class="flex flex-1 gap-[7mm] border border-line bg-surface-1 p-[6mm]">
                   {/* esquerda: foto ou bloco */}
-                  <div class="relative w-[62mm] shrink-0 overflow-hidden border border-line/60 bg-tinta">
+                  <div class="relative w-[58mm] shrink-0 overflow-hidden border border-line/60 bg-tinta">
                     {img ? (
                       <img
                         src={img}
@@ -167,40 +215,39 @@ const fmt = (n: number) => `R$ ${n.toFixed(2).replace(".", ",")}`;
                     </span>
                   </div>
 
-                  {/* meio: radar */}
-                  <div class="flex w-[44mm] shrink-0 flex-col items-center justify-center">
-                    <RadarChart data={s.attrs} size={150} />
-                    <p class="tech-label mt-[2mm] text-center text-lima">{s.tagline}</p>
-                  </div>
-
-                  {/* direita: specs */}
+                  {/* direita: tagline, barras, specs, texto, preço */}
                   <div class="flex flex-1 flex-col">
-                    <ul class="flex flex-col gap-[2mm] font-mono text-[3mm] text-muted">
-                      <li class="flex justify-between border-b border-line/40 pb-[1.5mm]">
+                    <p class="tech-label text-lima">{s.tagline}</p>
+
+                    <div class="mt-[4mm] text-[3.9mm]">
+                      <AttrBars data={s.attrs} />
+                    </div>
+
+                    <ul class="mt-[4mm] grid grid-cols-2 gap-x-[5mm] gap-y-[1.6mm] font-mono text-[2.7mm] text-muted">
+                      <li class="col-span-2 flex justify-between border-b border-line/40 pb-[1mm]">
                         <span class="text-faint">Gauge</span>
                         <span class="text-papel">{s.gauges.join(" · ")}</span>
                       </li>
-                      <li class="flex justify-between border-b border-line/40 pb-[1.5mm]">
+                      <li class="col-span-2 flex justify-between border-b border-line/40 pb-[1mm]">
+                        <span class="text-faint">Tensão rec.</span>
+                        <span class="text-papel">{s.tensionRec[0]}–{s.tensionRec[1]} lbs</span>
+                      </li>
+                      <li class="col-span-2 flex justify-between border-b border-line/40 pb-[1mm]">
                         <span class="text-faint">Material</span>
                         <span class="text-right text-papel">{s.material}</span>
                       </li>
-                      <li class="flex justify-between border-b border-line/40 pb-[1.5mm]">
-                        <span class="text-faint">Tensão rec.</span>
-                        <span class="text-papel">
-                          {s.tensionRec[0]}–{s.tensionRec[1]} lbs
-                        </span>
-                      </li>
-                      <li class="flex justify-between border-b border-line/40 pb-[1.5mm]">
+                      <li class="col-span-2 flex justify-between border-b border-line/40 pb-[1mm]">
                         <span class="text-faint">Braço</span>
                         <span class={s.armFriendly ? "text-lima" : "text-papel"}>
                           {s.armFriendly ? "Amiga do braço" : "Resposta firme"}
                         </span>
                       </li>
                     </ul>
-                    <p class="editorial mt-[4mm] flex-1 text-[3.4mm] leading-snug text-muted">
+
+                    <p class="editorial mt-[3.5mm] flex-1 text-[3.2mm] leading-snug text-muted">
                       {s.blurb}
                     </p>
-                    <div class="mt-[3mm] flex items-end justify-between border-t border-line pt-[3mm]">
+                    <div class="mt-[2.5mm] flex items-end justify-between border-t border-line pt-[2.5mm]">
                       <span class="tech-label text-faint">Set / corte</span>
                       <span class="font-display text-[9mm] leading-none text-lima">
                         {fmt(s.priceBRL)}
@@ -214,7 +261,7 @@ const fmt = (n: number) => `R$ ${n.toFixed(2).replace(".", ",")}`;
 
           <footer class="mt-[6mm] flex justify-between font-mono text-[2.8mm] text-faint">
             <span>EBM String Pro · {SITE.domain}</span>
-            <span>{String(pi + 2).padStart(2, "0")} / {String(pages.length + 2).padStart(2, "0")}</span>
+            <span>{String(pi + 3).padStart(2, "0")} / {String(pages.length + 3).padStart(2, "0")}</span>
           </footer>
         </section>
       ))

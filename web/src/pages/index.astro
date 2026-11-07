@@ -7,6 +7,7 @@ import StringFinder from "@/components/StringFinder.tsx";
 import CatalogGrid from "@/components/CatalogGrid.tsx";
 import Comparator from "@/components/Comparator.tsx";
 import { WHATSAPP_LINK, CATALOG_PDF, SITE } from "@/lib/site";
+import { STRINGS } from "@/data/strings";
 
 const faqs = [
   {
@@ -19,7 +20,7 @@ const faqs = [
   },
   {
     q: "Quanto custa encordoar uma raquete?",
-    a: "O valor depende da corda escolhida. No nosso catálogo as cordas vão de R$ 50 a R$ 120 (mais a mão de obra de encordoamento). Use o EBM String Finder ou fale no WhatsApp para um orçamento exato.",
+    a: "O valor depende da corda escolhida. No nosso catálogo as cordas vão de R$ 55 a R$ 160 (mais a mão de obra de encordoamento). Use o EBM String Finder ou fale no WhatsApp para um orçamento exato.",
   },
   {
     q: "De quanto em quanto tempo devo trocar a corda?",
@@ -188,7 +189,7 @@ const depoimentos = [
           [
             ["±0.5", "lbs de precisão"],
             ["6", "eixos analisados"],
-            ["9", "cordas premium"],
+            [String(STRINGS.filter((s) => s.available !== false).length), "cordas premium"],
           ].map(([big, small]) => (
             <div class="border-r border-line px-4 py-5 text-center last:border-r-0">
               <div class="font-display text-3xl text-lima md:text-4xl">{big}</div>
@@ -284,7 +285,7 @@ const depoimentos = [
           </h2>
           <p class="mt-5 max-w-2xl font-body text-muted">
             As cordas mais exigidas no circuito profissional, dissecadas em seis
-            eixos de performance. Filtre pelo que o seu jogo precisa.
+            eixos de performance, em barras fáceis de comparar. Filtre pelo que o seu jogo precisa.
           </p>
           <a
             href={CATALOG_PDF}

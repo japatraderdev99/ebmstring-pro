@@ -1,6 +1,6 @@
 import { useMemo, useState } from "react";
 import { AnimatePresence, motion } from "motion/react";
-import RadarChart from "./RadarChart";
+import AttrBars from "./AttrBars";
 import {
   scoreStrings,
   idealProfile,
@@ -248,12 +248,13 @@ export default function StringFinder() {
                       {r.string.name}
                     </h4>
 
-                    <div className="my-3 flex justify-center">
-                      <RadarChart
-                        data={r.string.attrs}
-                        overlay={i === 0 ? ideal : null}
-                        size={190}
-                      />
+                    <div className="my-3 text-[14px]">
+                      <AttrBars data={r.string.attrs} overlay={i === 0 ? ideal : null} />
+                      {i === 0 && (
+                        <p className="mt-2 flex items-center gap-2 font-mono text-[10px] text-faint">
+                          <span className="inline-block h-3 w-[2px] bg-papel" /> traço = perfil ideal para o seu jogo
+                        </p>
+                      )}
                     </div>
 
                     {r.reasons.length > 0 && (

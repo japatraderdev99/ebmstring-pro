@@ -1,8 +1,8 @@
 /**
  * EBM String Pro — Catálogo de Performance
  *
- * Cada corda é avaliada em 6 eixos (0–100) que alimentam o radar hexagonal
- * e o motor de recomendação do String Finder:
+ * Cada corda é avaliada em 6 eixos (0–100) que alimentam as barras de
+ * performance (5 blocos de 20 pts) e o motor de recomendação do String Finder:
  *   power      — potência / devolução de energia
  *   spin       — capacidade de gerar giro (snap-back, perfil)
  *   control    — controle / previsibilidade
@@ -20,6 +20,16 @@ export const ATTR_LABELS: Record<Attr, { short: string; label: string }> = {
   durability: { short: "DUR", label: "Durabilidade" },
   comfort: { short: "CFT", label: "Conforto" },
   tension: { short: "TEN", label: "Tensão" },
+};
+
+/** Explicação didática de cada eixo (guia de leitura do catálogo e das artes). */
+export const ATTR_HELP: Record<Attr, string> = {
+  power: "Quanta energia a corda devolve à bola. Mais barras = bola sai mais rápida e profunda com menos esforço.",
+  spin: "Facilidade de gerar giro. Mais barras = mais topspin e slice, bola cai mais rápido na quadra.",
+  control: "Previsibilidade e precisão da direção e profundidade. Mais barras = mais bolas dentro, mesmo batendo forte.",
+  durability: "Resistência ao desgaste e à quebra. Mais barras = a corda aguenta mais jogos antes de trocar.",
+  comfort: "Suavidade no braço e na raquete. Mais barras = menos vibração e impacto no cotovelo e no ombro.",
+  tension: "Quanto a corda segura a tensão ao longo do tempo. Mais barras = o jogo fica constante por mais semanas.",
 };
 
 export type PlayStyle = "controle" | "agressivo" | "all-court" | "potencia";
@@ -223,6 +233,25 @@ export const STRINGS: StringModel[] = [
       "Um clássico europeu que combina toque macio, boa manutenção de tensão e versatilidade. Agrada do intermediário ao avançado.",
   },
   {
+    id: "signum-pro-tornado",
+    brand: "Signum Pro",
+    name: "Tornado",
+    tagline: "Spin em espiral · tensão que dura",
+    type: "poliester",
+    material: "Co-poliéster torcido",
+    shape: "Heptagonal torcida",
+    gauges: ["1.30mm / 16"],
+    tensionRec: [42, 52],
+    priceBRL: 110.0,
+    armFriendly: false,
+    colors: ["Preto"],
+    attrs: { power: 74, spin: 92, control: 82, durability: 78, comfort: 62, tension: 84 },
+    bestFor: ["agressivo", "all-court"],
+    levels: ["avancado", "competitivo"],
+    blurb:
+      "Perfil heptagonal torcido em espiral que agarra a bola e dispara o giro, com potência controlada e ótima manutenção de tensão. Pede ~10% menos libras que um poli comum.",
+  },
+  {
     id: "yonex-polytour-spin",
     brand: "Yonex",
     name: "PolyTour Spin",
@@ -279,6 +308,82 @@ export const STRINGS: StringModel[] = [
     blurb:
       "Cult favorite. O perfil quadrado entrega spin e controle numa corda que ainda dá um plus de potência. Equilíbrio raro.",
   },
+  {
+    id: "head-rip-control",
+    brand: "Head",
+    name: "RIP Control",
+    tagline: "Multifilamento de controle · toque macio",
+    type: "multifilamento",
+    material: "Multifilamento (nylon + poliolefina)",
+    shape: "Trançada",
+    gauges: ["1.25mm / 17"],
+    tensionRec: [50, 58],
+    priceBRL: 120.0,
+    armFriendly: true,
+    colors: ["Natural", "Preto", "Branco"],
+    attrs: { power: 70, spin: 66, control: 80, durability: 52, comfort: 82, tension: 62 },
+    bestFor: ["controle", "all-court"],
+    levels: ["intermediario", "avancado"],
+    blurb:
+      "Um multifilamento fora do comum: toque amortecido, muito conforto e controle acima da média da categoria. Para quem quer sentir a bola sem castigar o braço.",
+  },
+  {
+    id: "yonex-polytour-strike",
+    brand: "Yonex",
+    name: "PolyTour Strike",
+    tagline: "Poli firme e durável · controle com giro",
+    type: "poliester",
+    material: "Co-poliéster",
+    shape: "Redonda",
+    gauges: ["1.25mm / 16L"],
+    tensionRec: [45, 55],
+    priceBRL: 130.0,
+    armFriendly: false,
+    colors: ["Azul", "Cinza", "Preto"],
+    attrs: { power: 72, spin: 78, control: 84, durability: 82, comfort: 64, tension: 80 },
+    bestFor: ["controle", "all-court"],
+    levels: ["intermediario", "avancado", "competitivo"],
+    blurb:
+      "Poliéster firme, de controle consistente e muita durabilidade. Ótima para quem arrebenta corda e quer previsibilidade.",
+  },
+  {
+    id: "solinco-confidential-soft",
+    brand: "Solinco",
+    name: "Confidential Soft",
+    tagline: "Mordida do quadrado · versão macia",
+    type: "poliester",
+    material: "Co-poliéster com agentes amaciantes",
+    shape: "Quadrada",
+    gauges: ["1.25mm / 16L"],
+    tensionRec: [44, 54],
+    priceBRL: 150.0,
+    armFriendly: true,
+    colors: ["Rosa elétrico"],
+    attrs: { power: 78, spin: 86, control: 80, durability: 72, comfort: 70, tension: 68 },
+    bestFor: ["agressivo", "all-court"],
+    levels: ["intermediario", "avancado", "competitivo"],
+    blurb:
+      "A versão mais macia e viva da Confidential: mantém a mordida do perfil quadrado, com mais conforto e pop. Spin generoso sem a secura do poli tradicional.",
+  },
+  {
+    id: "yonex-polytour-force",
+    brand: "Yonex",
+    name: "PolyTour Force",
+    tagline: "Potência em poli · edição João Fonseca",
+    type: "poliester",
+    material: "Co-poliéster",
+    shape: "Redonda",
+    gauges: ["1.25mm / 16L"],
+    tensionRec: [44, 54],
+    priceBRL: 160.0,
+    armFriendly: false,
+    colors: ["Vermelho rubi", "Preto"],
+    attrs: { power: 86, spin: 78, control: 74, durability: 70, comfort: 72, tension: 78 },
+    bestFor: ["potencia", "agressivo", "all-court"],
+    levels: ["avancado", "competitivo"],
+    blurb:
+      "O poli mais explosivo da Yonex: bola que sai rápido e profunda, com tensão estável e toque mais perdoador. Para swings médios a rápidos que querem potência sem perder o controle.",
+  },
 ];
 
 export const ATTRS: Attr[] = ["power", "spin", "control", "durability", "comfort", "tension"];
@@ -304,6 +409,11 @@ const STRINGS_WITH_PHOTOS = new Set<string>([
   "yonex-polytour-spin",
   "yonex-polytour-air",
   "solinco-hyper-g",
+  "signum-pro-tornado",
+  "head-rip-control",
+  "yonex-polytour-strike",
+  "solinco-confidential-soft",
+  "yonex-polytour-force",
 ]);
 
 export function stringImage(id: string): string | null {
